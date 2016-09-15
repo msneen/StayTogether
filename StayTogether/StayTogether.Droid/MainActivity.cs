@@ -38,8 +38,7 @@ namespace StayTogether.Droid
         protected override void OnPause()
         {
             base.OnPause();
-
-            binder.GetLocationSenderService().StartForeground();
+            binder?.GetLocationSenderService()?.StartForeground();
             UnbindFromService();
 
         }

@@ -5,10 +5,8 @@ using Plugin.Geolocator.Abstractions;
 
 namespace StayTogether
 {
-    public class PositionVm
+    public class PositionVm : UserVm
     {
-        public string UserName { get; set; }
-        public string PhoneNumber { get; set; }
         public Position Position { get; set; }
     }
 }

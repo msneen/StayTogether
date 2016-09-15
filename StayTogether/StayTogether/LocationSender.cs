@@ -10,6 +10,7 @@ namespace StayTogether
     {
 	    private HubConnection _hubConnection;
 	    private IHubProxy _chatHubProxy;
+	    private static Guid GroupId = Guid.Empty;
 
 	    public LocationSender ()
 		{
@@ -56,17 +57,21 @@ namespace StayTogether
 
             // Wire up a handler for the 'UpdateChatMessage' for the server
             // to be called on our client
-            //chatHubProxy.On<string>("UpdateChatMessage", message =>
-            //    text.Text += string.Format("Received Msg: {0}\r\n", message));
+            _chatHubProxy.On<string>("UpdatePosition", ReceiveGroupIdMessage);
 
             // Start the connection
             await _hubConnection.Start();
 
 	    }
 
-        public async Task StartGroup()
+	    public void ReceiveGroupIdMessage(string groupId)
 	    {
-            await _chatHubProxy.Invoke("StartGroup", "6199224340");
+	        GroupId = Guid.Parse(groupId);
+	    }
+
+        public async Task StartGroup(UserVm userVm)
+	    {
+            await _chatHubProxy.Invoke("StartGroup", userVm);
         }
 
 	    public async Task SendSignalR(PositionVm positionVm)

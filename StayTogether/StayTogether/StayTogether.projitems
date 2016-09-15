@@ -11,5 +11,6 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)LocationSender.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PositionVm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserVm.cs" />
   </ItemGroup>
 </Project>
