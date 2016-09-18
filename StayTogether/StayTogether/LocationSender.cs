@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Android.App;
+using Android.Content;
 using Microsoft.AspNet.SignalR.Client;
 using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
+using StayTogether.Droid;
 
 namespace StayTogether
 {
@@ -11,75 +14,128 @@ namespace StayTogether
 	    private HubConnection _hubConnection;
 	    private IHubProxy _chatHubProxy;
 	    private static Guid GroupId = Guid.Empty;
+	    private IGeolocator _geoLocator;
+	    private string _phoneNumber;
+	    private NotificationManager _notificationManager;
+	    private Context _context;
 
-	    public LocationSender ()
-		{
-		}
-
-	    public async Task UpdateGeoLocationAsync(DateTime expireTime)
+	    public LocationSender (Context context, NotificationManager notificationManager, string phoneNumber)
 	    {
-	        do
+	        _context = context;
+	        _notificationManager = notificationManager;
+	        _phoneNumber = phoneNumber;
+	    }
+
+
+	    public void SetUpLocationEvents()
+	    {
+	        try
 	        {
-                var positionVm = await GetLocationAsync();
-                await SendSignalR(positionVm);
-                await Task.Delay(20000);
+	            _geoLocator = CrossGeolocator.Current;
 
-            } while (DateTime.Now<expireTime);
+	            _geoLocator.DesiredAccuracy = 100; //100 is new default
 
+	            if (_geoLocator.IsGeolocationEnabled && _geoLocator.IsGeolocationAvailable)
+	            {
+	                _geoLocator.PositionChanged += LocatorOnPositionChanged;
+                    _geoLocator.StartListeningAsync(minTime: 10000, minDistance: 5);
+
+	            }
+
+                
+
+	        }
+	        catch (Exception ex)
+	        {
+	            
+	        }
 	    }
 
-	    public async Task<PositionVm> GetLocationAsync()
+	    private void LocatorOnPositionChanged(object sender, PositionEventArgs positionEventArgs)
 	    {
-	        var locator = CrossGeolocator.Current;
+           
+            var positionVm = new PositionVm
+            {
+                Position = positionEventArgs.Position,
+                PhoneNumber = _phoneNumber
+            };
 
-	        locator.DesiredAccuracy = 100; //100 is new default
+            SendSignalR(positionVm);
+        }
 
-
-	            var position = await locator.GetPositionAsync(timeoutMilliseconds: 10000);
-                var positionVm = new PositionVm
-                {
-                    Position = position,
-                    UserName = "mike",
-                    PhoneNumber = "619-922-4340"
-                };
-
-	        return positionVm;
-
-	    }
-
-	    public async Task InitializeSignalRAsync()
+	    public void InitializeSignalRAsync()
 	    {
-            // Connect to the server
-            _hubConnection = new HubConnection("http://server.com/");
+	        try
+	        {
+	            // Connect to the server
+	            _hubConnection = new HubConnection("http://162.231.59.41/StayTogetherServer/");
 
-            // Create a proxy to the 'ChatHub' SignalR Hub
-            _chatHubProxy = _hubConnection.CreateHubProxy("PositionHub");//I think this string will be the name of Jeff's main class
+	            // Create a proxy to the 'ChatHub' SignalR Hub
+	            _chatHubProxy = _hubConnection.CreateHubProxy("StayTogetherHub");
+	            //I think this string will be the name of Jeff's main class
 
-            // Wire up a handler for the 'UpdateChatMessage' for the server
-            // to be called on our client
-            _chatHubProxy.On<string>("UpdatePosition", ReceiveGroupIdMessage);
+	            // Wire up a handler for the 'UpdateChatMessage' for the server
+	            // to be called on our client
+	            _chatHubProxy.On<string,string>("BroadcastMessage", ReceiveGroupMessage);
+                _chatHubProxy.On<string, string, string>("SomeoneIsLost", SomeoneIsLost); 
 
-            // Start the connection
-            await _hubConnection.Start();
+                // Start the connection
+                _hubConnection.Start().Wait();
 
+	            SetUpLocationEvents();
+
+	        }
+	        catch (Exception ex)
+	        {
+	            throw ex;
+	        }
 	    }
 
-	    public void ReceiveGroupIdMessage(string groupId)
+	    public void SomeoneIsLost(string phoneNumber, string latitude, string longitude)
 	    {
-	        GroupId = Guid.Parse(groupId);
+            AddNotification("YOU LOST SOMEONE", $"{phoneNumber} {latitude}   {longitude}");
+        }
+
+	    public void ReceiveGroupMessage(string phoneNumber, string message)
+	    {
+	        AddNotification("Stay Together Update", message);
 	    }
 
-        public async Task StartGroup(UserVm userVm)
+	    private void AddNotification(string title, string message)
+	    {
+            // Instantiate the builder and set notification elements:
+	        Notification.Builder builder = new Notification.Builder(_context)
+	            .SetContentTitle(title)
+	            .SetContentText(message + DateTime.Now.ToShortTimeString())
+	            .SetSmallIcon(Resource.Drawable.Icon)
+                .SetAutoCancel(true);
+
+	        // Build the notification:
+	        Notification notification = builder.Build();
+
+	        // Publish the notification:
+	        const int notificationId = 0;
+	        _notificationManager.Notify(notificationId, notification);
+	    }
+
+	    public async Task StartGroup(UserVm userVm)
 	    {
             await _chatHubProxy.Invoke("StartGroup", userVm);
         }
 
-	    public async Task SendSignalR(PositionVm positionVm)
+	    public void SendSignalR(PositionVm positionVm)
 	    {
-            // Invoke the 'UpdatePosition' method on the server
-            await _chatHubProxy.Invoke("UpdatePosition", positionVm);
+            //_chatHubProxy.Invoke("send", _phoneNumber, $"Hi There {positionVm.Position.Latitude}   {positionVm.Position.Longitude}" );
+            //UpdatePosition
+            _chatHubProxy.Invoke("updatePosition", _phoneNumber, positionVm.Position.Latitude, positionVm.Position.Longitude);
+        }
 
-	    }
-	}
+        public void SendSignalR()
+        {
+
+            _chatHubProxy.Invoke("send", _phoneNumber, $"Hi There.  I don't know where I am yet.  But I'm working on it");
+
+        }
+    }
 }
 

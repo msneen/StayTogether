@@ -2,10 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="StayTogether.Droid">
   <!--suppress UsesMinSdkAttributes-->
   <uses-sdk android:minSdkVersion="15" />
-  <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+  <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+  <uses-permission android:name="android.permission.READ_SMS" />
   <application android:label="StayTogether.Droid" android:name="md54bd3959198e0c98d98258e5667628224.MainApplication" android:allowBackup="true" android:icon="@drawable/icon" android:debuggable="true">
     <service android:name="md54bd3959198e0c98d98258e5667628224.LocationSenderService">
       <intent-filter>

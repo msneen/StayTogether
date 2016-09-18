@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Telephony;
+using VideoForwarder;
 
 namespace StayTogether.Droid
 {
@@ -11,6 +13,7 @@ namespace StayTogether.Droid
     public class LocationSenderService : Service
     {
         private LocationSenderBinder _binder;
+        private LocationSender _locationSender;
 
         public void StartForeground()
         {
@@ -34,16 +37,34 @@ namespace StayTogether.Droid
 
         public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
         {
-            new Task(async () =>
+            var phoneNumber = GetPhoneNumber();
+            var position = GpsService.GetLocation();
+
+            _locationSender = new LocationSender(Application.Context, GetSystemService(Context.NotificationService) as NotificationManager, phoneNumber);            
+
+            _locationSender.InitializeSignalRAsync();
+
+            if (position != null)
             {
-                var locationSender = new LocationSender();
+                var positionVm = new PositionVm
+                {
+                    PhoneNumber = phoneNumber,
+                    Position = position,
+                };
+                _locationSender.SendSignalR(positionVm);
+            }
+            else
+            {
+                _locationSender.SendSignalR();
+            }
 
-                await locationSender.InitializeSignalRAsync();
-
-                await locationSender.UpdateGeoLocationAsync(DateTime.Now + TimeSpan.FromHours(4));
-
-            }).Start();
             return StartCommandResult.Sticky;
+        }
+
+        public static string GetPhoneNumber()
+        {
+            TelephonyManager info = (TelephonyManager)Application.Context.GetSystemService(Context.TelephonyService);
+            return info.Line1Number;
         }
 
 
