@@ -1,0 +1,1 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"><EditTextPreference android:key="nickname" android:title="@string/nickname_title" android:summary="@string/Nickname_summary_preference" android:dialogTitle="@string/nickname_dialog_title_preference" /></PreferenceScreen>

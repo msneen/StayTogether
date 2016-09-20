@@ -26,6 +26,7 @@ namespace StayTogether.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::Plugin.LocalNotifications.Resource.Drawable.plugin_lc_smallicon = global::StayTogether.Droid.Resource.Drawable.plugin_lc_smallicon;
 		}
 		
 		public partial class Attribute
@@ -47,6 +48,9 @@ namespace StayTogether.Droid
 			// aapt resource value: 0x7f020000
 			public const int Icon = 2130837504;
 			
+			// aapt resource value: 0x7f020001
+			public const int plugin_lc_smallicon = 2130837505;
+			
 			static Drawable()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -60,8 +64,14 @@ namespace StayTogether.Droid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050000
-			public const int myButton = 2131034112;
+			// aapt resource value: 0x7f070001
+			public const int fragment_container = 2131165185;
+			
+			// aapt resource value: 0x7f070000
+			public const int myButton = 2131165184;
+			
+			// aapt resource value: 0x7f070002
+			public const int settings = 2131165186;
 			
 			static Id()
 			{
@@ -79,6 +89,9 @@ namespace StayTogether.Droid
 			// aapt resource value: 0x7f030000
 			public const int Main = 2130903040;
 			
+			// aapt resource value: 0x7f030001
+			public const int Settings = 2130903041;
+			
 			static Layout()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -89,14 +102,48 @@ namespace StayTogether.Droid
 			}
 		}
 		
+		public partial class Menu
+		{
+			
+			// aapt resource value: 0x7f060000
+			public const int SettingsMenu = 2131099648;
+			
+			static Menu()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Menu()
+			{
+			}
+		}
+		
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f040001
-			public const int app_name = 2130968577;
+			// aapt resource value: 0x7f050003
+			public const int Nickname_summary_preference = 2131034115;
 			
-			// aapt resource value: 0x7f040000
-			public const int hello = 2130968576;
+			// aapt resource value: 0x7f050001
+			public const int app_name = 2131034113;
+			
+			// aapt resource value: 0x7f050006
+			public const int description_info = 2131034118;
+			
+			// aapt resource value: 0x7f050000
+			public const int hello = 2131034112;
+			
+			// aapt resource value: 0x7f050007
+			public const int menu = 2131034119;
+			
+			// aapt resource value: 0x7f050004
+			public const int nickname_dialog_title_preference = 2131034116;
+			
+			// aapt resource value: 0x7f050002
+			public const int nickname_title = 2131034114;
+			
+			// aapt resource value: 0x7f050005
+			public const int settings_title = 2131034117;
 			
 			static String()
 			{
@@ -104,6 +151,22 @@ namespace StayTogether.Droid
 			}
 			
 			private String()
+			{
+			}
+		}
+		
+		public partial class Xml
+		{
+			
+			// aapt resource value: 0x7f040000
+			public const int Preferences = 2130968576;
+			
+			static Xml()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Xml()
 			{
 			}
 		}

@@ -10,8 +10,12 @@ F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\asset
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Plugin.CurrentActivity.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Plugin.Geolocator.Abstractions.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Plugin.Geolocator.dll
+F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Plugin.LocalNotifications.Abstractions.dll
+F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Plugin.LocalNotifications.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Plugin.Permissions.Abstractions.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Plugin.Permissions.dll
+F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Plugin.Settings.Abstractions.dll
+F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Plugin.Settings.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\System.Net.Http.Extensions.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\System.Net.Http.Primitives.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Xamarin.Android.Support.v4.dll

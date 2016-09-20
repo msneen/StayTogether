@@ -6,10 +6,11 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using StayTogether.Droid.Settings;
 
 namespace StayTogether.Droid
 {
-	[Activity (Label = "StayTogether.Droid", MainLauncher = true, Icon = "@drawable/icon")]
+	[Activity (Label = "StayTogether", MainLauncher = true, Icon = "@drawable/icon")]
 	public class MainActivity : Activity
 	{
 		int count = 1;
@@ -47,6 +48,32 @@ namespace StayTogether.Droid
         {
             base.OnResume();
             BindToService();
+        }
+
+        public override bool OnPrepareOptionsMenu(IMenu menu)
+        {
+            menu.Clear();
+            MenuInflater.Inflate(Resource.Menu.SettingsMenu, menu);
+
+            return base.OnPrepareOptionsMenu(menu);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Resource.Id.settings:
+                    LaunchMenu();
+                    break;
+            }
+            return base.OnOptionsItemSelected(item);
+        }
+
+        private void LaunchMenu()
+        {
+            var intent = new Intent();
+            intent.SetClass(this, typeof(SettingsActivity));
+            StartActivityForResult(intent, 0);
         }
 
         protected void BindToService()

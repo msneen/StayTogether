@@ -40,7 +40,7 @@ namespace StayTogether.Droid
             var phoneNumber = GetPhoneNumber();
             var position = GpsService.GetLocation();
 
-            _locationSender = new LocationSender(Application.Context, GetSystemService(Context.NotificationService) as NotificationManager, phoneNumber);            
+            _locationSender = new LocationSender(phoneNumber);            
 
             _locationSender.InitializeSignalRAsync();
 

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Android.App;
-using Android.Content;
 using Microsoft.AspNet.SignalR.Client;
 using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
-using StayTogether.Droid;
+using Plugin.LocalNotifications;
+using Plugin.LocalNotifications.Abstractions;
+using Plugin.Settings;
 
 namespace StayTogether
 {
@@ -16,14 +16,22 @@ namespace StayTogether
 	    private static Guid GroupId = Guid.Empty;
 	    private IGeolocator _geoLocator;
 	    private string _phoneNumber;
-	    private NotificationManager _notificationManager;
-	    private Context _context;
+	    private string _nickName;
 
-	    public LocationSender (Context context, NotificationManager notificationManager, string phoneNumber)
+	    public LocationSender (string phoneNumber)
 	    {
-	        _context = context;
-	        _notificationManager = notificationManager;
 	        _phoneNumber = phoneNumber;
+	        _nickName = GetNickname();
+	    }
+
+	    private string GetNickname()
+	    {
+	        var nickName = CrossSettings.Current.GetValueOrDefault<string>("nickname");
+	        if (string.IsNullOrWhiteSpace(nickName))
+	        {
+	            AddNotification("StayTogether nickname", "Please Add your nickname in settings");
+	        }
+            return nickName;
 	    }
 
 
@@ -39,11 +47,7 @@ namespace StayTogether
 	            {
 	                _geoLocator.PositionChanged += LocatorOnPositionChanged;
                     _geoLocator.StartListeningAsync(minTime: 10000, minDistance: 5);
-
 	            }
-
-                
-
 	        }
 	        catch (Exception ex)
 	        {
@@ -101,21 +105,11 @@ namespace StayTogether
 	        AddNotification("Stay Together Update", message);
 	    }
 
+
 	    private void AddNotification(string title, string message)
 	    {
-            // Instantiate the builder and set notification elements:
-	        Notification.Builder builder = new Notification.Builder(_context)
-	            .SetContentTitle(title)
-	            .SetContentText(message + DateTime.Now.ToShortTimeString())
-	            .SetSmallIcon(Resource.Drawable.Icon)
-                .SetAutoCancel(true);
-
-	        // Build the notification:
-	        Notification notification = builder.Build();
-
-	        // Publish the notification:
-	        const int notificationId = 0;
-	        _notificationManager.Notify(notificationId, notification);
+            CrossLocalNotifications.Current.Show(title, message);
+            
 	    }
 
 	    public async Task StartGroup(UserVm userVm)
