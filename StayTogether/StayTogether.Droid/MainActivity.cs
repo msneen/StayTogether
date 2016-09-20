@@ -1,40 +1,76 @@
-﻿using System;
-
+﻿using System.Collections.Generic;
+using System.Linq;
 using Android.App;
 using Android.Content;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using StayTogether.Classes;
 using StayTogether.Droid.Settings;
 
 namespace StayTogether.Droid
 {
 	[Activity (Label = "StayTogether", MainLauncher = true, Icon = "@drawable/icon")]
-	public class MainActivity : Activity
+	public class MainActivity : Activity, AdapterView.IOnItemClickListener
 	{
 		int count = 1;
 	    public LocationSenderBinder binder;
 	    public bool isBound;
 	    private CameraServiceConnection _cameraServiceConnection;
+        List<ContactSynopsis> selectedContactSynopses = new List<ContactSynopsis>();
+        private ListView listView;
 
-	    protected override void OnCreate (Bundle bundle)
-		{
-			base.OnCreate (bundle);
+        protected override async void OnCreate(Bundle bundle)
+        {
+            base.OnCreate(bundle);
 
-			// Set our view from the "main" layout resource
-			SetContentView (Resource.Layout.Main);
+            // Set our view from the "main" layout resource
+            SetContentView(Resource.Layout.Main);
+            listView = FindViewById<ListView>(Resource.Id.List);
+            var contactsHelper = new ContactsHelper();
+            var contacts = await contactsHelper.GetContacts();
+            var listAdapter = new ArrayAdapter<ContactSynopsis>(this, Android.Resource.Layout.SimpleListItemChecked, contacts);
+            listView.Adapter = listAdapter;
+            listView.ChoiceMode = ChoiceMode.Multiple;
+            listView.OnItemClickListener = this;
 
             this.StartService(new Intent(this, typeof(LocationSenderService)));
 
             // Get our button from the layout resource,
             // and attach an event to it
-            //////Button button = FindViewById<Button> (Resource.Id.myButton);
+            Button button = FindViewById<Button>(Resource.Id.myButton);
 
-            //////button.Click += delegate {
-            //////	button.Text = string.Format ("{0} clicks!", count++);
-            //////};
+            button.Click += delegate
+            {
+                //button.Text = $"{contacts.Count} contacts";
+
+                if (selectedContactSynopses.Count > 0)
+                {
+                    LocationSenderService.Instance.StartGroup(selectedContactSynopses);
+                }
+            };
         }
+
+        
+        public void OnItemClick(AdapterView parent, View view, int position, long id)
+        {
+            var checkedView = view as CheckedTextView;
+            if (checkedView == null) return;
+
+            var contact = listView.GetItemAtPosition(position).Cast<ContactSynopsis>();
+            if (checkedView.Checked)
+            {
+                //add
+                selectedContactSynopses.Add(contact);
+            }
+            else
+            {
+                //try to remove
+                selectedContactSynopses.Remove(contact);
+            }
+
+        }
+
 
         protected override void OnPause()
         {
@@ -91,7 +127,10 @@ namespace StayTogether.Droid
                 isBound = false;
             }
         }
-    }
+
+
+
+	}
 
     public class CameraServiceConnection : Java.Lang.Object, IServiceConnection
     {

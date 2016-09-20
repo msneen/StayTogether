@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Telephony;
+using Plugin.Settings;
+using StayTogether.Classes;
 using VideoForwarder;
 
 namespace StayTogether.Droid
@@ -14,6 +17,8 @@ namespace StayTogether.Droid
     {
         private LocationSenderBinder _binder;
         private LocationSender _locationSender;
+
+        public static LocationSenderService Instance;
 
         public void StartForeground()
         {
@@ -33,6 +38,26 @@ namespace StayTogether.Droid
         public void StopForeground()
         {
             StopForeground(true);
+        }
+
+        public override void OnCreate()
+        {
+            base.OnCreate();
+            Instance = this;
+        }
+
+        public async void StartGroup(List<ContactSynopsis> contactList)
+        {
+            if (_locationSender != null)
+            {
+                var userVm = new UserVm
+                {
+                    PhoneNumber = GetPhoneNumber(),
+                    UserName = CrossSettings.Current.GetValueOrDefault<string>("nickname"),
+                    ContactList = contactList
+                };
+                await _locationSender.StartGroup(userVm);
+            }
         }
 
         public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)

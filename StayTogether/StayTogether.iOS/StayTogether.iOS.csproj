@@ -67,6 +67,14 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\..\signalr-2.1.2.2\signalr-2.1.2.2\lib\ios\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Plugin.Contacts, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugin.Contacts.2.1.0-beta9\lib\Xamarin.iOS10\Plugin.Contacts.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Plugin.Contacts.Abstractions, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugin.Contacts.2.1.0-beta9\lib\Xamarin.iOS10\Plugin.Contacts.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Plugin.Geolocator, Version=3.0.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xam.Plugin.Geolocator.4.0.0-beta4\lib\Xamarin.iOS10\Plugin.Geolocator.dll</HintPath>
       <Private>True</Private>

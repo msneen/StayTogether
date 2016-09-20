@@ -45,6 +45,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\signalr-2.1.2.2\signalr-2.1.2.2\lib\android\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Plugin.Contacts, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugin.Contacts.2.1.0-beta9\lib\MonoAndroid10\Plugin.Contacts.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Plugin.Contacts.Abstractions, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugin.Contacts.2.1.0-beta9\lib\MonoAndroid10\Plugin.Contacts.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Plugin.CurrentActivity, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Plugin.CurrentActivity.1.0.1\lib\MonoAndroid10\Plugin.CurrentActivity.dll</HintPath>
       <Private>True</Private>
@@ -99,6 +107,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\GpsManager.cs" />
+    <Compile Include="Classes\ObjectTypeHelper.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="LocationSenderService.cs" />
     <Compile Include="MainActivity.cs" />

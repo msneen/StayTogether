@@ -7,6 +7,8 @@ F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\asset
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\System.Xml.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Microsoft.AspNet.SignalR.Client.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Newtonsoft.Json.dll
+F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Plugin.Contacts.Abstractions.dll
+F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Plugin.Contacts.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Plugin.CurrentActivity.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Plugin.Geolocator.Abstractions.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Plugin.Geolocator.dll

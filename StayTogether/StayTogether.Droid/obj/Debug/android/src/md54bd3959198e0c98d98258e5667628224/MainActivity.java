@@ -4,7 +4,8 @@ package md54bd3959198e0c98d98258e5667628224;
 public class MainActivity
 	extends android.app.Activity
 	implements
-		mono.android.IGCUserPeer
+		mono.android.IGCUserPeer,
+		android.widget.AdapterView.OnItemClickListener
 {
 /** @hide */
 	public static final String __md_methods;
@@ -15,6 +16,7 @@ public class MainActivity
 			"n_onResume:()V:GetOnResumeHandler\n" +
 			"n_onPrepareOptionsMenu:(Landroid/view/Menu;)Z:GetOnPrepareOptionsMenu_Landroid_view_Menu_Handler\n" +
 			"n_onOptionsItemSelected:(Landroid/view/MenuItem;)Z:GetOnOptionsItemSelected_Landroid_view_MenuItem_Handler\n" +
+			"n_onItemClick:(Landroid/widget/AdapterView;Landroid/view/View;IJ)V:GetOnItemClick_Landroid_widget_AdapterView_Landroid_view_View_IJHandler:Android.Widget.AdapterView/IOnItemClickListenerInvoker, Mono.Android, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null\n" +
 			"";
 		mono.android.Runtime.register ("StayTogether.Droid.MainActivity, StayTogether.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", MainActivity.class, __md_methods);
 	}
@@ -66,6 +68,14 @@ public class MainActivity
 	}
 
 	private native boolean n_onOptionsItemSelected (android.view.MenuItem p0);
+
+
+	public void onItemClick (android.widget.AdapterView p0, android.view.View p1, int p2, long p3)
+	{
+		n_onItemClick (p0, p1, p2, p3);
+	}
+
+	private native void n_onItemClick (android.widget.AdapterView p0, android.view.View p1, int p2, long p3);
 
 	private java.util.ArrayList refList;
 	public void monodroidAddReference (java.lang.Object obj)

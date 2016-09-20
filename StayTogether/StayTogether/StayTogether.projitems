@@ -9,8 +9,13 @@
     <Import_RootNamespace>StayTogether</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ContactsHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ContactSynopsis.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocationSender.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PositionVm.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserVm.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Classes\" />
   </ItemGroup>
 </Project>

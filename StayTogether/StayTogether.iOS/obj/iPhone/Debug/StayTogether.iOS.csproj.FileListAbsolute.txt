@@ -24,5 +24,9 @@ F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhone\Debug\Plugin.S
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhone\Debug\Plugin.Settings.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhone\Debug\Plugin.Settings.xml
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhone\Debug\Plugin.Settings.Abstractions.xml
+F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhone\Debug\Plugin.Contacts.Abstractions.dll
+F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhone\Debug\Plugin.Contacts.dll
+F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhone\Debug\Plugin.Contacts.xml
+F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhone\Debug\Plugin.Contacts.Abstractions.xml
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhone\Debug\StayTogetheriOS.exe.mdb
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhone\Debug\StayTogetheriOS.exe.mdb

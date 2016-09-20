@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="hello">Hello World, Click Me!</string>
-	<string name="app_name">StayTogether.Droid</string>
+	<string name="hello">Start a group</string>
+	<string name="app_name">StayTogether</string>
   <string name="nickname_title">Nickname</string>
   <string name="Nickname_summary_preference">What is your Nickname?</string>
   <string name="nickname_dialog_title_preference">Nickname</string>
