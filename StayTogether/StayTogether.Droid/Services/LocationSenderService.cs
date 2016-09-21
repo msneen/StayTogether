@@ -5,9 +5,10 @@ using Android.OS;
 using Android.Telephony;
 using Plugin.Settings;
 using StayTogether.Classes;
+using StayTogether.Droid.Activities;
 using VideoForwarder;
 
-namespace StayTogether.Droid
+namespace StayTogether.Droid.Services
 {
     [Service]
     // ReSharper disable once RedundantExplicitArrayCreation

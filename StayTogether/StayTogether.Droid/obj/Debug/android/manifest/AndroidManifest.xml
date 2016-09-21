@@ -8,19 +8,19 @@
   <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
   <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
   <uses-permission android:name="android.permission.READ_SMS" />
-  <application android:label="StayTogether.Droid" android:name="md54bd3959198e0c98d98258e5667628224.MainApplication" android:allowBackup="true" android:icon="@drawable/icon" android:debuggable="true">
-    <service android:name="md54bd3959198e0c98d98258e5667628224.LocationSenderService">
+  <application android:label="StayTogether.Droid" android:name="md54bd3959198e0c98d98258e5667628224.MainApplication" android:allowBackup="true" android:debuggable="true">
+    <activity android:label="Settings" android:name="md58e03664a6c570c74c51050fdd8dba2e0.SettingsActivity" />
+    <service android:name="md538ee8ba844522b8e63a0404a6048b04b.LocationSenderService">
       <intent-filter>
         <action android:name="com.StayTogether.LocationSenderService" />
       </intent-filter>
     </service>
-    <activity android:icon="@drawable/icon" android:label="StayTogether" android:name="md54bd3959198e0c98d98258e5667628224.MainActivity">
+    <activity android:icon="@drawable/icon" android:label="StayTogether" android:name="md55be9344ec4166bb49aed8ae02beedf30.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity android:label="Settings" android:name="md58e03664a6c570c74c51050fdd8dba2e0.SettingsActivity" />
     <receiver android:enabled="true" android:label="Local Notifications Plugin Broadcast Receiver" android:name="md54b33d38a21a950def308c8bb6f6e0d30.ScheduledAlarmHandler" />
     <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="2147483647" android:authorities="StayTogether.Droid.mono.MonoRuntimeProvider.__mono_init__" />
     <!--suppress ExportedReceiver-->

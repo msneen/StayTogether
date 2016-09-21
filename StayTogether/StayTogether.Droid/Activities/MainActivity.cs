@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using Android.App;
 using Android.Content;
+using Android.OS;
 using Android.Views;
 using Android.Widget;
-using Android.OS;
 using StayTogether.Classes;
+using StayTogether.Droid.Services;
 using StayTogether.Droid.Settings;
 
-namespace StayTogether.Droid
+namespace StayTogether.Droid.Activities
 {
 	[Activity (Label = "StayTogether", MainLauncher = true, Icon = "@drawable/icon")]
 	public class MainActivity : Activity, AdapterView.IOnItemClickListener
