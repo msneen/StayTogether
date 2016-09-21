@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.Views;
@@ -13,12 +12,11 @@ namespace StayTogether.Droid
 	[Activity (Label = "StayTogether", MainLauncher = true, Icon = "@drawable/icon")]
 	public class MainActivity : Activity, AdapterView.IOnItemClickListener
 	{
-		int count = 1;
-	    public LocationSenderBinder binder;
-	    public bool isBound;
+	    public LocationSenderBinder Binder;
+	    public bool IsBound;
 	    private CameraServiceConnection _cameraServiceConnection;
         List<ContactSynopsis> selectedContactSynopses = new List<ContactSynopsis>();
-        private ListView listView;
+        private ListView _listView;
 
         protected override async void OnCreate(Bundle bundle)
         {
@@ -26,24 +24,20 @@ namespace StayTogether.Droid
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
-            listView = FindViewById<ListView>(Resource.Id.List);
+            _listView = FindViewById<ListView>(Resource.Id.List);
             var contactsHelper = new ContactsHelper();
             var contacts = await contactsHelper.GetContacts();
             var listAdapter = new ArrayAdapter<ContactSynopsis>(this, Android.Resource.Layout.SimpleListItemChecked, contacts);
-            listView.Adapter = listAdapter;
-            listView.ChoiceMode = ChoiceMode.Multiple;
-            listView.OnItemClickListener = this;
+            _listView.Adapter = listAdapter;
+            _listView.ChoiceMode = ChoiceMode.Multiple;
+            _listView.OnItemClickListener = this;
 
-            this.StartService(new Intent(this, typeof(LocationSenderService)));
+            StartService(new Intent(this, typeof(LocationSenderService)));
 
-            // Get our button from the layout resource,
-            // and attach an event to it
-            Button button = FindViewById<Button>(Resource.Id.myButton);
+            Button startGroupButton = FindViewById<Button>(Resource.Id.myButton);
 
-            button.Click += delegate
+            startGroupButton.Click += delegate
             {
-                //button.Text = $"{contacts.Count} contacts";
-
                 if (selectedContactSynopses.Count > 0)
                 {
                     LocationSenderService.Instance.StartGroup(selectedContactSynopses);
@@ -57,15 +51,13 @@ namespace StayTogether.Droid
             var checkedView = view as CheckedTextView;
             if (checkedView == null) return;
 
-            var contact = listView.GetItemAtPosition(position).Cast<ContactSynopsis>();
+            var contact = _listView.GetItemAtPosition(position).Cast<ContactSynopsis>();
             if (checkedView.Checked)
             {
-                //add
                 selectedContactSynopses.Add(contact);
             }
             else
             {
-                //try to remove
                 selectedContactSynopses.Remove(contact);
             }
 
@@ -75,7 +67,7 @@ namespace StayTogether.Droid
         protected override void OnPause()
         {
             base.OnPause();
-            binder?.GetLocationSenderService()?.StartForeground();
+            Binder?.GetLocationSenderService()?.StartForeground();
             UnbindFromService();
 
         }
@@ -116,20 +108,17 @@ namespace StayTogether.Droid
         {
             _cameraServiceConnection = new CameraServiceConnection(this);
             BindService(new Intent(this, typeof(LocationSenderService)), _cameraServiceConnection, Bind.AutoCreate);
-            isBound = true;
+            IsBound = true;
         }
 
         protected void UnbindFromService()
         {
-            if (isBound)
+            if (IsBound)
             {
                 UnbindService(_cameraServiceConnection);
-                isBound = false;
+                IsBound = false;
             }
         }
-
-
-
 	}
 
     public class CameraServiceConnection : Java.Lang.Object, IServiceConnection
@@ -141,20 +130,19 @@ namespace StayTogether.Droid
             _activity = activity;
         }
 
-
         public void OnServiceConnected(ComponentName name, IBinder service)
         {
             var locationSenderBinder = service as LocationSenderBinder;
             if (locationSenderBinder != null)
             {
-                _activity.binder = locationSenderBinder;
-                _activity.isBound = true;
+                _activity.Binder = locationSenderBinder;
+                _activity.IsBound = true;
             }
         }
 
         public void OnServiceDisconnected(ComponentName name)
         {
-            _activity.isBound = false;
+            _activity.IsBound = false;
         }
     }
 }

@@ -13,50 +13,39 @@ namespace StayTogether
 
         public async Task<List<ContactSynopsis>> GetContacts()
         {
-            if (await CrossContacts.Current.RequestPermission())
+            if (!await CrossContacts.Current.RequestPermission()) return null;
+
+            var contacts = new List<ContactSynopsis>();
+            CrossContacts.Current.PreferContactAggregation = false;
+            
+            if (CrossContacts.Current.Contacts == null)
+                return null;
+
+            //for some reason we can't use linq
+            foreach (var contact in CrossContacts.Current.Contacts)
             {
-
-                var contacts = new List<ContactSynopsis>();
-                CrossContacts.Current.PreferContactAggregation = false;//recommended
-                                                                       //run in background
-                //await Task.Run(() =>
+                var cleanedName = CleanName(contact);
+                if (string.IsNullOrWhiteSpace(cleanedName)) continue;
+                foreach (var phone in contact.Phones)
                 {
-                    if (CrossContacts.Current.Contacts == null)
-                        return null;
+                    var cleanedPhone = CleanPhoneNumber(phone.Number);
+                    if (phone.Type != PhoneType.Mobile || string.IsNullOrWhiteSpace(cleanedPhone)) continue;
 
-                    //for some reason we can't use linq
-                    foreach (var contact in CrossContacts.Current.Contacts)
+                    var contactSynopsis = new ContactSynopsis
                     {
-                        var cleanedName = CleanName(contact);
-                        if (!string.IsNullOrWhiteSpace(cleanedName))
-                        {
-                            foreach (var phone in contact.Phones)
-                            {
-                                var cleanedPhone = CleanPhoneNumber(phone.Number);
-                                if (phone.Type == PhoneType.Mobile && !string.IsNullOrWhiteSpace(cleanedPhone))
-                                {
-                                    //should be able to create a new class here and add  it to the list
-                                    var contactSynopsis = new ContactSynopsis
-                                    {
-                                        Name = cleanedName,
-                                        PhoneNumber = cleanedPhone
-                                    };
-                                    contacts.Add(contactSynopsis);
-                                }
-                            }
-                        }
-                    }
-
-
-                    var sortedcontacts = contacts.OrderBy(c => c.Name).ToList();
-                    contacts = sortedcontacts;
-                    return contacts;
-                }//);
+                        Name = cleanedName,
+                        PhoneNumber = cleanedPhone
+                    };
+                    contacts.Add(contactSynopsis);
+                }
             }
-            return null;
+
+            var sortedcontacts = contacts.OrderBy(c => c.Name).ToList();
+            contacts = sortedcontacts;
+            return contacts;           
         }
 
-        private string CleanName(Contact contact)
+        private static string CleanName(Contact contact)
         {
             var cleanedName = "";
             if (!string.IsNullOrWhiteSpace(contact.LastName))
@@ -76,7 +65,7 @@ namespace StayTogether
         }
 
 
-        private string CleanPhoneNumber(string number)
+        private static string CleanPhoneNumber(string number)
         {
             var cleanNumber =  number.Where(char.IsDigit).Aggregate("", (current, character) => current + character);
             return cleanNumber.Length >= 10 ? cleanNumber.Substring(cleanNumber.Length - 10) : "";

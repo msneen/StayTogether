@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -12,7 +10,8 @@ using VideoForwarder;
 namespace StayTogether.Droid
 {
     [Service]
-    [IntentFilter(new String[] {"com.StayTogether.LocationSenderService"})]
+    // ReSharper disable once RedundantExplicitArrayCreation
+    [IntentFilter(new string[] {"com.StayTogether.LocationSenderService"})]
     public class LocationSenderService : Service
     {
         private LocationSenderBinder _binder;
@@ -22,11 +21,11 @@ namespace StayTogether.Droid
 
         public void StartForeground()
         {
-            Intent notificationIntent = new Intent(this, typeof(MainActivity));
+            var notificationIntent = new Intent(this, typeof(MainActivity));
 
-            PendingIntent pendingIntent = PendingIntent.GetActivity(this, 0, notificationIntent, 0);
+            var pendingIntent = PendingIntent.GetActivity(this, 0, notificationIntent, 0);
 
-            Notification notification = new Notification.Builder(this)
+            var notification = new Notification.Builder(this)
                 .SetSmallIcon(Resource.Drawable.Icon)
                 .SetContentTitle("Stay Together")
                 .SetContentText("Tracking...")
@@ -78,17 +77,13 @@ namespace StayTogether.Droid
                 };
                 _locationSender.SendSignalR(positionVm);
             }
-            else
-            {
-                _locationSender.SendSignalR();
-            }
 
             return StartCommandResult.Sticky;
         }
 
         public static string GetPhoneNumber()
         {
-            TelephonyManager info = (TelephonyManager)Application.Context.GetSystemService(Context.TelephonyService);
+            var info = (TelephonyManager)Application.Context.GetSystemService(TelephonyService);
             return info.Line1Number;
         }
 
