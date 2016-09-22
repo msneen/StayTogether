@@ -60,11 +60,12 @@ namespace StayTogether
 
 	    public void InitializeSignalRAsync()
 	    {
-	        // Connect to the server
-	        _hubConnection = new HubConnection("http://162.231.59.41/StayTogetherServer/");
+            // Connect to the server
+            _hubConnection = new HubConnection("http://76.167.114.111/StayTogetherServer/");//jeff
+            //_hubConnection = new HubConnection("http://162.231.59.41/StayTogetherServer/");//mike
 
-	        // Create a proxy to the 'ChatHub' SignalR Hub
-	        _chatHubProxy = _hubConnection.CreateHubProxy("StayTogetherHub");
+            // Create a proxy to the 'ChatHub' SignalR Hub
+            _chatHubProxy = _hubConnection.CreateHubProxy("StayTogetherHub");
 	        //I think this string will be the name of Jeff's main class
 
 	        // Wire up a handler for the 'UpdateChatMessage' for the server
@@ -96,7 +97,7 @@ namespace StayTogether
 
 	    public async Task StartGroup(UserVm userVm)
 	    {
-            await _chatHubProxy.Invoke("StartGroup", userVm);
+            await _chatHubProxy.Invoke("CreateGroup", userVm);
         }
 
 	    public void SendSignalR(PositionVm positionVm)

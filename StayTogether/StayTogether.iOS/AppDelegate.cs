@@ -1,4 +1,5 @@
-﻿using Foundation;
+﻿using System;
+using Foundation;
 using UIKit;
 
 namespace StayTogether.iOS
@@ -44,9 +45,18 @@ namespace StayTogether.iOS
 
 		public override void OnActivated (UIApplication application)
 		{
-			// Restart any tasks that were paused (or not yet started) while the application was inactive. 
-			// If the application was previously in the background, optionally refresh the user interface.
-		}
+            // Restart any tasks that were paused (or not yet started) while the application was inactive. 
+            // If the application was previously in the background, optionally refresh the user interface.
+
+            if (application.BackgroundRefreshStatus == UIBackgroundRefreshStatus.Available)
+            {
+                Console.WriteLine("Background refresh available");
+            }
+            else
+            {
+                Console.WriteLine("Background refresh not available");
+            }
+        }
 
 		public override void WillTerminate (UIApplication application)
 		{
