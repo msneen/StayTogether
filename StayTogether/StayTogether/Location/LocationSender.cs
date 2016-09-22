@@ -13,9 +13,10 @@ namespace StayTogether
 	    private IHubProxy _chatHubProxy;
 	    private IGeolocator _geoLocator;
 	    private readonly string _phoneNumber;
+        private string _groupId = ""; //Creator of group's phone number
 
 
-	    public LocationSender (string phoneNumber)
+        public LocationSender (string phoneNumber)
 	    {
 	        _phoneNumber = phoneNumber;
 	        GetNickname();
@@ -61,8 +62,8 @@ namespace StayTogether
 	    public void InitializeSignalRAsync()
 	    {
             // Connect to the server
-            _hubConnection = new HubConnection("http://76.167.114.111/StayTogetherServer/");//jeff
-            //_hubConnection = new HubConnection("http://162.231.59.41/StayTogetherServer/");//mike
+            //_hubConnection = new HubConnection("http://76.167.114.111/StayTogetherServer/");//jeff
+            _hubConnection = new HubConnection("http://162.231.59.41/StayTogetherServer/");//mike
 
             // Create a proxy to the 'ChatHub' SignalR Hub
             _chatHubProxy = _hubConnection.CreateHubProxy("StayTogetherHub");
@@ -71,12 +72,18 @@ namespace StayTogether
 	        // Wire up a handler for the 'UpdateChatMessage' for the server
 	        // to be called on our client
 	        _chatHubProxy.On<string,string>("BroadcastMessage", ReceiveGroupMessage);
+            _chatHubProxy.On<string>("UpdateGroupId", UpdateGroupId);
             _chatHubProxy.On<string, string, string>("SomeoneIsLost", SomeoneIsLost); 
 
             // Start the connection
             _hubConnection.Start().Wait();
 
 	        SetUpLocationEvents();
+	    }
+
+	    public void UpdateGroupId(string id)
+	    {
+	        _groupId = id;
 	    }
 
 	    public void SomeoneIsLost(string phoneNumber, string latitude, string longitude)
@@ -102,7 +109,10 @@ namespace StayTogether
 
 	    public void SendSignalR(PositionVm positionVm)
 	    {
-            _chatHubProxy.Invoke("updatePosition", _phoneNumber, positionVm.Position.Latitude, positionVm.Position.Longitude);
+            _chatHubProxy.Invoke("updatePosition", _phoneNumber, 
+                                                   positionVm.Position.Latitude, 
+                                                   positionVm.Position.Longitude,
+                                                   _groupId);
         }
     }
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Plugin.Geolocator.Abstractions;
+﻿using Plugin.Geolocator.Abstractions;
 
 namespace StayTogether
 {

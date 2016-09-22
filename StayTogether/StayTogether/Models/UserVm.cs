@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using StayTogether.Classes;
 
 namespace StayTogether
@@ -9,6 +7,9 @@ namespace StayTogether
     {
         public string UserName { get; set; }
         public string PhoneNumber { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+    
         public List<ContactSynopsis> ContactList { get; set; }
     }
 }

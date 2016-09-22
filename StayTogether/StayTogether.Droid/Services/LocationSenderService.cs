@@ -48,12 +48,15 @@ namespace StayTogether.Droid.Services
 
         public async void StartGroup(List<ContactSynopsis> contactList)
         {
-            if (_locationSender != null)
+            var position = GpsService.GetLocation();
+            if (_locationSender != null && position!= null)
             {
                 var userVm = new UserVm
                 {
                     PhoneNumber = GetPhoneNumber(),
                     UserName = CrossSettings.Current.GetValueOrDefault<string>("nickname"),
+                    Latitude = position.Latitude,
+                    Longitude = position.Longitude,
                     ContactList = contactList
                 };
                 await _locationSender.StartGroup(userVm);
