@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="StayTogether.StayTogether" android:installLocation="auto" android:versionCode="1" android:versionName="StayTogether-Alpha">
 	<uses-sdk android:minSdkVersion="15" />
-	<application android:label="StayTogether.Droid"></application>
-
-  <uses-permission android:name="android.permission.INTERNET"/>
-  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-  <uses-permission android:name="android.permission.READ_SMS" />
+	<application android:label="StayTogether.Droid" android:icon="@drawable/Icon"></application>
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<uses-permission android:name="android.permission.READ_SMS" />
 </manifest>

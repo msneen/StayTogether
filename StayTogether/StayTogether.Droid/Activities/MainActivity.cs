@@ -79,6 +79,12 @@ namespace StayTogether.Droid.Activities
             BindToService();
         }
 
+	    protected override void OnDestroy()
+	    {
+	        base.OnDestroy();
+	        Binder?.GetLocationSenderService()?.StopSelf();
+	    }
+
         public override bool OnPrepareOptionsMenu(IMenu menu)
         {
             menu.Clear();
