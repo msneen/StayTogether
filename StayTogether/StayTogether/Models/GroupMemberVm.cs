@@ -10,7 +10,6 @@ namespace StayTogether.Classes
         public string GroupId { get; set; }
         public string ConnectionId { get; set; }
 
-
         public override string ToString()
         {
             return $"{Name}-{PhoneNumber}";

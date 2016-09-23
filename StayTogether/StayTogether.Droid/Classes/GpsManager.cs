@@ -26,7 +26,7 @@ namespace StayTogether.Droid.Classes
                     };
                     var locationManager =
                         (LocationManager) Application.Context.GetSystemService(Context.LocationService);
-                        //context.GetSystemService(
+
                     var locationProvider = locationManager.GetBestProvider(criteriaForGpsService, true);
 
                     if (locationManager.IsProviderEnabled(locationProvider))
@@ -39,16 +39,13 @@ namespace StayTogether.Droid.Classes
                         };
                         return position;
                     }
-                    else
+                    try
                     {
-                        try
-                        {
-                            TurnGpsOn();
-                        }
-                        catch (Exception ex)
-                        {
-                            Log.WriteLine(LogPriority.Info, "GetLocation", "GPS:  Unable to turn on.  " + ex.StackTrace);
-                        }
+                        TurnGpsOn();
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.WriteLine(LogPriority.Info, "GetLocation", "GPS:  Unable to turn on.  " + ex.StackTrace);
                     }
                 }
             }

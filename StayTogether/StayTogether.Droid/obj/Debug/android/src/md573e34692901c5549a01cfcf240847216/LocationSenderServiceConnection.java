@@ -1,4 +1,4 @@
-package md5c73b5f8282159de7509a6f75e2f7ecfa;
+package md573e34692901c5549a01cfcf240847216;
 
 
 public class LocationSenderServiceConnection
@@ -14,7 +14,7 @@ public class LocationSenderServiceConnection
 			"n_onServiceConnected:(Landroid/content/ComponentName;Landroid/os/IBinder;)V:GetOnServiceConnected_Landroid_content_ComponentName_Landroid_os_IBinder_Handler:Android.Content.IServiceConnectionInvoker, Mono.Android, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null\n" +
 			"n_onServiceDisconnected:(Landroid/content/ComponentName;)V:GetOnServiceDisconnected_Landroid_content_ComponentName_Handler:Android.Content.IServiceConnectionInvoker, Mono.Android, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null\n" +
 			"";
-		mono.android.Runtime.register ("StayTogether.Droid.Activities.LocationSenderServiceConnection, StayTogether.Droid, Version=1.0.6110.22131, Culture=neutral, PublicKeyToken=null", LocationSenderServiceConnection.class, __md_methods);
+		mono.android.Runtime.register ("StayTogether.Droid.Activities.LocationSenderServiceConnection, StayTogether.Droid, Version=1.0.6110.22568, Culture=neutral, PublicKeyToken=null", LocationSenderServiceConnection.class, __md_methods);
 	}
 
 
@@ -22,14 +22,14 @@ public class LocationSenderServiceConnection
 	{
 		super ();
 		if (getClass () == LocationSenderServiceConnection.class)
-			mono.android.TypeManager.Activate ("StayTogether.Droid.Activities.LocationSenderServiceConnection, StayTogether.Droid, Version=1.0.6110.22131, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
+			mono.android.TypeManager.Activate ("StayTogether.Droid.Activities.LocationSenderServiceConnection, StayTogether.Droid, Version=1.0.6110.22568, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
 	}
 
-	public LocationSenderServiceConnection (md5c73b5f8282159de7509a6f75e2f7ecfa.MainActivity p0) throws java.lang.Throwable
+	public LocationSenderServiceConnection (md573e34692901c5549a01cfcf240847216.MainActivity p0) throws java.lang.Throwable
 	{
 		super ();
 		if (getClass () == LocationSenderServiceConnection.class)
-			mono.android.TypeManager.Activate ("StayTogether.Droid.Activities.LocationSenderServiceConnection, StayTogether.Droid, Version=1.0.6110.22131, Culture=neutral, PublicKeyToken=null", "StayTogether.Droid.Activities.MainActivity, StayTogether.Droid, Version=1.0.6110.22131, Culture=neutral, PublicKeyToken=null", this, new java.lang.Object[] { p0 });
+			mono.android.TypeManager.Activate ("StayTogether.Droid.Activities.LocationSenderServiceConnection, StayTogether.Droid, Version=1.0.6110.22568, Culture=neutral, PublicKeyToken=null", "StayTogether.Droid.Activities.MainActivity, StayTogether.Droid, Version=1.0.6110.22568, Culture=neutral, PublicKeyToken=null", this, new java.lang.Object[] { p0 });
 	}
 
 

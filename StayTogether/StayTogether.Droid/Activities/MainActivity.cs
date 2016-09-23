@@ -23,7 +23,7 @@ namespace StayTogether.Droid.Activities
 	    public LocationSenderBinder Binder;
 	    public bool IsBound;
 	    private LocationSenderServiceConnection _locationSenderServiceConnection;
-        List<GroupMemberVm> selectedContactSynopses = new List<GroupMemberVm>();
+	    readonly List<GroupMemberVm> _selectedContactSynopses = new List<GroupMemberVm>();
         private ListView _listView;
 	    private Logger _logger;
 
@@ -44,9 +44,9 @@ namespace StayTogether.Droid.Activities
 
                 startGroupButton.Click += delegate
                 {
-                    if (selectedContactSynopses.Count > 0)
+                    if (_selectedContactSynopses.Count > 0)
                     {
-                        LocationSenderService.Instance.StartGroup(selectedContactSynopses);
+                        LocationSenderService.Instance.StartGroup(_selectedContactSynopses);
                     }
                 };
             }
@@ -109,11 +109,11 @@ namespace StayTogether.Droid.Activities
 	            var contact = _listView.GetItemAtPosition(position).Cast<GroupMemberVm>();
 	            if (checkedView.Checked)
 	            {
-	                selectedContactSynopses.Add(contact);
+	                _selectedContactSynopses.Add(contact);
 	            }
 	            else
 	            {
-	                selectedContactSynopses.Remove(contact);
+	                _selectedContactSynopses.Remove(contact);
 	            }
 	        }
 	        catch (Exception ex)
@@ -191,7 +191,7 @@ namespace StayTogether.Droid.Activities
             var fileTarget = new FileTarget();
             config.AddTarget("StayTogetherLog", fileTarget);
 
-            fileTarget.FileName = FileHelper.GetDocumentFileName(); //"${basedir}/file.txt"; //****************fix this ***************
+            fileTarget.FileName = FileHelper.GetDocumentFileName();
             fileTarget.Layout = @"${date:format=HH\:mm\:ss} ${message}";
 
             var rule2 = new LoggingRule("*", LogLevel.Debug, fileTarget);
