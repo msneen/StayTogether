@@ -64,6 +64,7 @@ F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Release\res\menu\se
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Release\res\xml\preferences.xml
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Release\R.cs.flag
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Release\uploadflags.txt
+F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Release\StayTogether.Droid.csprojResolveAssemblyReference.cache
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\StayTogether.Droid.dll.mdb
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Java.Interop.dll.mdb
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Microsoft.CSharp.dll.mdb
