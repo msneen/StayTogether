@@ -64,8 +64,8 @@ namespace StayTogether
 	    public void InitializeSignalRAsync()
 	    {
             // Connect to the server
-            //_hubConnection = new HubConnection("http://76.167.114.111/StayTogetherServer/");//jeff
-            _hubConnection = new HubConnection("http://162.231.59.41/StayTogetherServer/");//mike
+            _hubConnection = new HubConnection("http://76.167.114.111/StayTogetherServer/");//jeff
+            //_hubConnection = new HubConnection("http://162.231.59.41/StayTogetherServer/");//mike
 
             // Create a proxy to the 'ChatHub' SignalR Hub
             _chatHubProxy = _hubConnection.CreateHubProxy("StayTogetherHub");
@@ -118,8 +118,7 @@ namespace StayTogether
 
 	    public Task SendError(string message)
 	    {
-            //Todo: ReEnable Me in Server Code
-	        //_chatHubProxy.Invoke("SendError", message, _phoneNumber);
+	        _chatHubProxy.Invoke("SendErrorMessage", message, _phoneNumber);
             return Task.CompletedTask;
 	    }
     }

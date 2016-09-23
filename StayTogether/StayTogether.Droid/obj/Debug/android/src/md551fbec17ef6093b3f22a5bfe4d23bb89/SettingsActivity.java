@@ -1,4 +1,4 @@
-package md5da1bf07b31308c327b61d7e0ef4fd39a;
+package md551fbec17ef6093b3f22a5bfe4d23bb89;
 
 
 public class SettingsActivity
@@ -12,7 +12,7 @@ public class SettingsActivity
 		__md_methods = 
 			"n_onCreate:(Landroid/os/Bundle;)V:GetOnCreate_Landroid_os_Bundle_Handler\n" +
 			"";
-		mono.android.Runtime.register ("StayTogether.Droid.Settings.SettingsActivity, StayTogether.Droid, Version=1.0.6110.22568, Culture=neutral, PublicKeyToken=null", SettingsActivity.class, __md_methods);
+		mono.android.Runtime.register ("StayTogether.Droid.Settings.SettingsActivity, StayTogether.Droid, Version=1.0.6110.24461, Culture=neutral, PublicKeyToken=null", SettingsActivity.class, __md_methods);
 	}
 
 
@@ -20,7 +20,7 @@ public class SettingsActivity
 	{
 		super ();
 		if (getClass () == SettingsActivity.class)
-			mono.android.TypeManager.Activate ("StayTogether.Droid.Settings.SettingsActivity, StayTogether.Droid, Version=1.0.6110.22568, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
+			mono.android.TypeManager.Activate ("StayTogether.Droid.Settings.SettingsActivity, StayTogether.Droid, Version=1.0.6110.24461, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
 	}
 
 

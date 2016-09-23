@@ -119,7 +119,9 @@
     <Compile Include="Resources\layout\SettingsFragment.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\LocationSenderBinder.cs" />
     <Compile Include="Services\LocationSenderService.cs" />
+    <Compile Include="Services\LocationSenderServiceConnection.cs" />
     <Compile Include="Settings\SettingsActivity.cs" />
   </ItemGroup>
   <ItemGroup>
