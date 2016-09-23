@@ -102,6 +102,7 @@ class MonoPackageManager_Resources {
 		"Java.Interop.dll",
 		"Microsoft.AspNet.SignalR.Client.dll",
 		"Newtonsoft.Json.dll",
+		"NLog.dll",
 		"Plugin.Contacts.Abstractions.dll",
 		"Plugin.Contacts.dll",
 		"Plugin.CurrentActivity.dll",

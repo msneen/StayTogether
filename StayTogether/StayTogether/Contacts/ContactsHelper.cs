@@ -18,14 +18,14 @@ namespace StayTogether
             var contacts = new List<ContactSynopsis>();
             CrossContacts.Current.PreferContactAggregation = false;
             
-            if (CrossContacts.Current.Contacts == null)
+            if (CrossContacts.Current == null ||CrossContacts.Current.Contacts == null)
                 return null;
 
             //for some reason we can't use linq
             foreach (var contact in CrossContacts.Current.Contacts)
             {
                 var cleanedName = CleanName(contact);
-                if (string.IsNullOrWhiteSpace(cleanedName)) continue;
+                if (string.IsNullOrWhiteSpace(cleanedName) || contact.Phones == null) continue;
                 foreach (var phone in contact.Phones)
                 {
                     var cleanedPhone = CleanPhoneNumber(phone.Number);
@@ -67,7 +67,12 @@ namespace StayTogether
 
         private static string CleanPhoneNumber(string number)
         {
+            if (string.IsNullOrWhiteSpace(number)) return "";
+
             var cleanNumber =  number.Where(char.IsDigit).Aggregate("", (current, character) => current + character);
+
+            if (string.IsNullOrWhiteSpace(cleanNumber)) return "";
+
             return cleanNumber.Length >= 10 ? cleanNumber.Substring(cleanNumber.Length - 10) : "";
         }
     }

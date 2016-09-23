@@ -1,33 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="StayTogether.Droid">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="StayTogether.StayTogether" android:installLocation="auto" android:versionCode="1" android:versionName="StayTogether-Alpha">
   <!--suppress UsesMinSdkAttributes-->
   <uses-sdk android:minSdkVersion="15" />
+  <service android:name="StayTogether.Droid.LocationSenderService">
+    <intent-filter>
+      <action android:name="com.StayTogether.Droid.LocationSenderService" />
+    </intent-filter>
+  </service>
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
   <uses-permission android:name="android.permission.READ_CONTACTS" />
+  <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
   <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
   <uses-permission android:name="android.permission.READ_SMS" />
-  <application android:label="StayTogether.Droid" android:name="md54bd3959198e0c98d98258e5667628224.MainApplication" android:allowBackup="true" android:debuggable="true">
-    <activity android:label="Settings" android:name="md58e03664a6c570c74c51050fdd8dba2e0.SettingsActivity" />
-    <service android:name="md538ee8ba844522b8e63a0404a6048b04b.LocationSenderService">
+  <application android:label="StayTogether.Droid" android:icon="@drawable/icon" android:name="md558e49d86f9aacd5194cd3398905a5d17.MainApplication" android:allowBackup="true" android:debuggable="true">
+    <activity android:label="Settings" android:name="md5aa00482e4c1bd15b874cec85db13407c.SettingsActivity" />
+    <service android:name="md5b71c31d5d7bbb1997c70698a025a28a1.LocationSenderService">
       <intent-filter>
-        <action android:name="com.StayTogether.LocationSenderService" />
+        <action android:name="com.StayTogether.Droid.LocationSenderService" />
       </intent-filter>
     </service>
-    <activity android:icon="@drawable/icon" android:label="StayTogether" android:name="md55be9344ec4166bb49aed8ae02beedf30.MainActivity">
+    <activity android:icon="@drawable/icon" android:label="StayTogether" android:name="md5a7e19b90922eea002b274e39c1266e38.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
     <receiver android:enabled="true" android:label="Local Notifications Plugin Broadcast Receiver" android:name="md54b33d38a21a950def308c8bb6f6e0d30.ScheduledAlarmHandler" />
-    <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="2147483647" android:authorities="StayTogether.Droid.mono.MonoRuntimeProvider.__mono_init__" />
+    <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="2147483647" android:authorities="StayTogether.StayTogether.mono.MonoRuntimeProvider.__mono_init__" />
     <!--suppress ExportedReceiver-->
     <receiver android:name="mono.android.Seppuku">
       <intent-filter>
         <action android:name="mono.android.intent.action.SEPPUKU" />
-        <category android:name="mono.android.intent.category.SEPPUKU.StayTogether.Droid" />
+        <category android:name="mono.android.intent.category.SEPPUKU.StayTogether.StayTogether" />
       </intent-filter>
     </receiver>
   </application>

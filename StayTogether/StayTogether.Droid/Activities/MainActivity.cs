@@ -50,7 +50,7 @@ namespace StayTogether.Droid.Activities
                     }
                 };
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 LogError(ex);
             }
@@ -85,7 +85,7 @@ namespace StayTogether.Droid.Activities
                             RunOnUiThread(() => Toast.MakeText(this, "Unable To load your contacts", ToastLength.Short).Show());
                         }
                     }
-                    catch (System.Exception ex)
+                    catch (Exception ex)
                     {
                         LogError(ex);
                     }
@@ -116,7 +116,7 @@ namespace StayTogether.Droid.Activities
 	                selectedContactSynopses.Remove(contact);
 	            }
 	        }
-	        catch (System.Exception ex)
+	        catch (Exception ex)
 	        {
                 LogError(ex);
             }
@@ -197,20 +197,20 @@ namespace StayTogether.Droid.Activities
             var rule2 = new LoggingRule("*", LogLevel.Debug, fileTarget);
             config.LoggingRules.Add(rule2);
 
-            NLog.LogManager.Configuration = config;
+            LogManager.Configuration = config;
 
-            var logger = NLog.LogManager.GetLogger("StayTogetherLog");
+            var logger = LogManager.GetLogger("StayTogetherLog");
 
             logger.Log(LogLevel.Debug, "StayTogether MainActivity Starting");
 
             return logger;
         }
 
-        private void LogError(Exception ex)
+        private async void LogError(Exception ex)
         {
             _logger.Log(LogLevel.Debug, ex);
 
-            LocationSenderService.Instance.SendError(ex.Message + " " + ex.StackTrace);
+            await LocationSenderService.Instance.SendError(ex.Message + " " + ex.StackTrace);
         }
 
     }
