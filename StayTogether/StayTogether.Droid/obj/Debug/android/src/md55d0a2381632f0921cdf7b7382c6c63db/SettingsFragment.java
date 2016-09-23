@@ -1,4 +1,4 @@
-package md56e3779c3777ef4ae9d025e43ee7dd31f;
+package md55d0a2381632f0921cdf7b7382c6c63db;
 
 
 public class SettingsFragment
@@ -12,7 +12,7 @@ public class SettingsFragment
 		__md_methods = 
 			"n_onCreate:(Landroid/os/Bundle;)V:GetOnCreate_Landroid_os_Bundle_Handler\n" +
 			"";
-		mono.android.Runtime.register ("StayTogether.Droid.Resources.layout.SettingsFragment, StayTogether.Droid, Version=1.0.6110.21457, Culture=neutral, PublicKeyToken=null", SettingsFragment.class, __md_methods);
+		mono.android.Runtime.register ("StayTogether.Droid.Resources.layout.SettingsFragment, StayTogether.Droid, Version=1.0.6110.22131, Culture=neutral, PublicKeyToken=null", SettingsFragment.class, __md_methods);
 	}
 
 
@@ -20,7 +20,7 @@ public class SettingsFragment
 	{
 		super ();
 		if (getClass () == SettingsFragment.class)
-			mono.android.TypeManager.Activate ("StayTogether.Droid.Resources.layout.SettingsFragment, StayTogether.Droid, Version=1.0.6110.21457, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
+			mono.android.TypeManager.Activate ("StayTogether.Droid.Resources.layout.SettingsFragment, StayTogether.Droid, Version=1.0.6110.22131, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
 	}
 
 

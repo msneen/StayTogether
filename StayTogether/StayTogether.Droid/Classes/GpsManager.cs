@@ -1,32 +1,21 @@
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
-using Android.OS;
 using Android.Locations;
-using Android.Runtime;
 using Android.Util;
-using Android.Views;
-using Android.Widget;
 using Plugin.Geolocator.Abstractions;
 
-namespace VideoForwarder
+namespace StayTogether.Droid.Classes
 {
     [Service]
     public class GpsService
     {
-        public static DateTime _lastLocationCheck;
+        public static DateTime LastLocationCheck;
 
         public static Position GetLocation()
         {
             try
             {
-                Location location = null;
-
                 if (LastLocationUpdateWasMoreThanAnHourAgo())
                 {
                     var criteriaForGpsService = new Criteria
@@ -36,23 +25,25 @@ namespace VideoForwarder
                         PowerRequirement = Power.Low
                     };
                     var locationManager =
-                        (LocationManager) Android.App.Application.Context.GetSystemService(Context.LocationService);
+                        (LocationManager) Application.Context.GetSystemService(Context.LocationService);
                         //context.GetSystemService(
                     var locationProvider = locationManager.GetBestProvider(criteriaForGpsService, true);
 
                     if (locationManager.IsProviderEnabled(locationProvider))
                     {
-                        location = locationManager.GetLastKnownLocation(locationProvider);
-                        var position = new Position();
-                        position.Longitude = location.Longitude;
-                        position.Latitude = location.Latitude;
+                        var location = locationManager.GetLastKnownLocation(locationProvider);
+                        var position = new Position
+                        {
+                            Longitude = location.Longitude,
+                            Latitude = location.Latitude
+                        };
                         return position;
                     }
                     else
                     {
                         try
                         {
-                            TurnGPSOn();
+                            TurnGpsOn();
                         }
                         catch (Exception ex)
                         {
@@ -74,7 +65,7 @@ namespace VideoForwarder
         {
             try
             {
-                var interval = DateTime.Now - _lastLocationCheck;
+                var interval = DateTime.Now - LastLocationCheck;
                 var isMoreThanAnHour = interval > TimeSpan.FromHours(1);
                 return isMoreThanAnHour;
             }
@@ -85,7 +76,7 @@ namespace VideoForwarder
             return true;
         }
 
-        public static void TurnGPSOn()
+        public static void TurnGpsOn()
         {
             try
             {

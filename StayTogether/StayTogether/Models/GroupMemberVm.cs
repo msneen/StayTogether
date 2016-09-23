@@ -1,5 +1,3 @@
-using System;
-
 namespace StayTogether.Classes
 {
     public class GroupMemberVm

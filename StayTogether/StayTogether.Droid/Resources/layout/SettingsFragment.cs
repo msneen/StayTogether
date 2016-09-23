@@ -1,10 +1,7 @@
-using System.Runtime.Remoting.Channels;
 using System.Security;
 using Android.OS;
 using Android.Preferences;
-using Java.Lang;
 using Plugin.Settings;
-using StayTogether.Droid.Settings;
 
 namespace StayTogether.Droid.Resources.layout
 {

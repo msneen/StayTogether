@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Android;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -11,6 +10,7 @@ using NLog;
 using NLog.Config;
 using NLog.Targets;
 using StayTogether.Classes;
+using StayTogether.Droid.Classes;
 using StayTogether.Droid.Helpers;
 using StayTogether.Droid.Services;
 using StayTogether.Droid.Settings;
@@ -22,7 +22,7 @@ namespace StayTogether.Droid.Activities
 	{
 	    public LocationSenderBinder Binder;
 	    public bool IsBound;
-	    private CameraServiceConnection _cameraServiceConnection;
+	    private LocationSenderServiceConnection _locationSenderServiceConnection;
         List<GroupMemberVm> selectedContactSynopses = new List<GroupMemberVm>();
         private ListView _listView;
 	    private Logger _logger;
@@ -171,8 +171,8 @@ namespace StayTogether.Droid.Activities
 
         protected void BindToService()
         {
-            _cameraServiceConnection = new CameraServiceConnection(this);
-            BindService(new Intent(this, typeof(LocationSenderService)), _cameraServiceConnection, Bind.AutoCreate);
+            _locationSenderServiceConnection = new LocationSenderServiceConnection(this);
+            BindService(new Intent(this, typeof(LocationSenderService)), _locationSenderServiceConnection, Bind.AutoCreate);
             IsBound = true;
         }
 
@@ -180,7 +180,7 @@ namespace StayTogether.Droid.Activities
         {
             if (IsBound)
             {
-                UnbindService(_cameraServiceConnection);
+                UnbindService(_locationSenderServiceConnection);
                 IsBound = false;
             }
         }
@@ -215,11 +215,11 @@ namespace StayTogether.Droid.Activities
 
     }
 
-    public class CameraServiceConnection : Java.Lang.Object, IServiceConnection
+    public class LocationSenderServiceConnection : Java.Lang.Object, IServiceConnection
     {
-        MainActivity _activity;
+        private readonly MainActivity _activity;
 
-        public CameraServiceConnection(MainActivity activity)
+        public LocationSenderServiceConnection(MainActivity activity)
         {
             _activity = activity;
         }

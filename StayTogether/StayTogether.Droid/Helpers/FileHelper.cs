@@ -1,4 +1,3 @@
-using Android.Graphics;
 using Java.IO;
 
 namespace StayTogether.Droid.Helpers

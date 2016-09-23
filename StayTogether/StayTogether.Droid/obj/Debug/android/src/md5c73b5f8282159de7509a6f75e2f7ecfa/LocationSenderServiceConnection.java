@@ -1,7 +1,7 @@
-package md535443ba9fcd3a3d19f3745283362c7fb;
+package md5c73b5f8282159de7509a6f75e2f7ecfa;
 
 
-public class CameraServiceConnection
+public class LocationSenderServiceConnection
 	extends java.lang.Object
 	implements
 		mono.android.IGCUserPeer,
@@ -14,22 +14,22 @@ public class CameraServiceConnection
 			"n_onServiceConnected:(Landroid/content/ComponentName;Landroid/os/IBinder;)V:GetOnServiceConnected_Landroid_content_ComponentName_Landroid_os_IBinder_Handler:Android.Content.IServiceConnectionInvoker, Mono.Android, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null\n" +
 			"n_onServiceDisconnected:(Landroid/content/ComponentName;)V:GetOnServiceDisconnected_Landroid_content_ComponentName_Handler:Android.Content.IServiceConnectionInvoker, Mono.Android, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null\n" +
 			"";
-		mono.android.Runtime.register ("StayTogether.Droid.Activities.CameraServiceConnection, StayTogether.Droid, Version=1.0.6110.21457, Culture=neutral, PublicKeyToken=null", CameraServiceConnection.class, __md_methods);
+		mono.android.Runtime.register ("StayTogether.Droid.Activities.LocationSenderServiceConnection, StayTogether.Droid, Version=1.0.6110.22131, Culture=neutral, PublicKeyToken=null", LocationSenderServiceConnection.class, __md_methods);
 	}
 
 
-	public CameraServiceConnection () throws java.lang.Throwable
+	public LocationSenderServiceConnection () throws java.lang.Throwable
 	{
 		super ();
-		if (getClass () == CameraServiceConnection.class)
-			mono.android.TypeManager.Activate ("StayTogether.Droid.Activities.CameraServiceConnection, StayTogether.Droid, Version=1.0.6110.21457, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
+		if (getClass () == LocationSenderServiceConnection.class)
+			mono.android.TypeManager.Activate ("StayTogether.Droid.Activities.LocationSenderServiceConnection, StayTogether.Droid, Version=1.0.6110.22131, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
 	}
 
-	public CameraServiceConnection (md535443ba9fcd3a3d19f3745283362c7fb.MainActivity p0) throws java.lang.Throwable
+	public LocationSenderServiceConnection (md5c73b5f8282159de7509a6f75e2f7ecfa.MainActivity p0) throws java.lang.Throwable
 	{
 		super ();
-		if (getClass () == CameraServiceConnection.class)
-			mono.android.TypeManager.Activate ("StayTogether.Droid.Activities.CameraServiceConnection, StayTogether.Droid, Version=1.0.6110.21457, Culture=neutral, PublicKeyToken=null", "StayTogether.Droid.Activities.MainActivity, StayTogether.Droid, Version=1.0.6110.21457, Culture=neutral, PublicKeyToken=null", this, new java.lang.Object[] { p0 });
+		if (getClass () == LocationSenderServiceConnection.class)
+			mono.android.TypeManager.Activate ("StayTogether.Droid.Activities.LocationSenderServiceConnection, StayTogether.Droid, Version=1.0.6110.22131, Culture=neutral, PublicKeyToken=null", "StayTogether.Droid.Activities.MainActivity, StayTogether.Droid, Version=1.0.6110.22131, Culture=neutral, PublicKeyToken=null", this, new java.lang.Object[] { p0 });
 	}
 
 

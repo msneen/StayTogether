@@ -8,7 +8,8 @@ using Android.Telephony;
 using Plugin.Settings;
 using StayTogether.Classes;
 using StayTogether.Droid.Activities;
-using VideoForwarder;
+using StayTogether.Droid.Classes;
+using StayTogether.Location;
 
 namespace StayTogether.Droid.Services
 {
@@ -51,26 +52,22 @@ namespace StayTogether.Droid.Services
         public async void StartGroup(List<GroupMemberVm> contactList)
         {
             var position = GpsService.GetLocation();
-            if (_locationSender != null && position!= null)
-            {
-                var adminMember = new GroupMemberVm
-                {
-                    PhoneNumber = GetPhoneNumber(),
-                    Name = CrossSettings.Current.GetValueOrDefault<string>("nickname"),
-                    Latitude = position.Latitude,
-                    Longitude = position.Longitude,
-                    IsAdmin = true
-                };
-                contactList.Insert(0, adminMember);
+            if (_locationSender == null || position == null) return;
 
-                var userVm = new GroupVm
-                {
-                    ContactList = contactList,
-                    GroupCreatedDateTime = DateTime.Now,
-                    GroupDisbandDateTime = DateTime.Now.AddHours(5)
-                };
-                await _locationSender.StartGroup(userVm);
-            }
+            var adminMember = GroupMemberPositionAdapter.Adapt(position);
+            adminMember.Name = CrossSettings.Current.GetValueOrDefault<string>("nickname");
+            adminMember.PhoneNumber = GetPhoneNumber();
+            adminMember.IsAdmin = true;
+
+            contactList.Insert(0, adminMember);
+
+            var groupVm = new GroupVm
+            {
+                ContactList = contactList,
+                GroupCreatedDateTime = DateTime.Now,
+                GroupDisbandDateTime = DateTime.Now.AddHours(5)
+            };
+            await _locationSender.StartGroup(groupVm);
         }
 
         public async Task SendError(string message)
@@ -81,22 +78,18 @@ namespace StayTogether.Droid.Services
         public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
         {
             var phoneNumber = GetPhoneNumber();
-            var position = GpsService.GetLocation();
 
             _locationSender = new LocationSender(phoneNumber);            
 
             _locationSender.InitializeSignalRAsync();
 
-            if (position != null)
-            {
-                var groupMemberVm = new GroupMemberVm()
-                {
-                    PhoneNumber = phoneNumber,
-                    Latitude = position.Latitude,
-                    Longitude = position.Longitude
-                };
-                _locationSender.SendUpdatePosition(groupMemberVm);
-            }
+            var position = GpsService.GetLocation();
+            if (position == null) return StartCommandResult.Sticky;
+
+            var groupMemberVm = GroupMemberPositionAdapter.Adapt(position);
+            groupMemberVm.PhoneNumber = phoneNumber;
+
+            _locationSender.SendUpdatePosition(groupMemberVm);
 
             return StartCommandResult.Sticky;
         }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace StayTogether.Classes
+﻿namespace StayTogether.Droid.Classes
 {
     public static class ObjectTypeHelper
     {
