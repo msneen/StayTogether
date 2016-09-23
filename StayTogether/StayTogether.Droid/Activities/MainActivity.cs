@@ -23,7 +23,7 @@ namespace StayTogether.Droid.Activities
 	    public LocationSenderBinder Binder;
 	    public bool IsBound;
 	    private CameraServiceConnection _cameraServiceConnection;
-        List<ContactSynopsis> selectedContactSynopses = new List<ContactSynopsis>();
+        List<GroupMemberVm> selectedContactSynopses = new List<GroupMemberVm>();
         private ListView _listView;
 	    private Logger _logger;
 
@@ -72,7 +72,7 @@ namespace StayTogether.Droid.Activities
                             RunOnUiThread(() =>
                             {
                                 _listView = FindViewById<ListView>(Resource.Id.List);
-                                var listAdapter = new ArrayAdapter<ContactSynopsis>(this,
+                                var listAdapter = new ArrayAdapter<GroupMemberVm>(this,
                                     Android.Resource.Layout.SimpleListItemChecked,
                                     contacts);
                                 _listView.Adapter = listAdapter;
@@ -106,7 +106,7 @@ namespace StayTogether.Droid.Activities
 	                return;
 	            }
 
-	            var contact = _listView.GetItemAtPosition(position).Cast<ContactSynopsis>();
+	            var contact = _listView.GetItemAtPosition(position).Cast<GroupMemberVm>();
 	            if (checkedView.Checked)
 	            {
 	                selectedContactSynopses.Add(contact);

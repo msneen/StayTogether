@@ -10,9 +10,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Contacts\ContactsHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Contacts\ContactSynopsis.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Location\LocationSender.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\PositionVm.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\UserVm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\GroupMemberVm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\GroupVm.cs" />
   </ItemGroup>
 </Project>

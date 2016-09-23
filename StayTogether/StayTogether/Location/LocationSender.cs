@@ -4,6 +4,7 @@ using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
 using Plugin.LocalNotifications;
 using Plugin.Settings;
+using StayTogether.Classes;
 
 namespace StayTogether
 {
@@ -50,13 +51,14 @@ namespace StayTogether
 	    private void LocatorOnPositionChanged(object sender, PositionEventArgs positionEventArgs)
 	    {
            
-            var positionVm = new PositionVm
+            var groupMemberVm = new GroupMemberVm()
             {
-                Position = positionEventArgs.Position,
+                Latitude = positionEventArgs.Position.Latitude,
+                Longitude = positionEventArgs.Position.Longitude,
                 PhoneNumber = _phoneNumber
             };
 
-            SendSignalR(positionVm);
+            SendUpdatePosition(groupMemberVm);
         }
 
 	    public void InitializeSignalRAsync()
@@ -102,22 +104,22 @@ namespace StayTogether
             CrossLocalNotifications.Current.Show(title, message);            
 	    }
 
-	    public async Task StartGroup(UserVm userVm)
+	    public async Task StartGroup(GroupVm groupVm)
 	    {
-            await _chatHubProxy.Invoke("CreateGroup", userVm);
+            await _chatHubProxy.Invoke("CreateGroup", groupVm);
         }
 
-	    public void SendSignalR(PositionVm positionVm)
+	    public void SendUpdatePosition(GroupMemberVm groupMemberVm)
 	    {
-            _chatHubProxy.Invoke("updatePosition", _phoneNumber, 
-                                                   positionVm.Position.Latitude, 
-                                                   positionVm.Position.Longitude,
-                                                   _groupId);
+	        groupMemberVm.PhoneNumber = _phoneNumber;
+	        groupMemberVm.GroupId = _groupId;
+            _chatHubProxy.Invoke("updatePosition", groupMemberVm);
         }
 
 	    public Task SendError(string message)
 	    {
-	        _chatHubProxy.Invoke("SendError", message, _phoneNumber);
+            //Todo: ReEnable Me in Server Code
+	        //_chatHubProxy.Invoke("SendError", message, _phoneNumber);
             return Task.CompletedTask;
 	    }
     }

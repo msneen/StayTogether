@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
@@ -47,18 +48,26 @@ namespace StayTogether.Droid.Services
             Instance = this;
         }
 
-        public async void StartGroup(List<ContactSynopsis> contactList)
+        public async void StartGroup(List<GroupMemberVm> contactList)
         {
             var position = GpsService.GetLocation();
             if (_locationSender != null && position!= null)
             {
-                var userVm = new UserVm
+                var adminMember = new GroupMemberVm
                 {
                     PhoneNumber = GetPhoneNumber(),
-                    UserName = CrossSettings.Current.GetValueOrDefault<string>("nickname"),
+                    Name = CrossSettings.Current.GetValueOrDefault<string>("nickname"),
                     Latitude = position.Latitude,
                     Longitude = position.Longitude,
-                    ContactList = contactList
+                    IsAdmin = true
+                };
+                contactList.Insert(0, adminMember);
+
+                var userVm = new GroupVm
+                {
+                    ContactList = contactList,
+                    GroupCreatedDateTime = DateTime.Now,
+                    GroupDisbandDateTime = DateTime.Now.AddHours(5)
                 };
                 await _locationSender.StartGroup(userVm);
             }
@@ -80,12 +89,13 @@ namespace StayTogether.Droid.Services
 
             if (position != null)
             {
-                var positionVm = new PositionVm
+                var groupMemberVm = new GroupMemberVm()
                 {
                     PhoneNumber = phoneNumber,
-                    Position = position,
+                    Latitude = position.Latitude,
+                    Longitude = position.Longitude
                 };
-                _locationSender.SendSignalR(positionVm);
+                _locationSender.SendUpdatePosition(groupMemberVm);
             }
 
             return StartCommandResult.Sticky;

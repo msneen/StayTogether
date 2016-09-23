@@ -11,11 +11,11 @@ namespace StayTogether
     public class ContactsHelper
     {
 
-        public async Task<List<ContactSynopsis>> GetContacts()
+        public async Task<List<GroupMemberVm>> GetContacts()
         {
             if (!await CrossContacts.Current.RequestPermission()) return null;
 
-            var contacts = new List<ContactSynopsis>();
+            var contacts = new List<GroupMemberVm>();
             CrossContacts.Current.PreferContactAggregation = false;
             
             if (CrossContacts.Current == null ||CrossContacts.Current.Contacts == null)
@@ -31,7 +31,7 @@ namespace StayTogether
                     var cleanedPhone = CleanPhoneNumber(phone.Number);
                     if (phone.Type != PhoneType.Mobile || string.IsNullOrWhiteSpace(cleanedPhone)) continue;
 
-                    var contactSynopsis = new ContactSynopsis
+                    var contactSynopsis = new GroupMemberVm
                     {
                         Name = cleanedName,
                         PhoneNumber = cleanedPhone
