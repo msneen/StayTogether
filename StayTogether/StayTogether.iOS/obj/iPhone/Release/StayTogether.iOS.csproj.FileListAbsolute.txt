@@ -28,5 +28,7 @@ F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhone\Release\actool
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhone\Release\optimized\
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhone\Release\StayTogetheriOS.exe
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhone\Release\StayTogetheriOS.pdb
+F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhone\Release\StayTogether.iOS.csprojResolveAssemblyReference.cache
+F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhone\Release\StayTogether.iOS.csproj.StayTogetheriOS.exe.config
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhone\Release\StayTogetheriOS.exe.mdb
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhone\Release\StayTogetheriOS.exe.mdb
