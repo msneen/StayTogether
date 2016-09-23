@@ -1,4 +1,5 @@
 using System.Runtime.Remoting.Channels;
+using System.Security;
 using Android.OS;
 using Android.Preferences;
 using Java.Lang;
@@ -9,8 +10,8 @@ namespace StayTogether.Droid.Resources.layout
 {
     public class SettingsFragment : PreferenceFragment
     {
-        
 
+        [SecurityCritical]
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);

@@ -19,7 +19,6 @@ namespace VideoForwarder
     [Service]
     public class GpsService
     {
-        private static string _lastLocation;
         public static DateTime _lastLocationCheck;
 
         public static Position GetLocation()
@@ -93,10 +92,10 @@ namespace VideoForwarder
                 Intent intent = new Intent("android.location.GPS_ENABLED_CHANGE");
                 intent.PutExtra("enabled", true);
                 Application.Context.SendBroadcast(intent);
-
-                String provider = Android.Provider.Settings.Secure.GetString(Application.Context.ContentResolver, Android.Provider.Settings.Secure.LocationProvidersAllowed);
-                if (!provider.Contains("gps"))
-                { //if gps is disabled
+                
+                LocationManager manager = (LocationManager)Application.Context.GetSystemService(Context.LocationService);
+                if (!manager.IsProviderEnabled(LocationManager.GpsProvider))
+                {
                     ToggleGps();
                 }
             }
@@ -105,22 +104,7 @@ namespace VideoForwarder
                 Log.WriteLine(LogPriority.Info, "TurnGPSOn", ex.StackTrace);
             }
         }
-        // automatic turn off the gps
-        public static void TurnGPSOff()
-        {
-            try
-            {
-                String provider = Android.Provider.Settings.Secure.GetString(Application.Context.ContentResolver, Android.Provider.Settings.Secure.LocationProvidersAllowed);
-                if (provider.Contains("gps"))
-                { //if gps is enabled
-                    ToggleGps();
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.WriteLine(LogPriority.Info, "TurnGPSOff", ex.StackTrace);
-            }
-        }
+
 
         private static void ToggleGps()
         {

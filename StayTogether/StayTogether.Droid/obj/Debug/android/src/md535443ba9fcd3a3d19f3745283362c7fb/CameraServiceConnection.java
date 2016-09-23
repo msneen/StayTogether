@@ -1,4 +1,4 @@
-package md570fe0437f60a4586125ccedab8eab3c5;
+package md535443ba9fcd3a3d19f3745283362c7fb;
 
 
 public class CameraServiceConnection
@@ -14,7 +14,7 @@ public class CameraServiceConnection
 			"n_onServiceConnected:(Landroid/content/ComponentName;Landroid/os/IBinder;)V:GetOnServiceConnected_Landroid_content_ComponentName_Landroid_os_IBinder_Handler:Android.Content.IServiceConnectionInvoker, Mono.Android, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null\n" +
 			"n_onServiceDisconnected:(Landroid/content/ComponentName;)V:GetOnServiceDisconnected_Landroid_content_ComponentName_Handler:Android.Content.IServiceConnectionInvoker, Mono.Android, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null\n" +
 			"";
-		mono.android.Runtime.register ("StayTogether.Droid.Activities.CameraServiceConnection, StayTogether.Droid, Version=1.0.6110.20036, Culture=neutral, PublicKeyToken=null", CameraServiceConnection.class, __md_methods);
+		mono.android.Runtime.register ("StayTogether.Droid.Activities.CameraServiceConnection, StayTogether.Droid, Version=1.0.6110.21457, Culture=neutral, PublicKeyToken=null", CameraServiceConnection.class, __md_methods);
 	}
 
 
@@ -22,14 +22,14 @@ public class CameraServiceConnection
 	{
 		super ();
 		if (getClass () == CameraServiceConnection.class)
-			mono.android.TypeManager.Activate ("StayTogether.Droid.Activities.CameraServiceConnection, StayTogether.Droid, Version=1.0.6110.20036, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
+			mono.android.TypeManager.Activate ("StayTogether.Droid.Activities.CameraServiceConnection, StayTogether.Droid, Version=1.0.6110.21457, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
 	}
 
-	public CameraServiceConnection (md570fe0437f60a4586125ccedab8eab3c5.MainActivity p0) throws java.lang.Throwable
+	public CameraServiceConnection (md535443ba9fcd3a3d19f3745283362c7fb.MainActivity p0) throws java.lang.Throwable
 	{
 		super ();
 		if (getClass () == CameraServiceConnection.class)
-			mono.android.TypeManager.Activate ("StayTogether.Droid.Activities.CameraServiceConnection, StayTogether.Droid, Version=1.0.6110.20036, Culture=neutral, PublicKeyToken=null", "StayTogether.Droid.Activities.MainActivity, StayTogether.Droid, Version=1.0.6110.20036, Culture=neutral, PublicKeyToken=null", this, new java.lang.Object[] { p0 });
+			mono.android.TypeManager.Activate ("StayTogether.Droid.Activities.CameraServiceConnection, StayTogether.Droid, Version=1.0.6110.21457, Culture=neutral, PublicKeyToken=null", "StayTogether.Droid.Activities.MainActivity, StayTogether.Droid, Version=1.0.6110.21457, Culture=neutral, PublicKeyToken=null", this, new java.lang.Object[] { p0 });
 	}
 
 
