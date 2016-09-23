@@ -114,6 +114,12 @@ namespace StayTogether
                                                    positionVm.Position.Longitude,
                                                    _groupId);
         }
+
+	    public Task SendError(string message)
+	    {
+	        _chatHubProxy.Invoke("SendError", message, _phoneNumber);
+            return Task.CompletedTask;
+	    }
     }
 }
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -12,7 +13,7 @@ namespace StayTogether.Droid.Services
 {
     [Service]
     // ReSharper disable once RedundantExplicitArrayCreation
-    [IntentFilter(new string[] {"com.StayTogether.LocationSenderService"})]
+    [IntentFilter(new string[] {"com.StayTogether.Droid.LocationSenderService"})]
     public class LocationSenderService : Service
     {
         private LocationSenderBinder _binder;
@@ -61,6 +62,11 @@ namespace StayTogether.Droid.Services
                 };
                 await _locationSender.StartGroup(userVm);
             }
+        }
+
+        public async Task SendError(string message)
+        {
+            await _locationSender.SendError(message);
         }
 
         public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)

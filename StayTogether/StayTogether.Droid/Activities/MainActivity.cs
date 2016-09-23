@@ -1,10 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Android;
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using NLog;
+using NLog.Config;
+using NLog.Targets;
 using StayTogether.Classes;
+using StayTogether.Droid.Helpers;
 using StayTogether.Droid.Services;
 using StayTogether.Droid.Settings;
 
@@ -18,50 +25,101 @@ namespace StayTogether.Droid.Activities
 	    private CameraServiceConnection _cameraServiceConnection;
         List<ContactSynopsis> selectedContactSynopses = new List<ContactSynopsis>();
         private ListView _listView;
+	    private Logger _logger;
 
-        protected override async void OnCreate(Bundle bundle)
+	    protected override async void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-
-            // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.Main);
-            _listView = FindViewById<ListView>(Resource.Id.List);
-            var contactsHelper = new ContactsHelper();
-            var contacts = await contactsHelper.GetContacts();
-            var listAdapter = new ArrayAdapter<ContactSynopsis>(this, Android.Resource.Layout.SimpleListItemChecked, contacts);
-            _listView.Adapter = listAdapter;
-            _listView.ChoiceMode = ChoiceMode.Multiple;
-            _listView.OnItemClickListener = this;
-
-            StartService(new Intent(this, typeof(LocationSenderService)));
-
-            Button startGroupButton = FindViewById<Button>(Resource.Id.myButton);
-
-            startGroupButton.Click += delegate
+            try
             {
-                if (selectedContactSynopses.Count > 0)
+                _logger = SetUpNLog();
+                // Set our view from the "main" layout resource
+                SetContentView(Resource.Layout.Main);
+
+                await LoadContacts();
+
+                StartService(new Intent(this, typeof(LocationSenderService)));
+
+                Button startGroupButton = FindViewById<Button>(Resource.Id.myButton);
+
+                startGroupButton.Click += delegate
                 {
-                    LocationSenderService.Instance.StartGroup(selectedContactSynopses);
-                }
-            };
+                    if (selectedContactSynopses.Count > 0)
+                    {
+                        LocationSenderService.Instance.StartGroup(selectedContactSynopses);
+                    }
+                };
+            }
+            catch (System.Exception ex)
+            {
+                LogError(ex);
+            }
         }
 
-        
-        public void OnItemClick(AdapterView parent, View view, int position, long id)
+	    private async Task LoadContacts()
+	    {
+
+	            await Task.Run(async () =>
+	            {
+                    try
+                    {
+                        Process.SetThreadPriority(ThreadPriority.Background);
+
+                        var contactsHelper = new ContactsHelper();
+                        var contacts = await contactsHelper.GetContacts();
+                        if (contacts != null)
+                        {
+                            RunOnUiThread(() =>
+                            {
+                                _listView = FindViewById<ListView>(Resource.Id.List);
+                                var listAdapter = new ArrayAdapter<ContactSynopsis>(this,
+                                    Android.Resource.Layout.SimpleListItemChecked,
+                                    contacts);
+                                _listView.Adapter = listAdapter;
+                                _listView.ChoiceMode = ChoiceMode.Multiple;
+                                _listView.OnItemClickListener = this;
+                            });
+                        }
+                        else
+                        {
+                            RunOnUiThread(() => Toast.MakeText(this, "Unable To load your contacts", ToastLength.Short).Show());
+                        }
+                    }
+                    catch (System.Exception ex)
+                    {
+                        LogError(ex);
+                    }
+                });
+	    }
+
+
+
+
+	    public void OnItemClick(AdapterView parent, View view, int position, long id)
         {
-            var checkedView = view as CheckedTextView;
-            if (checkedView == null) return;
+	        try
+	        {
+	            var checkedView = view as CheckedTextView;
+	            if (checkedView == null || _listView.Count < 1)
+	            {
+	                RunOnUiThread(() => Toast.MakeText(this, "Unable To load your contact", ToastLength.Short).Show());
+	                return;
+	            }
 
-            var contact = _listView.GetItemAtPosition(position).Cast<ContactSynopsis>();
-            if (checkedView.Checked)
-            {
-                selectedContactSynopses.Add(contact);
+	            var contact = _listView.GetItemAtPosition(position).Cast<ContactSynopsis>();
+	            if (checkedView.Checked)
+	            {
+	                selectedContactSynopses.Add(contact);
+	            }
+	            else
+	            {
+	                selectedContactSynopses.Remove(contact);
+	            }
+	        }
+	        catch (System.Exception ex)
+	        {
+                LogError(ex);
             }
-            else
-            {
-                selectedContactSynopses.Remove(contact);
-            }
-
         }
 
 
@@ -126,7 +184,36 @@ namespace StayTogether.Droid.Activities
                 IsBound = false;
             }
         }
-	}
+        public static Logger SetUpNLog()
+        {
+            var config = new LoggingConfiguration();
+
+            var fileTarget = new FileTarget();
+            config.AddTarget("StayTogetherLog", fileTarget);
+
+            fileTarget.FileName = FileHelper.GetDocumentFileName(); //"${basedir}/file.txt"; //****************fix this ***************
+            fileTarget.Layout = @"${date:format=HH\:mm\:ss} ${message}";
+
+            var rule2 = new LoggingRule("*", LogLevel.Debug, fileTarget);
+            config.LoggingRules.Add(rule2);
+
+            NLog.LogManager.Configuration = config;
+
+            var logger = NLog.LogManager.GetLogger("StayTogetherLog");
+
+            logger.Log(LogLevel.Debug, "StayTogether MainActivity Starting");
+
+            return logger;
+        }
+
+        private void LogError(Exception ex)
+        {
+            _logger.Log(LogLevel.Debug, ex);
+
+            LocationSenderService.Instance.SendError(ex.Message + " " + ex.StackTrace);
+        }
+
+    }
 
     public class CameraServiceConnection : Java.Lang.Object, IServiceConnection
     {

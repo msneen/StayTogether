@@ -7,6 +7,7 @@ F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Release\android\ass
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Release\android\assets\System.Xml.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Release\android\assets\Microsoft.AspNet.SignalR.Client.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Release\android\assets\Newtonsoft.Json.dll
+F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Release\android\assets\NLog.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Release\android\assets\Plugin.Contacts.Abstractions.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Release\android\assets\Plugin.Contacts.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Release\android\assets\Plugin.CurrentActivity.dll

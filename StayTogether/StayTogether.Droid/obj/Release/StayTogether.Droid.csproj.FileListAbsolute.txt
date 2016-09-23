@@ -5,6 +5,7 @@ F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\StayTogethe
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\StayTogether.StayTogether-Signed.apk
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Microsoft.AspNet.SignalR.Client.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Newtonsoft.Json.dll
+F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\NLog.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Plugin.Contacts.Abstractions.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Plugin.Contacts.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Plugin.CurrentActivity.dll
@@ -20,6 +21,7 @@ F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\System.Net.
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\System.Net.Http.Primitives.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Xamarin.Android.Support.v4.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Microsoft.AspNet.SignalR.Client.xml
+F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\NLog.xml
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Plugin.Contacts.pdb
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Plugin.Contacts.xml
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Plugin.Contacts.dll.mdb
@@ -62,7 +64,6 @@ F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Release\res\menu\se
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Release\res\xml\preferences.xml
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Release\R.cs.flag
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Release\uploadflags.txt
-F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Release\StayTogether.Droid.csprojResolveAssemblyReference.cache
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\StayTogether.Droid.dll.mdb
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Java.Interop.dll.mdb
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Microsoft.CSharp.dll.mdb
