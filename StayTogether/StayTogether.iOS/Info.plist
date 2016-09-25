@@ -48,5 +48,13 @@
 	<string>Resources/Images.xcassets/LaunchImage.launchimage</string>
   <key>NSContactsUsageDescription</key>
   <string>Getting list of contacts to add to the group</string>
+  <key>UIBackgroundModes</key>
+  <array>
+    <string>location</string>
+  </array>
+  <key>NSLocationAlwaysUsageDescription</key>
+  <string>Allow location to upload to stay togethdr server always</string>
+  <key>NSLocationWhenInUseUsageDescription</key>
+  <string>Allow location to upload to stay togethdr server when application is in foreground</string>
 </dict>
 </plist>
