@@ -16,38 +16,57 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oBE-Ac-vcx">
-                                <rect key="frame" x="10" y="28" width="152" height="30"/>
-                                <state key="normal" title="Start Group">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oBE-Ac-vcx" buttonType="roundedRect">
+                                <rect key="frame" x="10" y="28" width="80" height="30"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
+                                <state key="normal" title="Start Group"/>
                                 <connections/>
-                                <constraints>
-                                    <constraint id="33" firstAttribute="width" constant="152"/>
-                                </constraints>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="22" translatesAutoresizingMaskIntoConstraints="NO" allowsMultipleSelection="YES" showsHorizontalScrollIndicator="NO">
-                                <rect key="frame" x="32" y="66" width="353" height="514"/>
+                                <rect key="frame" x="10" y="63" width="338" height="517"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="1" height="1"/>
                                 <constraints>
-                                    <constraint id="40" firstAttribute="width" constant="353"/>
-                                    <constraint id="41" firstAttribute="height" constant="514"/>
+                                    <constraint id="81" firstItem="22" firstAttribute="width" constant="338"/>
                                 </constraints>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="45" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="98" y="34" width="66" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <constraints>
+                                    <constraint id="88" firstItem="45" firstAttribute="width" constant="66"/>
+                                </constraints>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="46" translatesAutoresizingMaskIntoConstraints="NO" clearButtonMode="always" placeholder="(    )    -">
+                                <rect key="frame" x="172" y="30" width="149" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <constraints>
+                                    <constraint id="89" firstItem="46" firstAttribute="width" constant="149"/>
+                                </constraints>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint id="31" firstItem="oBE-Ac-vcx" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="28"/>
                             <constraint id="32" firstItem="oBE-Ac-vcx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10"/>
-                            <constraint id="38" firstItem="22" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="32"/>
                             <constraint id="39" firstItem="8bC-Xf-vdC" firstAttribute="bottom" secondItem="22" secondAttribute="bottom" constant="20"/>
+                            <constraint id="63" firstItem="45" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="34"/>
+                            <constraint id="73" firstItem="46" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="30"/>
+                            <constraint id="79" firstItem="22" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10"/>
+                            <constraint id="80" firstItem="22" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="63"/>
+                            <constraint id="84" firstItem="45" firstAttribute="leading" secondItem="oBE-Ac-vcx" secondAttribute="trailing" constant="8"/>
+                            <constraint id="85" firstItem="46" firstAttribute="leading" secondItem="45" secondAttribute="trailing" constant="8"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="Button" destination="oBE-Ac-vcx" id="OkX-0Z-gth"/>
+                        <outlet property="StartGroup" destination="oBE-Ac-vcx" id="name-outlet-oBE-Ac-vcx"/>
                         <outlet property="ContactsUITableView" destination="22" id="name-outlet-22"/>
+                        <outlet property="lblPhoneNumber" destination="45" id="name-outlet-45"/>
+                        <outlet property="UIPhoneNumberTextField" destination="46" id="name-outlet-46"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

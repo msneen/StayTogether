@@ -17,6 +17,7 @@ namespace StayTogether.iOS
         int _count = 1;
 	    private List<GroupMemberVm> _contacts;
 	    private CLLocationManager _clLocationManager;
+	    private CLLocation _location;
 
 	    public ViewController (IntPtr handle) : base (handle)
 		{
@@ -26,13 +27,15 @@ namespace StayTogether.iOS
         {
             base.ViewDidLoad();
             // Perform any additional setup after loading the view, typically from a nib.
-            Button.AccessibilityIdentifier = "myButton";
-            Button.TouchUpInside += delegate
+            StartGroup.AccessibilityIdentifier = "myButton";
+            StartGroup.TouchUpInside += delegate
             {
                 //This is the button click event
                 var title = $"{_count++} clicks!";
-                Button.SetTitle(title, UIControlState.Normal);
+                StartGroup.SetTitle(title, UIControlState.Normal);
             };
+
+            UIPhoneNumberTextField.SizeToFit();
 
             await LoadContacts();
             InitializeLocationManager();
@@ -42,18 +45,14 @@ namespace StayTogether.iOS
         public void HandleLocationChanged(object sender, LocationUpdatedEventArgs e)
         {
             // Handle foreground updates
-            CLLocation location = e.Location;
+            _location = e.Location;
 
-            //LblAltitude.Text = location.Altitude + " meters";
             //LblLongitude.Text = location.Coordinate.Longitude.ToString();
             //LblLatitude.Text = location.Coordinate.Latitude.ToString();
-            //LblCourse.Text = location.Course.ToString();
-            //LblSpeed.Text = location.Speed.ToString();
 
-            Console.WriteLine("foreground updated");
         }
 
-        private void StartLocationUpdates()
+	    private void StartLocationUpdates()
 	    {
             if (CLLocationManager.LocationServicesEnabled)
             {

@@ -16,22 +16,40 @@ namespace StayTogether.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIButton Button { get; set; }
+        UIKit.UITableView ContactsUITableView { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITableView ContactsUITableView { get; set; }
+        UIKit.UILabel lblPhoneNumber { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton StartGroup { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITextField UIPhoneNumberTextField { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
-            if (Button != null) {
-                Button.Dispose ();
-                Button = null;
-            }
-
             if (ContactsUITableView != null) {
                 ContactsUITableView.Dispose ();
                 ContactsUITableView = null;
+            }
+
+            if (lblPhoneNumber != null) {
+                lblPhoneNumber.Dispose ();
+                lblPhoneNumber = null;
+            }
+
+            if (StartGroup != null) {
+                StartGroup.Dispose ();
+                StartGroup = null;
+            }
+
+            if (UIPhoneNumberTextField != null) {
+                UIPhoneNumberTextField.Dispose ();
+                UIPhoneNumberTextField = null;
             }
         }
     }
