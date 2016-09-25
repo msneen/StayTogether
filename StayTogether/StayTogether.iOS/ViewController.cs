@@ -9,7 +9,9 @@ using UIKit;
 
 namespace StayTogether.iOS
 {
-	public partial class ViewController : UIViewController
+    //article on backgrounding location
+    //https://developer.xamarin.com/guides/ios/application_fundamentals/backgrounding/part_4_ios_backgrounding_walkthroughs/location_walkthrough/
+    public partial class ViewController : UIViewController
 	{
         // event for the location changing
         public event EventHandler<LocationUpdatedEventArgs> LocationUpdated = delegate { };
@@ -27,7 +29,7 @@ namespace StayTogether.iOS
         {
             base.ViewDidLoad();
             // Perform any additional setup after loading the view, typically from a nib.
-            StartGroup.AccessibilityIdentifier = "myButton";
+            StartGroup.AccessibilityIdentifier = "startGroup";
             StartGroup.TouchUpInside += delegate
             {
                 //This is the button click event
