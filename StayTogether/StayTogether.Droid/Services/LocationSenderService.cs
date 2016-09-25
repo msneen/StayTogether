@@ -69,35 +69,6 @@ namespace StayTogether.Droid.Services
 
             await CreateGroup(contactList, position);
         }
-
-        public async Task SendError(string message)
-        {
-            await _locationSender.SendError(message);
-        }
-
-        private void StartLocationSender()
-        {
-            var phoneNumber = GetPhoneNumber();
-            InitializeLocationSender(phoneNumber);
-            SendFirstPositionUpdate(phoneNumber);
-        }
-
-        private void SendFirstPositionUpdate(string phoneNumber)
-        {
-            var position = GpsService.GetLocation();
-            if (position == null) return;
-
-            var groupMemberVm = GroupMemberPositionAdapter.Adapt(position);
-            groupMemberVm.PhoneNumber = phoneNumber;
-            _locationSender.SendUpdatePosition(groupMemberVm);
-        }
-
-        private void InitializeLocationSender(string phoneNumber)
-        {
-            _locationSender = new LocationSender(phoneNumber);
-            _locationSender.InitializeSignalRAsync();
-        }
-
         private async Task CreateGroup(List<GroupMemberVm> contactList, Position position)
         {
             var adminMember = CreateAdminMember(position);
@@ -130,6 +101,38 @@ namespace StayTogether.Droid.Services
             adminMember.IsAdmin = true;
             return adminMember;
         }
+
+        public async Task SendError(string message)
+        {
+            await _locationSender.SendError(message);
+        }
+
+        private void StartLocationSender()
+        {
+            var phoneNumber = GetPhoneNumber();
+            InitializeLocationSender(phoneNumber);
+            SendFirstPositionUpdate(phoneNumber);
+        }
+
+        private void SendFirstPositionUpdate(string phoneNumber)
+        {
+            var position = GpsService.GetLocation();
+            if (position == null) return;
+
+            var groupMemberVm = GroupMemberPositionAdapter.Adapt(position);
+            groupMemberVm.PhoneNumber = phoneNumber;
+            _locationSender.SendUpdatePosition(groupMemberVm);
+        }
+
+        private void InitializeLocationSender(string phoneNumber)
+        {
+            _locationSender = new LocationSender(phoneNumber);
+            _locationSender.InitializeSignalRAsync();
+        }
+
+
+
+
 
         public static string GetPhoneNumber()
         {

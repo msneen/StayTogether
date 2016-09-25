@@ -99,7 +99,6 @@ class MonoPackageManager_Resources {
 	public static final String[] Assemblies = new String[]{
 		/* We need to ensure that "StayTogether.Droid.dll" comes first in this list. */
 		"StayTogether.Droid.dll",
-		"Java.Interop.dll",
 		"Microsoft.AspNet.SignalR.Client.dll",
 		"Newtonsoft.Json.dll",
 		"NLog.dll",
@@ -127,7 +126,6 @@ class MonoPackageManager_Resources {
 		"System.Runtime.InteropServices.dll",
 		"System.Runtime.Extensions.dll",
 		"System.Reflection.Extensions.dll",
-		"System.ServiceModel.Internals.dll",
 		"System.Dynamic.Runtime.dll",
 		"System.ObjectModel.dll",
 		"System.Linq.Expressions.dll",

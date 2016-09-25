@@ -49,7 +49,6 @@ F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Debug\Plugin.Permis
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Debug\Plugin.Permissions.Abstractions.dll.mdb
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Debug\Plugin.Settings.xml
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Debug\Plugin.Settings.Abstractions.xml
-F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\StayTogether.Droid.csprojResolveAssemblyReference.cache
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\StayTogether.Droid.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\StayTogether.Droid.pdb
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\bin\StayTogether.StayTogether.apk
@@ -66,6 +65,7 @@ F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\res\xml\prefe
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\R.cs.flag
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\uploadflags.txt
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Debug\StayTogether.Droid.dll.mdb
+F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\StayTogether.Droid.csprojResolveAssemblyReference.cache
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Debug\Java.Interop.dll.mdb
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Debug\Microsoft.CSharp.dll.mdb
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Debug\Mono.Android.dll.mdb
@@ -83,6 +83,7 @@ F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Debug\System.Xml.Li
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Java.Interop.dll.mdb
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Microsoft.CSharp.dll.mdb
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Mono.Android.dll.mdb
+F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Mono.CSharp.dll.mdb
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\mscorlib.dll.mdb
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Plugin.Contacts.Abstractions.dll.mdb
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Plugin.Contacts.dll.mdb
