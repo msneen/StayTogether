@@ -1,4 +1,8 @@
+using System.Collections.Generic;
 using CoreLocation;
+using Plugin.Geolocator.Abstractions;
+using StayTogether.Classes;
+using StayTogether.Group;
 using UIKit;
 
 
@@ -8,8 +12,9 @@ namespace StayTogether.iOS.Classes
     {
 
         CLLocationManager _clLocationManager;
+        private CLLocation _lastLocation;
+        private LocationSender _locationSender;
         public string UserPhoneNumber { get; set; }
-
         public CLLocationManager ClLocationManager
         {
             get
@@ -24,9 +29,11 @@ namespace StayTogether.iOS.Classes
 
         public LocationManager()
         {
-            _clLocationManager = new CLLocationManager();
+            _clLocationManager = new CLLocationManager
+            {
+                PausesLocationUpdatesAutomatically = false
+            };
 
-            _clLocationManager.PausesLocationUpdatesAutomatically = false;
             // iOS 8 has additional permissions requirements
             if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
             {
@@ -37,6 +44,13 @@ namespace StayTogether.iOS.Classes
             {
                 _clLocationManager.AllowsBackgroundLocationUpdates = true;
             }
+
+        }
+
+        private void InitializeLocationSender()
+        {
+            _locationSender = new LocationSender(UserPhoneNumber);
+            _locationSender.InitializeSignalRAsync();
         }
 
         public void StartLocationUpdates()
@@ -50,11 +64,30 @@ namespace StayTogether.iOS.Classes
                     // fire our custom Location Updated event
                     //LocationUpdated(this, new LocationUpdatedEventArgs(e.Locations[e.Locations.Length - 1]));
                     //Todo: We get a location here
-                    var location = e.Locations[e.Locations.Length - 1];
-
+                    _lastLocation = e.Locations[e.Locations.Length - 1];
+                    //Todo: if more than 2 minutes or 20 meters from last location, send update to server
+                    
                 };
 
                 _clLocationManager.StartUpdatingLocation();
+
+                InitializeLocationSender();
+            }
+        }
+
+        public async void StartGroup(List<GroupMemberVm> selectedContacts)
+        {
+            if (_lastLocation != null)
+            {
+                var position = new Position
+                {
+                    Latitude = _lastLocation.Coordinate.Latitude,
+                    Longitude = _lastLocation.Coordinate.Longitude
+                };
+
+                var groupVm = GroupHelper.InitializeGroupVm(selectedContacts, position, UserPhoneNumber);
+
+                await _locationSender.StartGroup(groupVm);
             }
         }
     }

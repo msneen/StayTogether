@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Plugin.Settings;
 using StayTogether.Classes;
@@ -32,13 +33,26 @@ namespace StayTogether.iOS
             StartGroup.TouchUpInside += delegate
             {
                 //This is the button click event
-                var title = $"{_count++} clicks!";
+                var title = $"Update Group";
                 StartGroup.SetTitle(title, UIControlState.Normal);
+
+                StartGroup1(); //Change name of button, then change method name to "StartGroup"
             };
 
             GetUserPhoneNumber();
 
             await LoadContacts();
+        }
+
+        private void StartGroup1()
+        {
+            var selectedContacts = _contacts.Where(x => x.Selected).ToList();
+
+            if (selectedContacts.Any()) //Todo: and we have a phone number and nickname
+            {
+
+                Manager.StartGroup(selectedContacts);
+            }
         }
 
         private void GetUserPhoneNumber()

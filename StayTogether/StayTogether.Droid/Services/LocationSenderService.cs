@@ -10,6 +10,7 @@ using Plugin.Settings;
 using StayTogether.Classes;
 using StayTogether.Droid.Activities;
 using StayTogether.Droid.Classes;
+using StayTogether.Group;
 using StayTogether.Location;
 
 namespace StayTogether.Droid.Services
@@ -71,35 +72,9 @@ namespace StayTogether.Droid.Services
         }
         private async Task CreateGroup(List<GroupMemberVm> contactList, Position position)
         {
-            var adminMember = CreateAdminMember(position);
-
-            contactList.Insert(0, adminMember);
-
-            var groupVm = CreateGroupVm(adminMember, contactList);
+            var groupVm = GroupHelper.InitializeGroupVm(contactList, position, GetPhoneNumber());
 
             await _locationSender.StartGroup(groupVm);
-        }
-
-        private static GroupVm CreateGroupVm(GroupMemberVm adminMember, List<GroupMemberVm> contactList)
-        {
-            var groupVm = new GroupVm
-            {
-                MaximumDistance = 100,
-                PhoneNumber = adminMember.PhoneNumber,
-                GroupMembers = contactList,
-                GroupCreatedDateTime = DateTime.Now,
-                GroupDisbandDateTime = DateTime.Now.AddHours(5)
-            };
-            return groupVm;
-        }
-
-        private static GroupMemberVm CreateAdminMember(Position position)
-        {
-            var adminMember = GroupMemberPositionAdapter.Adapt(position);
-            adminMember.Name = CrossSettings.Current.GetValueOrDefault<string>("nickname");
-            adminMember.PhoneNumber = GetPhoneNumber();
-            adminMember.IsAdmin = true;
-            return adminMember;
         }
 
         public async Task SendError(string message)
@@ -129,10 +104,6 @@ namespace StayTogether.Droid.Services
             _locationSender = new LocationSender(phoneNumber);
             _locationSender.InitializeSignalRAsync();
         }
-
-
-
-
 
         public static string GetPhoneNumber()
         {
