@@ -45,7 +45,7 @@ namespace StayTogether
             return contacts;           
         }
 
-        private static string CleanName(Contact contact)
+        public static string CleanName(Contact contact)
         {
             var cleanedName = "";
             if (!string.IsNullOrWhiteSpace(contact.LastName))
@@ -65,7 +65,7 @@ namespace StayTogether
         }
 
 
-        private static string CleanPhoneNumber(string number)
+        public static string CleanPhoneNumber(string number)
         {
             if (string.IsNullOrWhiteSpace(number)) return "";
 

@@ -15,14 +15,14 @@
   <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
   <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
   <uses-permission android:name="android.permission.READ_SMS" />
-  <application android:label="StayTogether.Droid" android:icon="@drawable/icon" android:name="md5b0d739b17134bd12430c86dede11af00.MainApplication" android:allowBackup="true" android:debuggable="true">
-    <activity android:label="Settings" android:name="md59912aeebab539663a9c614c65cb37621.SettingsActivity" />
-    <service android:name="md5c06e36c4a741114dcc134d7a8a101e3c.LocationSenderService">
+  <application android:label="StayTogether.Droid" android:icon="@drawable/icon" android:name="md5fb99116fadf5ae5e0f92af0accb48b87.MainApplication" android:allowBackup="true" android:debuggable="true">
+    <activity android:label="Settings" android:name="md56fdaae0cc38c552527eb81c884ec0fee.SettingsActivity" />
+    <service android:name="md5bdb864475624832a424df643cf886af0.LocationSenderService">
       <intent-filter>
         <action android:name="com.StayTogether.Droid.LocationSenderService" />
       </intent-filter>
     </service>
-    <activity android:icon="@drawable/icon" android:label="StayTogether" android:name="md5b407d093fa9eda5d9304e2fedf9631fb.MainActivity">
+    <activity android:icon="@drawable/icon" android:label="StayTogether" android:name="md509eb57d637ed68e5ba7dab2ae987b4ba.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />

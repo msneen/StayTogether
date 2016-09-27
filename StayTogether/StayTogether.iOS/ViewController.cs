@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using CoreLocation;
+using Plugin.Settings;
 using StayTogether.Classes;
 using StayTogether.iOS.Classes;
 using StayTogether.iOS.Models;
@@ -13,17 +13,16 @@ namespace StayTogether.iOS
     //https://developer.xamarin.com/guides/ios/application_fundamentals/backgrounding/part_4_ios_backgrounding_walkthroughs/location_walkthrough/
     public partial class ViewController : UIViewController
 	{
-        // event for the location changing
-        public event EventHandler<LocationUpdatedEventArgs> LocationUpdated = delegate { };
+
 
         int _count = 1;
 	    private List<GroupMemberVm> _contacts;
-	    private CLLocationManager _clLocationManager;
-	    private CLLocation _location;
+        public static LocationManager Manager;
 
-	    public ViewController (IntPtr handle) : base (handle)
-		{
-		}
+        public ViewController (IntPtr handle) : base (handle)
+        {
+            Manager = new LocationManager();
+        }
 
         public override async void ViewDidLoad()
         {
@@ -37,55 +36,46 @@ namespace StayTogether.iOS
                 StartGroup.SetTitle(title, UIControlState.Normal);
             };
 
-            UIPhoneNumberTextField.SizeToFit();
+            GetUserPhoneNumber();
 
             await LoadContacts();
-            InitializeLocationManager();
-            StartLocationUpdates();
         }
 
-        public void HandleLocationChanged(object sender, LocationUpdatedEventArgs e)
+        private void GetUserPhoneNumber()
         {
-            // Handle foreground updates
-            _location = e.Location;
-
-            //LblLongitude.Text = location.Coordinate.Longitude.ToString();
-            //LblLatitude.Text = location.Coordinate.Latitude.ToString();
-
-        }
-
-	    private void StartLocationUpdates()
-	    {
-            if (CLLocationManager.LocationServicesEnabled)
+            var userPhoneNumber = CrossSettings.Current.GetValueOrDefault<string>("phonenumber");
+            if (userPhoneNumber.Length == 10)
             {
-                //set the desired accuracy, in meters
-                _clLocationManager.DesiredAccuracy = 1;
-                _clLocationManager.LocationsUpdated += (object sender, CLLocationsUpdatedEventArgs e) =>
+                UIPhoneNumberTextField.Hidden = true;
+                Manager.UserPhoneNumber = userPhoneNumber;
+                Manager.StartLocationUpdates();
+            }
+            else
+            {
+                UIPhoneNumberTextField.SizeToFit();
+                UIPhoneNumberTextField.EditingDidEnd += (sender, args) =>
                 {
-                    // fire our custom Location Updated event
-                    LocationUpdated(this, new LocationUpdatedEventArgs(e.Locations[e.Locations.Length - 1]));
+                    var cleanPhoneNumber = ContactsHelper.CleanPhoneNumber(UIPhoneNumberTextField.Text);
+                    if (cleanPhoneNumber.Length == 10)
+                    {
+                        InvokeOnMainThread(() =>
+                        {
+                            UIPhoneNumberTextField.BackgroundColor = UIColor.Yellow;
+                            UIPhoneNumberTextField.Layer.BorderColor = UIColor.Red.CGColor;
+                            UIPhoneNumberTextField.Layer.BorderWidth = 3;
+                            UIPhoneNumberTextField.Layer.CornerRadius = 5;
+                        });
+                    }
+                    else
+                    {
+                        CrossSettings.Current.AddOrUpdateValue<string>("phonenumber", cleanPhoneNumber);
+                        Manager.UserPhoneNumber = cleanPhoneNumber;
+                        InvokeOnMainThread(() => { UIPhoneNumberTextField.Hidden = true; });
+                        Manager.StartLocationUpdates();
+                    }
                 };
-                _clLocationManager.StartUpdatingLocation();
             }
         }
-
-	    private void InitializeLocationManager()
-	    {
-	        _clLocationManager = new CLLocationManager();
-            this.LocationUpdated += HandleLocationChanged;
-            _clLocationManager.PausesLocationUpdatesAutomatically = false;
-	        // iOS 8 has additional permissions requirements
-	        if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
-	        {
-	            _clLocationManager.RequestAlwaysAuthorization(); // works in background
-	            //locMgr.RequestWhenInUseAuthorization (); // only in foreground
-	        }
-
-	        if (UIDevice.CurrentDevice.CheckSystemVersion(9, 0))
-	        {
-	            _clLocationManager.AllowsBackgroundLocationUpdates = true;
-	        }
-	    }
 
 	    private async Task LoadContacts()
 	    {

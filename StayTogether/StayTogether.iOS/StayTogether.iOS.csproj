@@ -190,6 +190,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\LocationManager.cs" />
     <Compile Include="Classes\LocationUpdatedEventArgs.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Main.cs" />
@@ -199,12 +200,6 @@
     <Compile Include="ViewController.designer.cs">
       <DependentUpon>ViewController.cs</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\StayTogether.Droid\StayTogether.Droid.csproj">
-      <Project>{24ACA86D-461D-4BFC-9E4E-0B3C758959E3}</Project>
-      <Name>StayTogether.Droid</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="..\StayTogether\StayTogether.projitems" Label="Shared" Condition="Exists('..\StayTogether\StayTogether.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
