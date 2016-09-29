@@ -90,12 +90,16 @@ namespace StayTogether.iOS.Classes
             };
             if (_sendMeter.CanSend(position))
             {
-                //Todo: Send position update
+                //Send position update
                 var groupMemberVm = new GroupMemberVm
                 {
                     //Todo:  Get Group Member Properties
+                    Name = "iPhoneTester",
+                    PhoneNumber = UserPhoneNumber,
+                    Latitude = _lastLocation.Coordinate.Latitude,
+                    Longitude = _lastLocation.Coordinate.Longitude
                 };
-                 //_locationSender.SendUpdatePosition();
+                 _locationSender.SendUpdatePosition(groupMemberVm);
             }
         }
 
