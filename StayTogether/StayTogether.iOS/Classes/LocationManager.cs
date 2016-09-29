@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using CoreLocation;
 using Plugin.Geolocator.Abstractions;
 using StayTogether.Classes;
 using StayTogether.Group;
+using StayTogether.Location;
 using UIKit;
 
 
@@ -14,6 +16,7 @@ namespace StayTogether.iOS.Classes
         CLLocationManager _clLocationManager;
         private CLLocation _lastLocation;
         private LocationSender _locationSender;
+        private SendMeter _sendMeter;
         public string UserPhoneNumber { get; set; }
         public CLLocationManager ClLocationManager
         {
@@ -29,6 +32,7 @@ namespace StayTogether.iOS.Classes
 
         public LocationManager()
         {
+            _sendMeter = new SendMeter(100, TimeSpan.FromMinutes(2));
             _clLocationManager = new CLLocationManager
             {
                 PausesLocationUpdatesAutomatically = false
@@ -38,6 +42,7 @@ namespace StayTogether.iOS.Classes
             if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
             {
                 _clLocationManager.RequestAlwaysAuthorization(); // works in background
+                
             }
 
             if (UIDevice.CurrentDevice.CheckSystemVersion(9, 0))
@@ -59,24 +64,44 @@ namespace StayTogether.iOS.Classes
             {
                 //set the desired accuracy, in meters
                 _clLocationManager.DesiredAccuracy = 1;
-                _clLocationManager.LocationsUpdated += (object sender, CLLocationsUpdatedEventArgs e) =>  
+                _clLocationManager.LocationsUpdated += (object sender, CLLocationsUpdatedEventArgs e) =>
                 {
                     // fire our custom Location Updated event
-                    //LocationUpdated(this, new LocationUpdatedEventArgs(e.Locations[e.Locations.Length - 1]));
-                    //Todo: We get a location here
                     _lastLocation = e.Locations[e.Locations.Length - 1];
-                    //Todo: if more than 2 minutes or 20 meters from last location, send update to server
-                    
+                    //if more than 2 minutes or 100 feet from last location, send update to server
+                    SendPositionUpdate();
                 };
 
                 _clLocationManager.StartUpdatingLocation();
 
-                InitializeLocationSender();
+                if (UserPhoneNumber.Length > 10)
+                {
+                    InitializeLocationSender();
+                }
+            }
+        }
+
+        private void SendPositionUpdate()
+        {
+            var position = new Position
+            {
+                Latitude = _lastLocation.Coordinate.Latitude,
+                Longitude = _lastLocation.Coordinate.Longitude
+            };
+            if (_sendMeter.CanSend(position))
+            {
+                //Todo: Send position update
+                var groupMemberVm = new GroupMemberVm
+                {
+                    //Todo:  Get Group Member Properties
+                };
+                 //_locationSender.SendUpdatePosition();
             }
         }
 
         public async void StartGroup(List<GroupMemberVm> selectedContacts)
         {
+
             if (_lastLocation != null)
             {
                 var position = new Position
@@ -87,8 +112,13 @@ namespace StayTogether.iOS.Classes
 
                 var groupVm = GroupHelper.InitializeGroupVm(selectedContacts, position, UserPhoneNumber);
 
+                if (_locationSender == null)
+                {
+                    InitializeLocationSender();
+                }
                 await _locationSender.StartGroup(groupVm);
             }
+
         }
     }
 }

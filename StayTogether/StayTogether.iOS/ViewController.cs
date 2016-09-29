@@ -41,6 +41,8 @@ namespace StayTogether.iOS
 
             GetUserPhoneNumber();
 
+            Manager.StartLocationUpdates();
+
             await LoadContacts();
         }
 
@@ -48,50 +50,58 @@ namespace StayTogether.iOS
         {
             var selectedContacts = _contacts.Where(x => x.Selected).ToList();
 
-            if (selectedContacts.Any()) //Todo: and we have a phone number and nickname
+            if (selectedContacts.Any() && GetUserPhoneNumber()) //Todo: and we have a phone number and nickname
             {
 
                 Manager.StartGroup(selectedContacts);
             }
         }
 
-        private void GetUserPhoneNumber()
+        private bool GetUserPhoneNumber()
         {
             var userPhoneNumber = CrossSettings.Current.GetValueOrDefault<string>("phonenumber");
-            if (userPhoneNumber.Length == 10)
+            if  (userPhoneNumber != null && userPhoneNumber.Length == 10)
             {
                 UIPhoneNumberTextField.Hidden = true;
                 Manager.UserPhoneNumber = userPhoneNumber;
-                Manager.StartLocationUpdates();
+                return true;
             }
             else
             {
                 UIPhoneNumberTextField.SizeToFit();
                 UIPhoneNumberTextField.EditingDidEnd += (sender, args) =>
                 {
-                    var cleanPhoneNumber = ContactsHelper.CleanPhoneNumber(UIPhoneNumberTextField.Text);
-                    if (cleanPhoneNumber.Length == 10)
-                    {
-                        InvokeOnMainThread(() =>
-                        {
-                            UIPhoneNumberTextField.BackgroundColor = UIColor.Yellow;
-                            UIPhoneNumberTextField.Layer.BorderColor = UIColor.Red.CGColor;
-                            UIPhoneNumberTextField.Layer.BorderWidth = 3;
-                            UIPhoneNumberTextField.Layer.CornerRadius = 5;
-                        });
-                    }
-                    else
-                    {
-                        CrossSettings.Current.AddOrUpdateValue<string>("phonenumber", cleanPhoneNumber);
-                        Manager.UserPhoneNumber = cleanPhoneNumber;
-                        InvokeOnMainThread(() => { UIPhoneNumberTextField.Hidden = true; });
-                        Manager.StartLocationUpdates();
-                    }
+                    TryGetUserPhoneNumber();
                 };
             }
+            return false;
         }
 
-	    private async Task LoadContacts()
+        private bool TryGetUserPhoneNumber()
+        {
+            var cleanPhoneNumber = ContactsHelper.CleanPhoneNumber(UIPhoneNumberTextField.Text);
+            if (cleanPhoneNumber.Length != 10)
+            {
+                InvokeOnMainThread(() =>
+                {
+                    UIPhoneNumberTextField.Hidden = false;
+                    UIPhoneNumberTextField.BackgroundColor = UIColor.Yellow;
+                    UIPhoneNumberTextField.Layer.BorderColor = UIColor.Red.CGColor;
+                    UIPhoneNumberTextField.Layer.BorderWidth = 3;
+                    UIPhoneNumberTextField.Layer.CornerRadius = 5;
+                });
+                return false;
+            }
+            else
+            {
+                CrossSettings.Current.AddOrUpdateValue<string>("phonenumber", cleanPhoneNumber);
+                Manager.UserPhoneNumber = cleanPhoneNumber;
+                InvokeOnMainThread(() => { UIPhoneNumberTextField.Hidden = true; });
+            }
+            return true;
+        }
+
+        private async Task LoadContacts()
 	    {
 	        var contactsHelper = new ContactsHelper();
 	        _contacts = await contactsHelper.GetContacts();
