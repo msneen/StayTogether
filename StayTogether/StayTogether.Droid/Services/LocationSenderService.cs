@@ -89,6 +89,7 @@ namespace StayTogether.Droid.Services
             SendFirstPositionUpdate(phoneNumber);
         }
 
+
         private void SendFirstPositionUpdate(string phoneNumber)
         {
             var position = GpsService.GetLocation();
@@ -101,14 +102,22 @@ namespace StayTogether.Droid.Services
 
         private void InitializeLocationSender(string phoneNumber)
         {
-            _locationSender = new LocationSender(phoneNumber);
+            _locationSender = new LocationSender();
             _locationSender.InitializeSignalRAsync();
         }
 
         public static string GetPhoneNumber()
         {
+            var existingNumber = CrossSettings.Current.GetValueOrDefault<string>("phonenumber");
+            if (!string.IsNullOrWhiteSpace(existingNumber))
+            {
+                return existingNumber;
+            }
+
             var info = (TelephonyManager)Application.Context.GetSystemService(TelephonyService);
-            return info.Line1Number;
+            var phoneNumber = info.Line1Number;
+            CrossSettings.Current.AddOrUpdateValue("phonenumber", phoneNumber);
+            return phoneNumber;
         }
 
         public override IBinder OnBind(Intent intent)

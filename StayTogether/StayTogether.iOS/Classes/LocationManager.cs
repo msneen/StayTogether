@@ -54,7 +54,7 @@ namespace StayTogether.iOS.Classes
 
         private void InitializeLocationSender()
         {
-            _locationSender = new LocationSender(UserPhoneNumber);
+            _locationSender = new LocationSender();
             _locationSender.InitializeSignalRAsync();
         }
 

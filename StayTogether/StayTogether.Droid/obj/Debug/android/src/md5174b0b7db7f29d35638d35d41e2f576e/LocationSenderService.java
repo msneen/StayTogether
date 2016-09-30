@@ -1,4 +1,4 @@
-package md52119d1b596fa2d198a83b94ca8d312bd;
+package md5174b0b7db7f29d35638d35d41e2f576e;
 
 
 public class LocationSenderService
@@ -14,7 +14,7 @@ public class LocationSenderService
 			"n_onStartCommand:(Landroid/content/Intent;II)I:GetOnStartCommand_Landroid_content_Intent_IIHandler\n" +
 			"n_onBind:(Landroid/content/Intent;)Landroid/os/IBinder;:GetOnBind_Landroid_content_Intent_Handler\n" +
 			"";
-		mono.android.Runtime.register ("StayTogether.Droid.Services.LocationSenderService, StayTogether.Droid, Version=1.0.6115.32633, Culture=neutral, PublicKeyToken=null", LocationSenderService.class, __md_methods);
+		mono.android.Runtime.register ("StayTogether.Droid.Services.LocationSenderService, StayTogether.Droid, Version=1.0.6117.23777, Culture=neutral, PublicKeyToken=null", LocationSenderService.class, __md_methods);
 	}
 
 
@@ -22,7 +22,7 @@ public class LocationSenderService
 	{
 		super ();
 		if (getClass () == LocationSenderService.class)
-			mono.android.TypeManager.Activate ("StayTogether.Droid.Services.LocationSenderService, StayTogether.Droid, Version=1.0.6115.32633, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
+			mono.android.TypeManager.Activate ("StayTogether.Droid.Services.LocationSenderService, StayTogether.Droid, Version=1.0.6117.23777, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
 	}
 
 
