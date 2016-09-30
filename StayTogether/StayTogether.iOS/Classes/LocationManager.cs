@@ -93,7 +93,7 @@ namespace StayTogether.iOS.Classes
                 //Send position update
                 var groupMemberVm = new GroupMemberVm
                 {
-                    //Todo:  Get Group Member Properties
+                    //Get Group Member Properties
                     Name = "iPhoneTester",
                     PhoneNumber = UserPhoneNumber,
                     Latitude = _lastLocation.Coordinate.Latitude,
