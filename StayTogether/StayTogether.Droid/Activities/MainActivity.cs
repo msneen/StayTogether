@@ -18,7 +18,7 @@ using StayTogether.Droid.Settings;
 namespace StayTogether.Droid.Activities
 {
 	[Activity (Label = "StayTogether", MainLauncher = true, Icon = "@drawable/icon")]
-	public class MainActivity : Activity, AdapterView.IOnItemClickListener
+	public class MainActivity : Activity, AdapterView.IOnItemClickListener, GroupJoinedCallback
 	{
 	    public LocationSenderBinder Binder;
 	    public bool IsBound;
@@ -27,7 +27,13 @@ namespace StayTogether.Droid.Activities
         private ListView _listView;
 	    private Logger _logger;
 
-	    protected override async void OnCreate(Bundle bundle)
+        public void GroupJoined()
+        {
+            DisableStartGroupButton("Group Joined");
+            HideContactList();
+        }
+
+        protected override async void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
             try
@@ -47,6 +53,8 @@ namespace StayTogether.Droid.Activities
                     if (_selectedContactSynopses.Count > 0)
                     {
                         LocationSenderService.Instance.StartGroup(_selectedContactSynopses);
+                        DisableStartGroupButton();
+                        HideContactList();
                     }
                 };
             }
@@ -54,6 +62,21 @@ namespace StayTogether.Droid.Activities
             {
                 LogError(ex);
             }
+        }
+
+	    private void DisableStartGroupButton(string buttonText = "Restart Group")
+	    {
+	        Button startGroupButton = FindViewById<Button>(Resource.Id.myButton);
+	        startGroupButton.Text = buttonText;
+	        startGroupButton.Enabled = false;
+	    }
+
+	    private void HideContactList()
+	    {
+            RunOnUiThread(() => {
+	            var contactList = FindViewById<ListView>(Resource.Id.List);
+	            contactList.Visibility = ViewStates.Invisible;
+            });
         }
 
 	    private async Task LoadContacts()
@@ -140,7 +163,8 @@ namespace StayTogether.Droid.Activities
 	    protected override void OnDestroy()
 	    {
 	        base.OnDestroy();
-	        Binder?.GetLocationSenderService()?.StopSelf();
+            Binder?.GetLocationSenderService()?.SetGroupJoinedCallback(null);
+            Binder?.GetLocationSenderService()?.StopSelf();
 	    }
 
         public override bool OnPrepareOptionsMenu(IMenu menu)
@@ -172,14 +196,17 @@ namespace StayTogether.Droid.Activities
         protected void BindToService()
         {
             _locationSenderServiceConnection = new LocationSenderServiceConnection(this);
+
             BindService(new Intent(this, typeof(LocationSenderService)), _locationSenderServiceConnection, Bind.AutoCreate);
             IsBound = true;
         }
+
 
         protected void UnbindFromService()
         {
             if (IsBound)
             {
+                
                 UnbindService(_locationSenderServiceConnection);
                 IsBound = false;
             }
@@ -213,7 +240,8 @@ namespace StayTogether.Droid.Activities
             await LocationSenderService.Instance.SendError(ex.Message + " " + ex.StackTrace);
         }
 
-    }
+
+	}
 }
 
 

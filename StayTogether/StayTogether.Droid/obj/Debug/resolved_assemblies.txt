@@ -11,6 +11,8 @@ F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\asset
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Plugin.Contacts.Abstractions.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Plugin.Contacts.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Plugin.CurrentActivity.dll
+F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Plugin.ExternalMaps.Abstractions.dll
+F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Plugin.ExternalMaps.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Plugin.Geolocator.Abstractions.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Plugin.Geolocator.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Plugin.LocalNotifications.Abstractions.dll

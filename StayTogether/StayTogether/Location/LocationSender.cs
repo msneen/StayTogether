@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using Android.Locations;
 using Microsoft.AspNet.SignalR.Client;
 using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
@@ -8,8 +10,14 @@ using StayTogether.Classes;
 
 namespace StayTogether
 {
+    public delegate void EventHandler<in TLostEventArgs>(object sender, TLostEventArgs e);
+    public delegate void EventHandler(object sender, EventArgs e);
+
 	public class LocationSender
-    {
+	{
+	    public event EventHandler<LostEventArgs> OnSomeoneIsLost;
+	    public event EventHandler OnGroupJoined;
+
 	    private HubConnection _hubConnection;
 	    private IHubProxy _chatHubProxy;
 	    private IGeolocator _geoLocator;
@@ -57,7 +65,7 @@ namespace StayTogether
 	        if (_geoLocator.IsGeolocationEnabled && _geoLocator.IsGeolocationAvailable)
 	        {
 	            _geoLocator.PositionChanged += LocatorOnPositionChanged;
-                _geoLocator.StartListeningAsync(minTime: 10000, minDistance: 5);
+                _geoLocator.StartListeningAsync(minTime: 10000, minDistance: 25);
 	        }
 
 	    }
@@ -85,15 +93,28 @@ namespace StayTogether
 
 	    public void UpdateGroupId(string id)
 	    {
-	        _groupId = id;
+            OnGroupJoined?.Invoke(this, new EventArgs());
+            _groupId = id;
 	    }
 
 	    public void SomeoneIsLost(string phoneNumber, string latitude, string longitude)
 	    {
 	        if (!string.IsNullOrWhiteSpace(_groupId))
 	        {
+                //Todo:  Remove me when Event is wired up in android and ios.
 	            AddNotification("YOU LOST SOMEONE", $"{phoneNumber} {latitude}   {longitude}");
-	        }
+
+                OnSomeoneIsLost?.Invoke(this, new LostEventArgs
+                {
+                    GroupMember = new GroupMemberVm
+                    {
+                        PhoneNumber = phoneNumber,
+                        Latitude = Convert.ToDouble(latitude),
+                        Longitude = Convert.ToDouble(longitude)
+                    }
+                });
+
+            }
 	    }
 
 	    public void ReceiveGroupMessage(string phoneNumber, string message)
@@ -104,8 +125,8 @@ namespace StayTogether
 
 	    private void AddNotification(string title, string message)
 	    {
-            CrossLocalNotifications.Current.Show(title, message);            
-	    }
+            CrossLocalNotifications.Current.Show(title, message);
+        }
 
 	    public async Task StartGroup(GroupVm groupVm)
 	    {
@@ -131,7 +152,8 @@ namespace StayTogether
 
         private void GetPhoneNumber()
         {
-            _phoneNumber = CrossSettings.Current.GetValueOrDefault<string>("phonenumber");
+            var phoneNumber = CrossSettings.Current.GetValueOrDefault<string>("phonenumber");
+            _phoneNumber = ContactsHelper.CleanPhoneNumber( phoneNumber);
             if (string.IsNullOrWhiteSpace(_phoneNumber))
             {
                 AddNotification("StayTogether PhoneNumber", "Please Add your Phone Number in settings");
@@ -143,6 +165,11 @@ namespace StayTogether
 	        _chatHubProxy.Invoke("SendErrorMessage", message, _phoneNumber);
             return Task.CompletedTask;
 	    }
+    }
+
+    public class LostEventArgs : EventArgs
+    {
+        public GroupMemberVm GroupMember { get; set; }
     }
 }
 

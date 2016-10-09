@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
@@ -15,15 +14,28 @@ using StayTogether.Location;
 
 namespace StayTogether.Droid.Services
 {
+    public interface GroupJoinedCallback
+    {
+        void GroupJoined();
+    }
+
+
     [Service]
     // ReSharper disable once RedundantExplicitArrayCreation
     [IntentFilter(new string[] {"com.StayTogether.Droid.LocationSenderService"})]
     public class LocationSenderService : Service
     {
+        private GroupJoinedCallback _groupJoinedCallback;
+
         private LocationSenderBinder _binder;
         private LocationSender _locationSender;
 
         public static LocationSenderService Instance;
+
+        public void SetGroupJoinedCallback(GroupJoinedCallback groupJoinedCallback)
+        {
+            _groupJoinedCallback = groupJoinedCallback;
+        }
 
         public void StartForeground()
         {
@@ -104,6 +116,20 @@ namespace StayTogether.Droid.Services
         {
             _locationSender = new LocationSender();
             _locationSender.InitializeSignalRAsync();
+            _locationSender.OnSomeoneIsLost += (sender, args) =>
+            {
+                OnNotifySomeoneIsLost(args.GroupMember);
+            };
+            _locationSender.OnGroupJoined += (sender, args) =>
+            {
+                //Todo: Test: send this through to the activity and hide the contact list
+                _groupJoinedCallback.GroupJoined();
+            };
+        }
+
+        private void OnNotifySomeoneIsLost(GroupMemberVm groupMember)
+        {
+            Helpers.NotificationUtils.DisplayLostNotification(this, groupMember);
         }
 
         public static string GetPhoneNumber()

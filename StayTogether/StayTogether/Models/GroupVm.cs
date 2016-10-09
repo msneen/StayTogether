@@ -6,7 +6,14 @@ namespace StayTogether
 {
     public class GroupVm
     {
-        public string PhoneNumber { get; set; }
+        private string _phoneNumber;
+
+        public string PhoneNumber
+        {
+            get { return ContactsHelper.CleanPhoneNumber(_phoneNumber); }
+            set { _phoneNumber = value; }
+        }
+
         public int MaximumDistance { get; set; }
         public DateTime GroupCreatedDateTime { get; set; }
         public DateTime GroupDisbandDateTime { get; set; }

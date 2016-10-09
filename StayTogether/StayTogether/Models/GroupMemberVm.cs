@@ -2,8 +2,15 @@ namespace StayTogether.Classes
 {
     public class GroupMemberVm
     {
+        private string _phoneNumber;
+
+        public string PhoneNumber
+        {
+            get { return ContactsHelper.CleanPhoneNumber(_phoneNumber); }
+            set { _phoneNumber = value; }
+        }
+
         public string Name { get; set; }
-        public string PhoneNumber { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public bool IsAdmin { get; set; }

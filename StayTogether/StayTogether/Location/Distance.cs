@@ -22,8 +22,9 @@ namespace StayTogether.Location
 						   Math.Cos(latitude1Radians) * Math.Cos(latitude2Radians) * Math.Cos(longitudeRadians);
 			distance = Math.Acos(distance);
 			distance = ConvertRadiansToDegrees(distance);
-			distance = distance * 60 * 1.1515 * 0.8684; // Imperial measurement (in feet)
-			return distance;
-		}
+            var statuteMiles = distance * 60 * 1.1515; // Imperial measurement (in statute miles)
+            var feet = statuteMiles * 5280;
+            return feet;
+        }
 	}
 }

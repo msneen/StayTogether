@@ -105,6 +105,8 @@ class MonoPackageManager_Resources {
 		"Plugin.Contacts.Abstractions.dll",
 		"Plugin.Contacts.dll",
 		"Plugin.CurrentActivity.dll",
+		"Plugin.ExternalMaps.Abstractions.dll",
+		"Plugin.ExternalMaps.dll",
 		"Plugin.Geolocator.Abstractions.dll",
 		"Plugin.Geolocator.dll",
 		"Plugin.LocalNotifications.Abstractions.dll",
