@@ -64,6 +64,8 @@ namespace StayTogether
 
 	        if (_geoLocator.IsGeolocationEnabled && _geoLocator.IsGeolocationAvailable)
 	        {
+                //ListenerSettings listenerSettings = new ListenerSettings();
+                //listenerSettings.
 	            _geoLocator.PositionChanged += LocatorOnPositionChanged;
                 _geoLocator.StartListeningAsync(minTime: 10000, minDistance: 25);
 	        }

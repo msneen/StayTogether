@@ -72,6 +72,7 @@ F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Debug\Plugin.Extern
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Debug\Plugin.ExternalMaps.Abstractions.xml
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Debug\Plugin.ExternalMaps.dll.mdb
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Debug\Plugin.ExternalMaps.Abstractions.dll.mdb
+F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\StayTogether.Droid.csprojResolveAssemblyReference.cache
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Debug\StayTogether.Droid.dll.mdb
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Debug\Java.Interop.dll.mdb
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Debug\Microsoft.CSharp.dll.mdb
@@ -112,6 +113,5 @@ F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\asset
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\System.ServiceModel.Internals.dll.mdb
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\System.Xml.dll.mdb
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
-F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\StayTogether.Droid.csprojResolveAssemblyReference.cache
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\StayTogether.Droid.dll.mdb
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Debug\StayTogether.Droid.dll.mdb

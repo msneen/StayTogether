@@ -1,58 +1,35 @@
+using System;
 using Android.App;
 using Android.Content;
+using Android.OS;
 using Android.Support.V4.App;
+using Plugin.ExternalMaps;
+using Plugin.ExternalMaps.Abstractions;
 using StayTogether.Classes;
+using StayTogether.Droid.Services;
 using String = System.String;
 
 namespace StayTogether.Droid.Helpers
 {
-    public class NotificationUtils
+
+    [Activity(Label = "Lost Person Notification", MainLauncher = false, Icon = "@drawable/icon")]
+    public class LostPersonNotificationActivity : Activity
     {
-        public static readonly int NOTIFICATION_ID = 1;
 
-        public static readonly String ACTION_1 = "action_1";
-
-        public static void DisplayLostNotification(Context context, GroupMemberVm groupMemberVm) //Todo: genericize me
+        protected override void OnCreate(Bundle bundle)//Intent intent)
         {
+            base.OnCreate(bundle);
 
-            var action1Intent = new Intent(context, typeof(NotificationActionService))
-                .SetAction(ACTION_1);
-            action1Intent.PutExtra("phonenumber", groupMemberVm.PhoneNumber);
-            action1Intent.PutExtra("latitude", groupMemberVm.Latitude);
-            action1Intent.PutExtra("longitude", groupMemberVm.Longitude);
-            action1Intent.PutExtra("name", groupMemberVm.Name);
-
-            var action1PendingIntent = PendingIntent.GetService(context, 0,
-                action1Intent, PendingIntentFlags.OneShot);
-
-            var notificationBuilder =
-                new NotificationCompat.Builder(context)
-                    .SetSmallIcon(Resource.Drawable.Icon)
-                    .SetContentTitle("Map Lost Person")
-                    .SetContentText("Click to view lost person on map")
-                    .AddAction(new NotificationCompat.Action(Resource.Drawable.Icon,
-                        "Action 1", action1PendingIntent));
-
-            var notificationManager = NotificationManagerCompat.From(context);
-            notificationManager.Notify(NOTIFICATION_ID, notificationBuilder.Build());
-        }
-
-        public class NotificationActionService : IntentService
-        {
-
-            protected override void OnHandleIntent(Intent intent)
+            var action = Intent.Action;
+            if (LocationSenderService.ShowLostMemberOnMap.Equals(action))
             {
-                var action = intent.Action;
-                if (ACTION_1.Equals(action))
-                {
-                    // TODO: handle action 1.
-                    var name = intent.GetStringExtra("name");
-                    var phoneNumber = intent.GetStringExtra("phonenumber");
-                    var latitude = intent.GetDoubleExtra("latitude", 0);
-                    var longitude = intent.GetDoubleExtra("longitude", 0);
-
-                    //Launch map here.
-                }
+                //Launch map here.
+                var name = Intent.GetStringExtra("name");
+                var phoneNumber = Intent.GetStringExtra("phonenumber");
+                var latitude = Intent.GetDoubleExtra("latitude", 0);
+                var longitude = Intent.GetDoubleExtra("longitude", 0);
+                var nameOrPhone = string.IsNullOrEmpty(name) ? phoneNumber : name;
+                CrossExternalMaps.Current.NavigateTo(nameOrPhone, latitude, longitude, NavigationType.Default);
             }
         }
     }

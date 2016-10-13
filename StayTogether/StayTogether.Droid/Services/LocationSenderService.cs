@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
@@ -9,6 +10,7 @@ using Plugin.Settings;
 using StayTogether.Classes;
 using StayTogether.Droid.Activities;
 using StayTogether.Droid.Classes;
+using StayTogether.Droid.Helpers;
 using StayTogether.Group;
 using StayTogether.Location;
 
@@ -122,14 +124,41 @@ namespace StayTogether.Droid.Services
             };
             _locationSender.OnGroupJoined += (sender, args) =>
             {
-                //Todo: Test: send this through to the activity and hide the contact list
-                _groupJoinedCallback.GroupJoined();
+                //When the location sender fires the group joined event, call the callback in the activity 
+                //so we can disable the joinGroup button and hide the contact list
+                _groupJoinedCallback?.GroupJoined();
             };
         }
 
         private void OnNotifySomeoneIsLost(GroupMemberVm groupMember)
         {
-            Helpers.NotificationUtils.DisplayLostNotification(this, groupMember);
+            DisplayLostNotification(groupMember);
+        }
+
+        public static readonly int NOTIFICATION_ID = 500;
+
+        public static readonly string ShowLostMemberOnMap = "show_member_on_map";
+
+        public void DisplayLostNotification(GroupMemberVm groupMemberVm) //Todo: genericize me
+        {
+            var notificationIntent = new Intent(this, typeof(LostPersonNotificationActivity));
+            notificationIntent.SetAction(ShowLostMemberOnMap);
+            notificationIntent.PutExtra("phonenumber", groupMemberVm.PhoneNumber);
+            notificationIntent.PutExtra("latitude", groupMemberVm.Latitude);
+            notificationIntent.PutExtra("longitude", groupMemberVm.Longitude);
+            notificationIntent.PutExtra("name", groupMemberVm.Name);
+
+            var notification = new Notification.Builder(this)
+                .SetSmallIcon(Resource.Drawable.Icon)
+                .SetContentTitle("Someone is lost")
+                .SetContentText("View On Map")
+                .SetContentIntent(PendingIntent.GetActivity(this, 0, notificationIntent, PendingIntentFlags.UpdateCurrent))
+                .Build();
+
+            notification.Flags = NotificationFlags.AutoCancel;
+
+            var notificationManager = this.GetSystemService(Context.NotificationService) as NotificationManager;
+            notificationManager?.Notify(NOTIFICATION_ID, notification);
         }
 
         public static string GetPhoneNumber()
