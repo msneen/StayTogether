@@ -1,22 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="StayTogether.StayTogether" android:installLocation="auto" android:versionCode="1" android:versionName="StayTogether-Alpha">
 	<uses-sdk android:minSdkVersion="15" />
-
-  <activity
-    android:name="StayTogether.Droid.Helpers.LostPersonNotificationActivity"
-    android:exported="true">
-  </activity>
-
-  <service android:name="StayTogether.Droid.LocationSenderService">
-    <intent-filter>
-      <action android:name="com.StayTogether.Droid.LocationSenderService" />
-    </intent-filter>
-  </service>
-  
+	<activity android:name="StayTogether.Droid.Helpers.LostPersonNotificationActivity" android:exported="true"></activity>
+	<service android:name="StayTogether.Droid.LocationSenderService">
+		<intent-filter>
+			<action android:name="com.StayTogether.Droid.LocationSenderService" />
+		</intent-filter>
+	</service>
 	<application android:label="StayTogether.Droid" android:icon="@drawable/Icon"></application>
-  <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-  <uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 	<uses-permission android:name="android.permission.READ_SMS" />

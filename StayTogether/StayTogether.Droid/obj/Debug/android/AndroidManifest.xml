@@ -16,15 +16,14 @@
   <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
   <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
   <uses-permission android:name="android.permission.READ_SMS" />
-  <application android:label="StayTogether.Droid" android:icon="@drawable/icon" android:name="md5e2cbdb7a2827498fce13aefb70c4ce18.MainApplication" android:allowBackup="true" android:debuggable="true">
-    <activity android:label="Settings" android:name="md53475ae14d1e2f5f4e116350a78f41a7e.SettingsActivity" />
-    <service android:name="md5d96ae0d05388ed19ad85b816026e7a98.LocationSenderService">
+  <application android:label="StayTogether.Droid" android:icon="@drawable/icon" android:name="md5761da2e558f01584e02f4f23c0d5dfe6.MainApplication" android:allowBackup="true" android:debuggable="true">
+    <activity android:label="Settings" android:name="md511a5861f92b3f25c3a1389e0d1001f02.SettingsActivity" />
+    <service android:name="md54e94ccdc8260305280fe3868a5576fb0.LocationSenderService">
       <intent-filter>
         <action android:name="com.StayTogether.Droid.LocationSenderService" />
       </intent-filter>
     </service>
-    <activity android:icon="@drawable/icon" android:label="LostPersonNotification" android:name="md58ee74171c07e713a6a4e20dcd96ed1e6.LostPersonNotificationActivity" />
-    <activity android:icon="@drawable/icon" android:label="StayTogether" android:name="md5c67b1fde81162151408dbf486cbe41c2.MainActivity">
+    <activity android:icon="@drawable/icon" android:label="StayTogether" android:name="md5a93cf7ff9f2675326b05518f604720e0.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />

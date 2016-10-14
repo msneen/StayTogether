@@ -30,7 +30,7 @@ namespace StayTogether.Droid.Services
         private GroupJoinedCallback _groupJoinedCallback;
 
         private LocationSenderBinder _binder;
-        private LocationSender _locationSender;
+        public LocationSender LocationSender;
 
         public static LocationSenderService Instance;
 
@@ -80,7 +80,7 @@ namespace StayTogether.Droid.Services
         public async void StartGroup(List<GroupMemberVm> contactList)
         {
             var position = GpsService.GetLocation();
-            if (_locationSender == null || position == null) return;
+            if (LocationSender == null || position == null) return;
 
             await CreateGroup(contactList, position);
         }
@@ -88,12 +88,12 @@ namespace StayTogether.Droid.Services
         {
             var groupVm = GroupHelper.InitializeGroupVm(contactList, position, GetPhoneNumber());
 
-            await _locationSender.StartGroup(groupVm);
+            await LocationSender.StartGroup(groupVm);
         }
 
         public async Task SendError(string message)
         {
-            await _locationSender.SendError(message);
+            await LocationSender.SendError(message);
         }
 
         private void StartLocationSender()
@@ -111,18 +111,18 @@ namespace StayTogether.Droid.Services
 
             var groupMemberVm = GroupMemberPositionAdapter.Adapt(position);
             groupMemberVm.PhoneNumber = phoneNumber;
-            _locationSender.SendUpdatePosition(groupMemberVm);
+            LocationSender.SendUpdatePosition(groupMemberVm);
         }
 
         private void InitializeLocationSender(string phoneNumber)
         {
-            _locationSender = new LocationSender();
-            _locationSender.InitializeSignalRAsync();
-            _locationSender.OnSomeoneIsLost += (sender, args) =>
+            LocationSender = new LocationSender();
+            LocationSender.InitializeSignalRAsync();
+            LocationSender.OnSomeoneIsLost += (sender, args) =>
             {
                 OnNotifySomeoneIsLost(args.GroupMember);
             };
-            _locationSender.OnGroupJoined += (sender, args) =>
+            LocationSender.OnGroupJoined += (sender, args) =>
             {
                 //When the location sender fires the group joined event, call the callback in the activity 
                 //so we can disable the joinGroup button and hide the contact list
@@ -139,9 +139,9 @@ namespace StayTogether.Droid.Services
 
         public static readonly string ShowLostMemberOnMap = "show_member_on_map";
 
-        public void DisplayLostNotification(GroupMemberVm groupMemberVm) //Todo: genericize me
+        public void DisplayLostNotification(GroupMemberVm groupMemberVm) 
         {
-            var notificationIntent = new Intent(this, typeof(LostPersonNotificationActivity));
+            var notificationIntent = new Intent(this, typeof(MainActivity));
             notificationIntent.SetAction(ShowLostMemberOnMap);
             notificationIntent.PutExtra("phonenumber", groupMemberVm.PhoneNumber);
             notificationIntent.PutExtra("latitude", groupMemberVm.Latitude);
@@ -152,7 +152,7 @@ namespace StayTogether.Droid.Services
                 .SetSmallIcon(Resource.Drawable.Icon)
                 .SetContentTitle("Someone is lost")
                 .SetContentText("View On Map")
-                .SetContentIntent(PendingIntent.GetActivity(this, 0, notificationIntent, PendingIntentFlags.UpdateCurrent))
+                .SetContentIntent(PendingIntent.GetActivity(this, 0, notificationIntent, PendingIntentFlags.UpdateCurrent | PendingIntentFlags.OneShot))
                 .Build();
 
             notification.Flags = NotificationFlags.AutoCancel;

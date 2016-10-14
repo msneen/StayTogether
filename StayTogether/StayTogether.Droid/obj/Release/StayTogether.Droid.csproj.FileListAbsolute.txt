@@ -9,6 +9,8 @@ F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\NLog.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Plugin.Contacts.Abstractions.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Plugin.Contacts.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Plugin.CurrentActivity.dll
+F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Plugin.ExternalMaps.Abstractions.dll
+F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Plugin.ExternalMaps.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Plugin.Geolocator.Abstractions.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Plugin.Geolocator.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Plugin.LocalNotifications.Abstractions.dll
@@ -29,6 +31,12 @@ F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Plugin.Cont
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Plugin.Contacts.Abstractions.xml
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Plugin.Contacts.Abstractions.dll.mdb
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Plugin.CurrentActivity.xml
+F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Plugin.ExternalMaps.pdb
+F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Plugin.ExternalMaps.xml
+F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Plugin.ExternalMaps.dll.mdb
+F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Plugin.ExternalMaps.Abstractions.pdb
+F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Plugin.ExternalMaps.Abstractions.xml
+F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Plugin.ExternalMaps.Abstractions.dll.mdb
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Plugin.Geolocator.pdb
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Plugin.Geolocator.xml
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Plugin.Geolocator.dll.mdb
@@ -65,7 +73,6 @@ F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Release\res\xml\pre
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Release\R.cs.flag
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Release\uploadflags.txt
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\StayTogether.Droid.dll.mdb
-F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Release\StayTogether.Droid.csprojResolveAssemblyReference.cache
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Java.Interop.dll.mdb
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Microsoft.CSharp.dll.mdb
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Release\Mono.Android.dll.mdb
@@ -87,6 +94,8 @@ F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Release\android\ass
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Release\android\assets\mscorlib.dll.mdb
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Release\android\assets\Plugin.Contacts.Abstractions.dll.mdb
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Release\android\assets\Plugin.Contacts.dll.mdb
+F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Release\android\assets\Plugin.ExternalMaps.Abstractions.dll.mdb
+F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Release\android\assets\Plugin.ExternalMaps.dll.mdb
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Release\android\assets\Plugin.Geolocator.Abstractions.dll.mdb
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Release\android\assets\Plugin.Geolocator.dll.mdb
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Release\android\assets\Plugin.LocalNotifications.Abstractions.dll.mdb

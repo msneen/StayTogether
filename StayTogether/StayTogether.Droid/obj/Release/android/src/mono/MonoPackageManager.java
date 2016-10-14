@@ -99,13 +99,14 @@ class MonoPackageManager_Resources {
 	public static final String[] Assemblies = new String[]{
 		/* We need to ensure that "StayTogether.Droid.dll" comes first in this list. */
 		"StayTogether.Droid.dll",
-		"Java.Interop.dll",
 		"Microsoft.AspNet.SignalR.Client.dll",
 		"Newtonsoft.Json.dll",
 		"NLog.dll",
 		"Plugin.Contacts.Abstractions.dll",
 		"Plugin.Contacts.dll",
 		"Plugin.CurrentActivity.dll",
+		"Plugin.ExternalMaps.Abstractions.dll",
+		"Plugin.ExternalMaps.dll",
 		"Plugin.Geolocator.Abstractions.dll",
 		"Plugin.Geolocator.dll",
 		"Plugin.LocalNotifications.Abstractions.dll",
@@ -117,7 +118,6 @@ class MonoPackageManager_Resources {
 		"System.Net.Http.Extensions.dll",
 		"System.Net.Http.Primitives.dll",
 		"Xamarin.Android.Support.v4.dll",
-		"System.ServiceModel.Internals.dll",
 	};
 	public static final String[] Dependencies = new String[]{
 	};

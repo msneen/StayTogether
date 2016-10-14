@@ -124,7 +124,6 @@
     <Compile Include="Helpers\FileHelper.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="MainApplication.cs" />
-    <Compile Include="Helpers\NotificationUtils.cs" />
     <Compile Include="Resources\layout\SettingsFragment.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

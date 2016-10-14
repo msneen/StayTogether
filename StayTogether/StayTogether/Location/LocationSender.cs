@@ -18,6 +18,8 @@ namespace StayTogether
 	    public event EventHandler<LostEventArgs> OnSomeoneIsLost;
 	    public event EventHandler OnGroupJoined;
 
+        public bool InAGroup { get; set; }
+
 	    private HubConnection _hubConnection;
 	    private IHubProxy _chatHubProxy;
 	    private IGeolocator _geoLocator;
@@ -89,6 +91,7 @@ namespace StayTogether
 
 	    private void GroupDisbanded()
 	    {
+	        InAGroup = false;
 	        _groupId = "";
             AddNotification("Group Disbanded", "Your Group has been disbanded");
         }
@@ -97,14 +100,15 @@ namespace StayTogether
 	    {
             OnGroupJoined?.Invoke(this, new EventArgs());
             _groupId = id;
+	        InAGroup = true;
 	    }
 
 	    public void SomeoneIsLost(string phoneNumber, string latitude, string longitude)
 	    {
 	        if (!string.IsNullOrWhiteSpace(_groupId))
 	        {
-                //Todo:  Remove me when Event is wired up in android and ios.
-	            AddNotification("YOU LOST SOMEONE", $"{phoneNumber} {latitude}   {longitude}");
+                //DeleteMe:  Old notification
+	            //AddNotification("YOU LOST SOMEONE", $"{phoneNumber} {latitude}   {longitude}");
 
                 OnSomeoneIsLost?.Invoke(this, new LostEventArgs
                 {
@@ -133,7 +137,8 @@ namespace StayTogether
 	    public async Task StartGroup(GroupVm groupVm)
 	    {
             await _chatHubProxy.Invoke("CreateGroup", groupVm);
-        }
+	        InAGroup = true;
+	    }
 
 	    public void SendUpdatePosition(GroupMemberVm groupMemberVm)
 	    {

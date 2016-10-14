@@ -9,6 +9,8 @@ using Android.Widget;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
+using Plugin.ExternalMaps;
+using Plugin.ExternalMaps.Abstractions;
 using StayTogether.Classes;
 using StayTogether.Droid.Classes;
 using StayTogether.Droid.Helpers;
@@ -36,6 +38,19 @@ namespace StayTogether.Droid.Activities
         protected override async void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+
+            var action = Intent.Action;
+            if (LocationSenderService.ShowLostMemberOnMap.Equals(action))
+            {
+                //Launch map here.
+                var name = Intent.GetStringExtra("name");
+                var phoneNumber = Intent.GetStringExtra("phonenumber");
+                var latitude = Intent.GetDoubleExtra("latitude", 0);
+                var longitude = Intent.GetDoubleExtra("longitude", 0);
+                var nameOrPhone = string.IsNullOrEmpty(name) ? phoneNumber : name;
+                await CrossExternalMaps.Current.NavigateTo(nameOrPhone, latitude, longitude, NavigationType.Default);
+            }
+
             try
             {
                 _logger = SetUpNLog();
@@ -158,6 +173,11 @@ namespace StayTogether.Droid.Activities
         {
             base.OnResume();
             BindToService();
+            var inAGroup = Binder?.GetLocationSenderService()?.LocationSender?.InAGroup ?? true;
+            if (inAGroup == true)
+            {
+                GroupJoined();
+            }
         }
 
 	    protected override void OnDestroy()

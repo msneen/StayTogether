@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="StayTogether.StayTogether" android:installLocation="auto" android:versionCode="1" android:versionName="StayTogether-Alpha">
   <!--suppress UsesMinSdkAttributes-->
   <uses-sdk android:minSdkVersion="15" />
+  <activity android:name="StayTogether.Droid.Helpers.LostPersonNotificationActivity" android:exported="true"></activity>
   <service android:name="StayTogether.Droid.LocationSenderService">
     <intent-filter>
       <action android:name="com.StayTogether.Droid.LocationSenderService" />
@@ -14,14 +15,14 @@
   <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
   <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
   <uses-permission android:name="android.permission.READ_SMS" />
-  <application android:label="StayTogether.Droid" android:icon="@drawable/icon" android:name="md536764d7653c32ecffed2293b7ffb285f.MainApplication" android:allowBackup="true">
-    <activity android:label="Settings" android:name="md54a2b26a48581ec584c1d74c92773ab22.SettingsActivity" />
-    <service android:name="md537270ebbf1b155f93e9d42151853bbfd.LocationSenderService">
+  <application android:label="StayTogether.Droid" android:icon="@drawable/icon" android:name="md5af311e975e852ee5f4e8d96f2386ad5b.MainApplication" android:allowBackup="true">
+    <activity android:label="Settings" android:name="md5d1286bab30ebc3b1cfebbc5fa9c64934.SettingsActivity" />
+    <service android:name="md5941750c1e3faa7f69f947fb8e8574491.LocationSenderService">
       <intent-filter>
         <action android:name="com.StayTogether.Droid.LocationSenderService" />
       </intent-filter>
     </service>
-    <activity android:icon="@drawable/icon" android:label="StayTogether" android:name="md5deb756a4694622181ec6810f3d12a0ce.MainActivity">
+    <activity android:icon="@drawable/icon" android:label="StayTogether" android:name="md561e58db6ffc77f9283ca50629c7ed967.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
