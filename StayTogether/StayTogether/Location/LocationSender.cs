@@ -7,6 +7,7 @@ using Plugin.Geolocator.Abstractions;
 using Plugin.LocalNotifications;
 using Plugin.Settings;
 using StayTogether.Classes;
+using StayTogether.Droid.NotificationCenter;
 
 namespace StayTogether
 {
@@ -48,13 +49,13 @@ namespace StayTogether
             _chatHubProxy.On<string>("UpdateGroupId", UpdateGroupId);
             _chatHubProxy.On<string, string, string>("SomeoneIsLost", SomeoneIsLost);
             _chatHubProxy.On("GroupDisbanded", GroupDisbanded);
+            _chatHubProxy.On<string, string>("GroupInvitation", OnGroupInvitation);
 
             // Start the connection
             _hubConnection.Start().Wait();
 
             SetUpLocationEvents();
         }
-
 
 
 	    public void SetUpLocationEvents()
@@ -96,7 +97,12 @@ namespace StayTogether
             AddNotification("Group Disbanded", "Your Group has been disbanded");
         }
 
-	    public void UpdateGroupId(string id)
+        private void OnGroupInvitation(string phoneNumber, string name)
+        {
+            GroupInvitationNotification.DisplayGroupInvitationNotification(phoneNumber, name);
+        }
+
+        public void UpdateGroupId(string id)
 	    {
             OnGroupJoined?.Invoke(this, new EventArgs());
             _groupId = id;
@@ -107,9 +113,6 @@ namespace StayTogether
 	    {
 	        if (!string.IsNullOrWhiteSpace(_groupId))
 	        {
-                //DeleteMe:  Old notification
-	            //AddNotification("YOU LOST SOMEONE", $"{phoneNumber} {latitude}   {longitude}");
-
                 OnSomeoneIsLost?.Invoke(this, new LostEventArgs
                 {
                     GroupMember = new GroupMemberVm
@@ -139,6 +142,28 @@ namespace StayTogether
             await _chatHubProxy.Invoke("CreateGroup", groupVm);
 	        InAGroup = true;
 	    }
+
+        /// <summary>
+        /// Confirms this user is joining the group
+        /// </summary>
+        /// <param name="phoneNumber">The Group Leader Phone Number</param>
+        /// <param name="name">The Group Leader's Name. Could be empty</param>
+        /// <returns></returns>
+	    public async Task ConfirmGroupInvitation(string phoneNumber, string name)
+        {
+            UpdateGroupId(phoneNumber);
+
+            var location = await _geoLocator.GetPositionAsync();
+
+            var groupMemberVm = new GroupMemberVm
+            {
+                GroupId = phoneNumber,
+                PhoneNumber = _phoneNumber,
+                Latitude = Convert.ToDouble(location.Longitude),
+                Longitude = Convert.ToDouble(location.Longitude)
+            };
+            await _chatHubProxy.Invoke("confirmGroupInvitation", groupMemberVm);
+        }
 
 	    public void SendUpdatePosition(GroupMemberVm groupMemberVm)
 	    {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
@@ -14,12 +15,13 @@ using Plugin.ExternalMaps.Abstractions;
 using StayTogether.Classes;
 using StayTogether.Droid.Classes;
 using StayTogether.Droid.Helpers;
+using StayTogether.Droid.NotificationCenter;
 using StayTogether.Droid.Services;
 using StayTogether.Droid.Settings;
 
 namespace StayTogether.Droid.Activities
 {
-	[Activity (Label = "StayTogether", MainLauncher = true, Icon = "@drawable/icon")]
+	[Activity (Label = "StayTogether", MainLauncher = true, LaunchMode = LaunchMode.SingleTop, Icon = "@drawable/icon")]
 	public class MainActivity : Activity, AdapterView.IOnItemClickListener, GroupJoinedCallback
 	{
 	    public LocationSenderBinder Binder;
@@ -35,27 +37,23 @@ namespace StayTogether.Droid.Activities
             HideContactList();
         }
 
-        protected override async void OnCreate(Bundle bundle)
+	    protected override void OnNewIntent(Intent intent)
+	    {
+	        base.OnNewIntent(intent);
+            NotificationStrategyController.GetNotificationHandler(intent)?.OnNotify(intent);
+        }
+
+	    protected override async void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-
-            var action = Intent.Action;
-            if (LocationSenderService.ShowLostMemberOnMap.Equals(action))
-            {
-                //Launch map here.
-                var name = Intent.GetStringExtra("name");
-                var phoneNumber = Intent.GetStringExtra("phonenumber");
-                var latitude = Intent.GetDoubleExtra("latitude", 0);
-                var longitude = Intent.GetDoubleExtra("longitude", 0);
-                var nameOrPhone = string.IsNullOrEmpty(name) ? phoneNumber : name;
-                await CrossExternalMaps.Current.NavigateTo(nameOrPhone, latitude, longitude, NavigationType.Default);
-            }
 
             try
             {
                 _logger = SetUpNLog();
                 // Set our view from the "main" layout resource
                 SetContentView(Resource.Layout.Main);
+
+                NotificationStrategyController.GetNotificationHandler(Intent)?.OnNotify(Intent);
 
                 await LoadContacts();
 
@@ -81,9 +79,12 @@ namespace StayTogether.Droid.Activities
 
 	    private void DisableStartGroupButton(string buttonText = "Restart Group")
 	    {
-	        Button startGroupButton = FindViewById<Button>(Resource.Id.myButton);
-	        startGroupButton.Text = buttonText;
-	        startGroupButton.Enabled = false;
+	        RunOnUiThread(() =>
+	        {
+	            Button startGroupButton = FindViewById<Button>(Resource.Id.myButton);
+	            startGroupButton.Text = buttonText;
+	            startGroupButton.Enabled = false;
+	        });
 	    }
 
 	    private void HideContactList()
@@ -172,8 +173,18 @@ namespace StayTogether.Droid.Activities
         protected override void OnResume()
         {
             base.OnResume();
+            var inAGroup = false;
             BindToService();
-            var inAGroup = Binder?.GetLocationSenderService()?.LocationSender?.InAGroup ?? true;
+            var locationSenderService = Binder?.GetLocationSenderService();
+            if (locationSenderService != null)
+            {
+                var locationSender = locationSenderService.LocationSender;
+                if (locationSender != null)
+                {
+                    inAGroup = locationSender.InAGroup;
+                }
+            }
+
             if (inAGroup == true)
             {
                 GroupJoined();

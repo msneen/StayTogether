@@ -75,5 +75,10 @@ namespace StayTogether
 
             return cleanNumber.Length >= 10 ? cleanNumber.Substring(cleanNumber.Length - 10) : "";
         }
+
+        public static string NameOrPhone(string phoneNumber, string name)
+        {
+            return string.IsNullOrEmpty(name) ? phoneNumber : name;
+        }
     }
 }

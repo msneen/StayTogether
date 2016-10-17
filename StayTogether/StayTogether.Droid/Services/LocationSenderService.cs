@@ -11,6 +11,7 @@ using StayTogether.Classes;
 using StayTogether.Droid.Activities;
 using StayTogether.Droid.Classes;
 using StayTogether.Droid.Helpers;
+using StayTogether.Droid.NotificationCenter;
 using StayTogether.Group;
 using StayTogether.Location;
 
@@ -132,33 +133,7 @@ namespace StayTogether.Droid.Services
 
         private void OnNotifySomeoneIsLost(GroupMemberVm groupMember)
         {
-            DisplayLostNotification(groupMember);
-        }
-
-        public static readonly int NOTIFICATION_ID = 500;
-
-        public static readonly string ShowLostMemberOnMap = "show_member_on_map";
-
-        public void DisplayLostNotification(GroupMemberVm groupMemberVm) 
-        {
-            var notificationIntent = new Intent(this, typeof(MainActivity));
-            notificationIntent.SetAction(ShowLostMemberOnMap);
-            notificationIntent.PutExtra("phonenumber", groupMemberVm.PhoneNumber);
-            notificationIntent.PutExtra("latitude", groupMemberVm.Latitude);
-            notificationIntent.PutExtra("longitude", groupMemberVm.Longitude);
-            notificationIntent.PutExtra("name", groupMemberVm.Name);
-
-            var notification = new Notification.Builder(this)
-                .SetSmallIcon(Resource.Drawable.Icon)
-                .SetContentTitle("Someone is lost")
-                .SetContentText("View On Map")
-                .SetContentIntent(PendingIntent.GetActivity(this, 0, notificationIntent, PendingIntentFlags.UpdateCurrent | PendingIntentFlags.OneShot))
-                .Build();
-
-            notification.Flags = NotificationFlags.AutoCancel;
-
-            var notificationManager = this.GetSystemService(Context.NotificationService) as NotificationManager;
-            notificationManager?.Notify(NOTIFICATION_ID, notification);
+            LostNotification.DisplayLostNotification(groupMember);
         }
 
         public static string GetPhoneNumber()
