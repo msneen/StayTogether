@@ -20,8 +20,9 @@ namespace StayTogether
 	    public event EventHandler OnGroupJoined;
 
         public bool InAGroup { get; set; }
+        public bool GroupLeader { get; set; }
 
-	    private HubConnection _hubConnection;
+        private HubConnection _hubConnection;
 	    private IHubProxy _chatHubProxy;
 	    private IGeolocator _geoLocator;
 	    private string _phoneNumber;
@@ -140,7 +141,18 @@ namespace StayTogether
 	    public async Task StartGroup(GroupVm groupVm)
 	    {
             await _chatHubProxy.Invoke("CreateGroup", groupVm);
+	        GroupLeader = true;
 	        InAGroup = true;
+	    }
+
+	    public async Task EndGroup()
+	    {
+	        if (InAGroup && GroupLeader)
+	        {
+	            await _chatHubProxy.Invoke("EndGroup", _phoneNumber);
+	            InAGroup = false;
+	            GroupLeader = false;
+	        }
 	    }
 
         /// <summary>

@@ -61,17 +61,8 @@ namespace StayTogether.Droid.Activities
 
                 StartService(new Intent(this, typeof(LocationSenderService)));
 
-                Button startGroupButton = FindViewById<Button>(Resource.Id.myButton);
+                InitializeStartButton();
 
-                startGroupButton.Click += delegate
-                {
-                    if (_selectedContactSynopses.Count > 0)
-                    {
-                        LocationSenderService.Instance.StartGroup(_selectedContactSynopses);
-                        DisableStartGroupButton();
-                        HideContactList();
-                    }
-                };
                 ShowAd();
             }
             catch (Exception ex)
@@ -79,6 +70,21 @@ namespace StayTogether.Droid.Activities
                 LogError(ex);
             }
         }
+
+	    private void InitializeStartButton()
+	    {
+	        Button startGroupButton = FindViewById<Button>(Resource.Id.myButton);
+
+	        startGroupButton.Click += delegate
+	        {
+	            if (_selectedContactSynopses.Count > 0)
+	            {
+	                LocationSenderService.Instance.StartGroup(_selectedContactSynopses);
+	                DisableStartGroupButton();
+	                HideContactList();
+	            }
+	        };
+	    }
 
 	    private void DisableStartGroupButton(string buttonText = "Restart Group")
 	    {
@@ -199,7 +205,9 @@ namespace StayTogether.Droid.Activities
 	        base.OnDestroy();
             Binder?.GetLocationSenderService()?.SetGroupJoinedCallback(null);
             Binder?.GetLocationSenderService()?.StopSelf();
-	    }
+            Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
+            System.Environment.Exit(0);
+        }
 
         public override bool OnPrepareOptionsMenu(IMenu menu)
         {
@@ -216,11 +224,25 @@ namespace StayTogether.Droid.Activities
                 case Resource.Id.settings:
                     LaunchMenu();
                     break;
+                case Resource.Id.endGroup:
+                    EndGroup();
+                    break;
+                case Resource.Id.exit:
+                    Finish();                   
+                    break;
+                default:
+                    break;
             }
             return base.OnOptionsItemSelected(item);
         }
 
-        private void LaunchMenu()
+	    private void EndGroup()
+	    {
+	        LocationSenderService.Instance.EndGroup();
+            Finish();//Todo: Eventually keep running and reshow the Start Group Button and Contacts List
+        }
+
+	    private void LaunchMenu()
         {
             var intent = new Intent();
             intent.SetClass(this, typeof(SettingsActivity));

@@ -94,6 +94,12 @@ namespace StayTogether.Droid
 			// aapt resource value: 0x7f090001
 			public const int adjust_width = 2131296257;
 			
+			// aapt resource value: 0x7f090009
+			public const int endGroup = 2131296265;
+			
+			// aapt resource value: 0x7f09000a
+			public const int exit = 2131296266;
+			
 			// aapt resource value: 0x7f090007
 			public const int fragment_container = 2131296263;
 			

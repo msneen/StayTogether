@@ -1,6 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
   <item android:id="@+id/settings"
-        android:showAsAction="always"
+        android:showAsAction="ifRoom"
         android:title="Settings" />
+  <item android:id="@+id/endGroup"
+      android:showAsAction="ifRoom"
+      android:title="End Group" />
+  <item android:id="@+id/exit"
+      android:showAsAction="ifRoom"
+      android:title="Exit" />
 </menu>

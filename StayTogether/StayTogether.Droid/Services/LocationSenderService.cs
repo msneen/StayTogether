@@ -104,6 +104,11 @@ namespace StayTogether.Droid.Services
             SendFirstPositionUpdate(phoneNumber);
         }
 
+        public async void EndGroup()
+        {
+            await LocationSender.EndGroup();
+        }
+
 
         private void SendFirstPositionUpdate(string phoneNumber)
         {
