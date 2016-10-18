@@ -49,7 +49,7 @@ namespace StayTogether
             _chatHubProxy.On<string, string>("BroadcastMessage", ReceiveGroupMessage);
             _chatHubProxy.On<string>("UpdateGroupId", UpdateGroupId);
             _chatHubProxy.On<string, string, string>("SomeoneIsLost", SomeoneIsLost);
-            _chatHubProxy.On("GroupDisbanded", GroupDisbanded);
+            _chatHubProxy.On<string>("GroupDisbanded", GroupDisbanded);
             _chatHubProxy.On<string, string>("GroupInvitation", OnGroupInvitation);
 
             // Start the connection
@@ -91,7 +91,7 @@ namespace StayTogether
 
 
 
-	    private void GroupDisbanded()
+	    private void GroupDisbanded(string groupId)
 	    {
 	        InAGroup = false;
 	        _groupId = "";
