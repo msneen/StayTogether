@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
+using Android.Gms.Ads;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
@@ -13,6 +14,7 @@ using NLog.Targets;
 using Plugin.ExternalMaps;
 using Plugin.ExternalMaps.Abstractions;
 using StayTogether.Classes;
+using StayTogether.Droid.Admob;
 using StayTogether.Droid.Classes;
 using StayTogether.Droid.Helpers;
 using StayTogether.Droid.NotificationCenter;
@@ -70,6 +72,7 @@ namespace StayTogether.Droid.Activities
                         HideContactList();
                     }
                 };
+                ShowAd();
             }
             catch (Exception ex)
             {
@@ -242,6 +245,20 @@ namespace StayTogether.Droid.Activities
                 IsBound = false;
             }
         }
+
+        public void ShowAd()
+        {
+            MobileAds.Initialize(this);
+            var adView = (AdView)FindViewById<AdView>(Resource.Id.adView);
+
+            AdRequest adRequest = new AdRequest.Builder()
+                .AddTestDevice(AdRequest.DeviceIdEmulator)
+                .Build();
+            adView.LoadAd(adRequest);
+            adView.AdListener = new StayTogetherAdListener();
+        }
+
+
         public static Logger SetUpNLog()
         {
             var config = new LoggingConfiguration();

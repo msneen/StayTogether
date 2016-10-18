@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="StayTogether.StayTogether" android:installLocation="auto" android:versionCode="1" android:versionName="StayTogether-Alpha">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.staytogether.android" android:installLocation="auto" android:versionCode="2" android:versionName="StayTogether-Alpha">
   <!--suppress UsesMinSdkAttributes-->
   <uses-sdk android:minSdkVersion="15" />
-  <activity android:name="StayTogether.Droid.Helpers.LostPersonNotificationActivity" android:exported="true"></activity>
-  <service android:name="StayTogether.Droid.LocationSenderService">
-    <intent-filter>
-      <action android:name="com.StayTogether.Droid.LocationSenderService" />
-    </intent-filter>
-  </service>
   <uses-permission android:name="android.permission.READ_CONTACTS" />
   <uses-permission android:name="android.permission.READ_PHONE_STATE" />
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -15,20 +9,30 @@
   <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
   <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
   <uses-permission android:name="android.permission.READ_SMS" />
-  <application android:label="StayTogether.Droid" android:icon="@drawable/icon" android:name="md5305e8a7be0e237f6b3a4dd57a702a8ab.MainApplication" android:allowBackup="true">
-    <activity android:label="Settings" android:name="md59fa77ad8466bb2cabb7a388e987d84cf.SettingsActivity" />
-    <service android:name="md58590b14986715dd0a184ea7d5c84bd02.LocationSenderService">
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <application android:label="StayTogether" android:icon="@drawable/icon" android:name="md5835c97ae8124193764119f19a546d9c6.MainApplication" android:allowBackup="true">
+    <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+    <activity android:name="com.google.android.gms.ads.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
+    <service android:name="StayTogether.Droid.LocationSenderService">
       <intent-filter>
         <action android:name="com.StayTogether.Droid.LocationSenderService" />
       </intent-filter>
     </service>
-    <activity android:icon="@drawable/icon" android:label="StayTogether" android:launchMode="singleTop" android:name="md5924a9b3f31b2547271482963fc4f1cf4.MainActivity">
+    <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+    <activity android:label="Settings" android:name="md5e7899a526a6f26706eabc42ecdd89f1b.SettingsActivity" />
+    <service android:name="md5ca05aa178154d27f722c2464807d9e86.LocationSenderService">
+      <intent-filter>
+        <action android:name="com.StayTogether.Droid.LocationSenderService" />
+      </intent-filter>
+    </service>
+    <activity android:icon="@drawable/icon" android:label="StayTogether" android:launchMode="singleTop" android:name="md577aede1bbcc416b75277df6cbcc7e7eb.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
     <receiver android:enabled="true" android:label="Local Notifications Plugin Broadcast Receiver" android:name="md54b33d38a21a950def308c8bb6f6e0d30.ScheduledAlarmHandler" />
-    <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="2147483647" android:authorities="StayTogether.StayTogether.mono.MonoRuntimeProvider.__mono_init__" />
+    <activity android:name="com.google.android.gms.ads.purchase.InAppPurchaseActivity" android:theme="@style/Theme.IAPTheme" />
+    <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="2147483647" android:authorities="com.staytogether.android.mono.MonoRuntimeProvider.__mono_init__" />
   </application>
 </manifest>

@@ -32,6 +32,24 @@ namespace StayTogether.Droid
 		public partial class Attribute
 		{
 			
+			// aapt resource value: 0x7f010003
+			public const int adSize = 2130771971;
+			
+			// aapt resource value: 0x7f010004
+			public const int adSizes = 2130771972;
+			
+			// aapt resource value: 0x7f010005
+			public const int adUnitId = 2130771973;
+			
+			// aapt resource value: 0x7f010002
+			public const int circleCrop = 2130771970;
+			
+			// aapt resource value: 0x7f010001
+			public const int imageAspectRatio = 2130771969;
+			
+			// aapt resource value: 0x7f010000
+			public const int imageAspectRatioAdjust = 2130771968;
+			
 			static Attribute()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -64,17 +82,32 @@ namespace StayTogether.Droid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f070001
-			public const int List = 2131165185;
+			// aapt resource value: 0x7f090005
+			public const int List = 2131296261;
 			
-			// aapt resource value: 0x7f070002
-			public const int fragment_container = 2131165186;
+			// aapt resource value: 0x7f090006
+			public const int adView = 2131296262;
 			
-			// aapt resource value: 0x7f070000
-			public const int myButton = 2131165184;
+			// aapt resource value: 0x7f090000
+			public const int adjust_height = 2131296256;
 			
-			// aapt resource value: 0x7f070003
-			public const int settings = 2131165187;
+			// aapt resource value: 0x7f090001
+			public const int adjust_width = 2131296257;
+			
+			// aapt resource value: 0x7f090007
+			public const int fragment_container = 2131296263;
+			
+			// aapt resource value: 0x7f090003
+			public const int mainLayout = 2131296259;
+			
+			// aapt resource value: 0x7f090004
+			public const int myButton = 2131296260;
+			
+			// aapt resource value: 0x7f090002
+			public const int none = 2131296258;
+			
+			// aapt resource value: 0x7f090008
+			public const int settings = 2131296264;
 			
 			static Id()
 			{
@@ -82,6 +115,22 @@ namespace StayTogether.Droid
 			}
 			
 			private Id()
+			{
+			}
+		}
+		
+		public partial class Integer
+		{
+			
+			// aapt resource value: 0x7f060000
+			public const int google_play_services_version = 2131099648;
+			
+			static Integer()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Integer()
 			{
 			}
 		}
@@ -108,8 +157,8 @@ namespace StayTogether.Droid
 		public partial class Menu
 		{
 			
-			// aapt resource value: 0x7f060000
-			public const int SettingsMenu = 2131099648;
+			// aapt resource value: 0x7f080000
+			public const int SettingsMenu = 2131230720;
 			
 			static Menu()
 			{
@@ -124,29 +173,59 @@ namespace StayTogether.Droid
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f050003
-			public const int Nickname_summary_preference = 2131034115;
-			
-			// aapt resource value: 0x7f050001
-			public const int app_name = 2131034113;
-			
-			// aapt resource value: 0x7f050006
-			public const int description_info = 2131034118;
-			
-			// aapt resource value: 0x7f050000
-			public const int hello = 2131034112;
-			
-			// aapt resource value: 0x7f050007
-			public const int menu = 2131034119;
-			
-			// aapt resource value: 0x7f050004
-			public const int nickname_dialog_title_preference = 2131034116;
-			
-			// aapt resource value: 0x7f050002
-			public const int nickname_title = 2131034114;
+			// aapt resource value: 0x7f05000c
+			public const int Nickname_summary_preference = 2131034124;
 			
 			// aapt resource value: 0x7f050005
-			public const int settings_title = 2131034117;
+			public const int accept = 2131034117;
+			
+			// aapt resource value: 0x7f05000a
+			public const int app_name = 2131034122;
+			
+			// aapt resource value: 0x7f050001
+			public const int auth_google_play_services_client_facebook_display_name = 2131034113;
+			
+			// aapt resource value: 0x7f050000
+			public const int auth_google_play_services_client_google_display_name = 2131034112;
+			
+			// aapt resource value: 0x7f050011
+			public const int banner_ad_unit_id = 2131034129;
+			
+			// aapt resource value: 0x7f050002
+			public const int common_google_play_services_unknown_issue = 2131034114;
+			
+			// aapt resource value: 0x7f050008
+			public const int create_calendar_message = 2131034120;
+			
+			// aapt resource value: 0x7f050007
+			public const int create_calendar_title = 2131034119;
+			
+			// aapt resource value: 0x7f050006
+			public const int decline = 2131034118;
+			
+			// aapt resource value: 0x7f05000f
+			public const int description_info = 2131034127;
+			
+			// aapt resource value: 0x7f050009
+			public const int hello = 2131034121;
+			
+			// aapt resource value: 0x7f050010
+			public const int menu = 2131034128;
+			
+			// aapt resource value: 0x7f05000d
+			public const int nickname_dialog_title_preference = 2131034125;
+			
+			// aapt resource value: 0x7f05000b
+			public const int nickname_title = 2131034123;
+			
+			// aapt resource value: 0x7f05000e
+			public const int settings_title = 2131034126;
+			
+			// aapt resource value: 0x7f050004
+			public const int store_picture_message = 2131034116;
+			
+			// aapt resource value: 0x7f050003
+			public const int store_picture_title = 2131034115;
 			
 			static String()
 			{
@@ -154,6 +233,22 @@ namespace StayTogether.Droid
 			}
 			
 			private String()
+			{
+			}
+		}
+		
+		public partial class Style
+		{
+			
+			// aapt resource value: 0x7f070000
+			public const int Theme_IAPTheme = 2131165184;
+			
+			static Style()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Style()
 			{
 			}
 		}
@@ -170,6 +265,47 @@ namespace StayTogether.Droid
 			}
 			
 			private Xml()
+			{
+			}
+		}
+		
+		public partial class Styleable
+		{
+			
+			public static int[] AdsAttrs = new int[] {
+					2130771971,
+					2130771972,
+					2130771973};
+			
+			// aapt resource value: 0
+			public const int AdsAttrs_adSize = 0;
+			
+			// aapt resource value: 1
+			public const int AdsAttrs_adSizes = 1;
+			
+			// aapt resource value: 2
+			public const int AdsAttrs_adUnitId = 2;
+			
+			public static int[] LoadingImageView = new int[] {
+					2130771968,
+					2130771969,
+					2130771970};
+			
+			// aapt resource value: 2
+			public const int LoadingImageView_circleCrop = 2;
+			
+			// aapt resource value: 1
+			public const int LoadingImageView_imageAspectRatio = 1;
+			
+			// aapt resource value: 0
+			public const int LoadingImageView_imageAspectRatioAdjust = 0;
+			
+			static Styleable()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Styleable()
 			{
 			}
 		}

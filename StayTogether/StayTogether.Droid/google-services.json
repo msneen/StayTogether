@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "641088344533",
+    "firebase_url": "https://staytogether-49451.firebaseio.com",
+    "project_id": "staytogether-49451",
+    "storage_bucket": "staytogether-49451.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:641088344533:android:a2e888f28072d236",
+        "android_client_info": {
+          "package_name": "com.staytogether.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "641088344533-o3pild58osp1eku0eaa39an9i56u39bm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8V6TMOcKiFVX2kzD7tH7iwnmywLbyUHo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

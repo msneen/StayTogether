@@ -118,6 +118,8 @@ class MonoPackageManager_Resources {
 		"System.Net.Http.Extensions.dll",
 		"System.Net.Http.Primitives.dll",
 		"Xamarin.Android.Support.v4.dll",
+		"Xamarin.GooglePlayServices.Ads.dll",
+		"Xamarin.GooglePlayServices.Basement.dll",
 	};
 	public static final String[] Dependencies = new String[]{
 	};

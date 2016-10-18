@@ -1,9 +1,10 @@
 ﻿using System.Reflection;
+using Android.App;
 
 // Information about this assembly is defined by the following attributes.
 // Change them to the values specific to your project.
 
-[assembly: AssemblyTitle ("StayTogether.Droid")]
+[assembly: AssemblyTitle ("StayTogether")]
 [assembly: AssemblyDescription ("StayTogether for Android")]
 [assembly: AssemblyConfiguration ("")]
 [assembly: AssemblyCompany ("StayTogether")]
@@ -23,4 +24,6 @@
 
 //[assembly: AssemblyDelaySign(false)]
 //[assembly: AssemblyKeyFile("")]
+[assembly: UsesPermission(Android.Manifest.Permission.Internet)]
+[assembly: UsesPermission(Android.Manifest.Permission.AccessNetworkState)]
 
