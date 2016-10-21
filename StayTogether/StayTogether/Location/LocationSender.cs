@@ -181,7 +181,8 @@ namespace StayTogether
                 GroupId = phoneNumber,
                 PhoneNumber = _phoneNumber,
                 Latitude = Convert.ToDouble(location.Longitude),
-                Longitude = Convert.ToDouble(location.Longitude)
+                Longitude = Convert.ToDouble(location.Longitude),
+                InvitationConfirmed = true
             };
             await _chatHubProxy.Invoke("confirmGroupInvitation", groupMemberVm);
         }
