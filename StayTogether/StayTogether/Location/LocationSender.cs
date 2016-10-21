@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Android.Locations;
 using Microsoft.AspNet.SignalR.Client;
 using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
 using Plugin.LocalNotifications;
 using Plugin.Settings;
 using StayTogether.Classes;
-using StayTogether.Droid.NotificationCenter;
 
 namespace StayTogether
 {
@@ -17,7 +15,8 @@ namespace StayTogether
 	public class LocationSender
 	{
 	    public event EventHandler<LostEventArgs> OnSomeoneIsLost;
-	    public event EventHandler OnGroupJoined;
+        public event EventHandler<InvitedEventArgs> OnGroupInvitationReceived;
+        public event EventHandler OnGroupJoined;
 
         public bool InAGroup { get; set; }
         public bool GroupLeader { get; set; }
@@ -100,7 +99,12 @@ namespace StayTogether
 
         private void OnGroupInvitation(string phoneNumber, string name)
         {
-            GroupInvitationNotification.DisplayGroupInvitationNotification(phoneNumber, name);
+            //GroupInvitationNotification.DisplayGroupInvitationNotification(phoneNumber, name);
+            OnGroupInvitationReceived?.Invoke(this, new InvitedEventArgs
+            {
+                Name = name,
+                GroupId = phoneNumber
+            });
         }
 
         public void UpdateGroupId(string id)
@@ -214,6 +218,12 @@ namespace StayTogether
     public class LostEventArgs : EventArgs
     {
         public GroupMemberVm GroupMember { get; set; }
+    }
+
+    public class InvitedEventArgs: EventArgs
+    {
+        public string Name { get; set; }
+        public string GroupId { get; set; }
     }
 }
 

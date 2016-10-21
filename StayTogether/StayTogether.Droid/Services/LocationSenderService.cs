@@ -128,6 +128,10 @@ namespace StayTogether.Droid.Services
             {
                 OnNotifySomeoneIsLost(args.GroupMember);
             };
+            LocationSender.OnGroupInvitationReceived += (SendError, args) => 
+            {
+                GroupInvitationNotification.DisplayGroupInvitationNotification(args.GroupId, args.Name);
+            };
             LocationSender.OnGroupJoined += (sender, args) =>
             {
                 //When the location sender fires the group joined event, call the callback in the activity 
