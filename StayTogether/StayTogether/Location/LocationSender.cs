@@ -147,6 +147,7 @@ namespace StayTogether
             await _chatHubProxy.Invoke("CreateGroup", groupVm);
 	        GroupLeader = true;
 	        InAGroup = true;
+            _groupId = _phoneNumber;
 	    }
 
 	    public async Task EndGroup()
@@ -185,6 +186,10 @@ namespace StayTogether
 	    {
 	        groupMemberVm.PhoneNumber = _phoneNumber;
 	        groupMemberVm.GroupId = _groupId;
+            if(GroupLeader && InAGroup)
+            {
+                groupMemberVm.InvitationConfirmed = true;
+            }
             _chatHubProxy.Invoke("updatePosition", groupMemberVm);
         }
 

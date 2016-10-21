@@ -148,5 +148,6 @@ C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\obj\Debug\res\menu\
 C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\obj\Debug\res\xml\preferences.xml
 C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\obj\Debug\R.cs.flag
 C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\obj\Debug\uploadflags.txt
+C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\obj\Debug\StayTogether.Droid.csprojResolveAssemblyReference.cache
 C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\obj\Debug\StayTogether.Droid.dll.mdb
 C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\bin\Debug\StayTogether.Droid.dll.mdb

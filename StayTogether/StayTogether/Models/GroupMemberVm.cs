@@ -17,6 +17,7 @@ namespace StayTogether.Classes
         public string GroupId { get; set; }
         public string ConnectionId { get; set; }
         public bool Selected { get; set; }
+        public bool InvitationConfirmed { get; set; }
 
         public override string ToString()
         {
