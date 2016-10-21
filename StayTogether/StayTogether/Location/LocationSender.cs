@@ -94,6 +94,8 @@ namespace StayTogether
 	    {
 	        InAGroup = false;
 	        _groupId = "";
+            GroupLeader = false;
+            
             AddNotification("Group Disbanded", "Your Group has been disbanded");
         }
 
