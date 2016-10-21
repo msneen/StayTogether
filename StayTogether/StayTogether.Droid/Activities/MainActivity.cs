@@ -39,6 +39,12 @@ namespace StayTogether.Droid.Activities
             HideContactList();
         }
 
+        public void GroupDisbanded()
+        {
+            //Todo:  kill the app for now.  Later we'll just show the start button and contact list.
+            Finish();//Todo: Eventually keep running and reshow the Start Group Button and Contacts List
+        }
+
 	    protected override void OnNewIntent(Intent intent)
 	    {
 	        base.OnNewIntent(intent);

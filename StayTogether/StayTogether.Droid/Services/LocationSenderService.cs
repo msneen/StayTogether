@@ -20,6 +20,7 @@ namespace StayTogether.Droid.Services
     public interface GroupJoinedCallback
     {
         void GroupJoined();
+        void GroupDisbanded();
     }
 
 
@@ -137,6 +138,10 @@ namespace StayTogether.Droid.Services
                 //When the location sender fires the group joined event, call the callback in the activity 
                 //so we can disable the joinGroup button and hide the contact list
                 _groupJoinedCallback?.GroupJoined();
+            };
+            LocationSender.OnGroupDisbanded +=(SendError, args) =>
+            {
+                _groupJoinedCallback?.GroupDisbanded();
             };
         }
 

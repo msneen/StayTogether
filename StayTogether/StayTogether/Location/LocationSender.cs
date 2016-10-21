@@ -17,6 +17,7 @@ namespace StayTogether
 	    public event EventHandler<LostEventArgs> OnSomeoneIsLost;
         public event EventHandler<InvitedEventArgs> OnGroupInvitationReceived;
         public event EventHandler OnGroupJoined;
+        public event EventHandler OnGroupDisbanded;
 
         public bool InAGroup { get; set; }
         public bool GroupLeader { get; set; }
@@ -97,6 +98,7 @@ namespace StayTogether
             GroupLeader = false;
             
             AddNotification("Group Disbanded", "Your Group has been disbanded");
+            OnGroupDisbanded?.Invoke(this, new EventArgs());
         }
 
         private void OnGroupInvitation(string phoneNumber, string name)
