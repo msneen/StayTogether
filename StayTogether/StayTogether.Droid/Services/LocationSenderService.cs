@@ -134,7 +134,7 @@ namespace StayTogether.Droid.Services
             {
                 OnNotifySomeoneIsLost(args.GroupMember);
             };
-            LocationSender.OnGroupInvitationReceived += (SendError, args) => 
+            LocationSender.OnGroupInvitationReceived += (sender, args) => 
             {
                 GroupInvitationNotification.DisplayGroupInvitationNotification(args.GroupId, args.Name);
             };
@@ -144,9 +144,13 @@ namespace StayTogether.Droid.Services
                 //so we can disable the joinGroup button and hide the contact list
                 _groupJoinedCallback?.GroupJoined();
             };
-            LocationSender.OnGroupDisbanded +=(SendError, args) =>
+            LocationSender.OnGroupDisbanded +=(sender, args) =>
             {
                 _groupJoinedCallback?.GroupDisbanded();
+            };
+            LocationSender.OnSomeoneLeft += (sender, args) =>
+            {
+                LeftGroupNotification.DisplayLostNotification(args.PhoneNumber, args.Name);
             };
         }
 

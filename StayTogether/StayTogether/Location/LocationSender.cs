@@ -18,6 +18,7 @@ namespace StayTogether
         public event EventHandler<InvitedEventArgs> OnGroupInvitationReceived;
         public event EventHandler OnGroupJoined;
         public event EventHandler OnGroupDisbanded;
+        public event EventHandler<LeftEventArgs> OnSomeoneLeft;
 
         public bool InAGroup { get; set; }
         public bool GroupLeader { get; set; }
@@ -61,7 +62,11 @@ namespace StayTogether
 
 	    private void OnMemberLeftGroup(string memberPhoneNumber, string memberName)
 	    {
-            AddNotification("Stay Together - Someone Left Group", $"{ContactsHelper.NameOrPhone(memberPhoneNumber, memberName)} Left the Group");
+            OnSomeoneLeft?.Invoke(this, new LeftEventArgs
+            {
+                Name = memberName,
+                PhoneNumber = memberPhoneNumber
+            });
         }
 
 
@@ -103,13 +108,14 @@ namespace StayTogether
 	        _groupId = "";
             GroupLeader = false;
             
-            AddNotification("Group Disbanded", "Your Group has been disbanded");
+            //AddNotification("Group Disbanded", "Your Group has been disbanded");
             OnGroupDisbanded?.Invoke(this, new EventArgs());
         }
 
         private void OnGroupInvitation(string phoneNumber, string name)
         {
-            //GroupInvitationNotification.DisplayGroupInvitationNotification(phoneNumber, name);
+            if (phoneNumber == _phoneNumber) return;//don't invite myself to a group
+
             OnGroupInvitationReceived?.Invoke(this, new InvitedEventArgs
             {
                 Name = name,
@@ -253,5 +259,11 @@ namespace StayTogether
         public string Name { get; set; }
         public string GroupId { get; set; }
     }
+    public class LeftEventArgs : EventArgs
+    {
+        public string Name { get; set; }
+        public string PhoneNumber { get; set; }
+    }
+
 }
 
