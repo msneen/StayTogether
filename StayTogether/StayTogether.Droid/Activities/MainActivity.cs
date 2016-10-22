@@ -32,8 +32,9 @@ namespace StayTogether.Droid.Activities
 	    readonly List<GroupMemberVm> _selectedContactSynopses = new List<GroupMemberVm>();
         private ListView _listView;
 	    private Logger _logger;
+	    private IMenuItem _endGroupMenuItem;
 
-        public void GroupJoined()
+	    public void GroupJoined()
         {
             DisableStartGroupButton("Group Joined");
             HideContactList();
@@ -88,7 +89,8 @@ namespace StayTogether.Droid.Activities
 	                LocationSenderService.Instance.StartGroup(_selectedContactSynopses);
 	                DisableStartGroupButton();
 	                HideContactList();
-	            }
+                    _endGroupMenuItem.SetVisible(true);
+                }
 	        };
 	    }
 
@@ -219,6 +221,13 @@ namespace StayTogether.Droid.Activities
         {
             menu.Clear();
             MenuInflater.Inflate(Resource.Menu.SettingsMenu, menu);
+
+            _endGroupMenuItem = menu.FindItem(Resource.Id.endGroup);
+            var inAGroup = LocationSenderService.Instance?.LocationSender?.InAGroup ?? false;
+            var isGroupLeader = LocationSenderService.Instance?.LocationSender?.GroupLeader ?? false;
+            var visible = inAGroup && isGroupLeader;
+            _endGroupMenuItem.SetVisible(visible);
+
 
             return base.OnPrepareOptionsMenu(menu);
         }
