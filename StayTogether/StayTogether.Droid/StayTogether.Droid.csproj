@@ -61,6 +61,7 @@
     <DebugSymbols>False</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Java.Interop" />
     <Reference Include="Microsoft.AspNet.SignalR.Client">
       <HintPath>..\..\..\signalr-2.1.2.2\signalr-2.1.2.2\lib\android\Microsoft.AspNet.SignalR.Client.dll</HintPath>
     </Reference>
