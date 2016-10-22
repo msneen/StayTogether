@@ -50,12 +50,18 @@ namespace StayTogether
             _chatHubProxy.On<string>("UpdateGroupId", UpdateGroupId);
             _chatHubProxy.On<string, string, string>("SomeoneIsLost", SomeoneIsLost);
             _chatHubProxy.On<string>("GroupDisbanded", GroupDisbanded);
+            _chatHubProxy.On<string, string>("MemberLeft", OnMemberLeftGroup);
             _chatHubProxy.On<string, string>("GroupInvitation", OnGroupInvitation);
 
             // Start the connection
             _hubConnection.Start().Wait();
 
             SetUpLocationEvents();
+        }
+
+	    private void OnMemberLeftGroup(string memberPhoneNumber, string memberName)
+	    {
+            AddNotification("Stay Together - Someone Left Group", $"{ContactsHelper.NameOrPhone(memberPhoneNumber, memberName)} Left the Group");
         }
 
 
@@ -161,8 +167,20 @@ namespace StayTogether
 	            await _chatHubProxy.Invoke("EndGroup", _phoneNumber);
 	            InAGroup = false;
 	            GroupLeader = false;
+	            _groupId = "";
 	        }
 	    }
+
+        public async Task LeaveGroup()
+        {
+            if (InAGroup && !GroupLeader)
+            {
+                await _chatHubProxy.Invoke("LeaveGroup", _groupId, _phoneNumber);
+                InAGroup = false;
+                GroupLeader = false;
+                _groupId = "";               
+            }
+        }
 
         /// <summary>
         /// Confirms this user is joining the group
@@ -223,7 +241,7 @@ namespace StayTogether
 	        _chatHubProxy.Invoke("SendErrorMessage", message, _phoneNumber);
             return Task.CompletedTask;
 	    }
-    }
+	}
 
     public class LostEventArgs : EventArgs
     {

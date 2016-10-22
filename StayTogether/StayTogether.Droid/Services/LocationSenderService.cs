@@ -110,6 +110,11 @@ namespace StayTogether.Droid.Services
             await LocationSender.EndGroup();
         }
 
+        public async void LeaveGroup()
+        {
+            await LocationSender.LeaveGroup();
+        }
+
 
         private void SendFirstPositionUpdate(string phoneNumber)
         {
@@ -169,5 +174,6 @@ namespace StayTogether.Droid.Services
             _binder = new LocationSenderBinder(this);
             return _binder;
         }
+
     }
 }

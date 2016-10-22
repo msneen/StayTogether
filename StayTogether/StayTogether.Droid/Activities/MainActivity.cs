@@ -32,7 +32,7 @@ namespace StayTogether.Droid.Activities
 	    readonly List<GroupMemberVm> _selectedContactSynopses = new List<GroupMemberVm>();
         private ListView _listView;
 	    private Logger _logger;
-	    private IMenuItem _endGroupMenuItem;
+	    private IMenuItem _leaveGroupMenuItem;
 
 	    public void GroupJoined()
         {
@@ -89,7 +89,7 @@ namespace StayTogether.Droid.Activities
 	                LocationSenderService.Instance.StartGroup(_selectedContactSynopses);
 	                DisableStartGroupButton();
 	                HideContactList();
-                    _endGroupMenuItem.SetVisible(true);
+                    _leaveGroupMenuItem.SetVisible(true);
                 }
 	        };
 	    }
@@ -222,14 +222,28 @@ namespace StayTogether.Droid.Activities
             menu.Clear();
             MenuInflater.Inflate(Resource.Menu.SettingsMenu, menu);
 
-            _endGroupMenuItem = menu.FindItem(Resource.Id.endGroup);
-            var inAGroup = LocationSenderService.Instance?.LocationSender?.InAGroup ?? false;
-            var isGroupLeader = LocationSenderService.Instance?.LocationSender?.GroupLeader ?? false;
-            var visible = inAGroup && isGroupLeader;
-            _endGroupMenuItem.SetVisible(visible);
-
+            SetEndGroupMenuItemVisibility(menu);
+            SetLeaveGroupMenuItemVisibility(menu);
 
             return base.OnPrepareOptionsMenu(menu);
+        }
+
+	    private void SetEndGroupMenuItemVisibility(IMenu menu)
+	    {
+	        _leaveGroupMenuItem = menu.FindItem(Resource.Id.endGroup);
+	        var inAGroup = LocationSenderService.Instance?.LocationSender?.InAGroup ?? false;
+	        var isGroupLeader = LocationSenderService.Instance?.LocationSender?.GroupLeader ?? false;
+	        var visible = inAGroup && isGroupLeader;
+	        _leaveGroupMenuItem.SetVisible(visible);
+	    }
+
+        private void SetLeaveGroupMenuItemVisibility(IMenu menu)
+        {
+            _leaveGroupMenuItem = menu.FindItem(Resource.Id.leaveGroup);
+            var inAGroup = LocationSenderService.Instance?.LocationSender?.InAGroup ?? false;
+            var isGroupLeader = LocationSenderService.Instance?.LocationSender?.GroupLeader ?? true;//if null, default to true since that keeps the menu item Invisible
+            var visible = inAGroup && !isGroupLeader;
+            _leaveGroupMenuItem.SetVisible(visible);
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
@@ -242,6 +256,9 @@ namespace StayTogether.Droid.Activities
                 case Resource.Id.endGroup:
                     EndGroup();
                     break;
+                case Resource.Id.leaveGroup:
+                    LeaveGroup();
+                    break;
                 case Resource.Id.exit:
                     Finish();                   
                     break;
@@ -249,6 +266,12 @@ namespace StayTogether.Droid.Activities
                     break;
             }
             return base.OnOptionsItemSelected(item);
+        }
+
+	    private void LeaveGroup()
+	    {
+            LocationSenderService.Instance.LeaveGroup();
+            Finish();//Todo: Eventually keep running and reshow the Start Group Button and Contacts List
         }
 
 	    private void EndGroup()

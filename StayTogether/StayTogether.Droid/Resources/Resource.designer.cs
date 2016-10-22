@@ -97,11 +97,14 @@ namespace StayTogether.Droid
 			// aapt resource value: 0x7f090009
 			public const int endGroup = 2131296265;
 			
-			// aapt resource value: 0x7f09000a
-			public const int exit = 2131296266;
+			// aapt resource value: 0x7f09000b
+			public const int exit = 2131296267;
 			
 			// aapt resource value: 0x7f090007
 			public const int fragment_container = 2131296263;
+			
+			// aapt resource value: 0x7f09000a
+			public const int leaveGroup = 2131296266;
 			
 			// aapt resource value: 0x7f090003
 			public const int mainLayout = 2131296259;

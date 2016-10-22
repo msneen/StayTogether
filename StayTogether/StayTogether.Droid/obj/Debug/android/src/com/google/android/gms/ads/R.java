@@ -93,8 +93,9 @@ containing a value of this type.
         public static int adjust_height=0x7f090000;
         public static int adjust_width=0x7f090001;
         public static int endGroup=0x7f090009;
-        public static int exit=0x7f09000a;
+        public static int exit=0x7f09000b;
         public static int fragment_container=0x7f090007;
+        public static int leaveGroup=0x7f09000a;
         public static int mainLayout=0x7f090003;
         public static int myButton=0x7f090004;
         public static int none=0x7f090002;
