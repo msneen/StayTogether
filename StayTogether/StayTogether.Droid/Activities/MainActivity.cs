@@ -260,7 +260,7 @@ namespace StayTogether.Droid.Activities
                     LeaveGroup();
                     break;
                 case Resource.Id.exit:
-                    Finish();                   
+                    ExitApp();
                     break;
                 default:
                     break;
@@ -278,6 +278,13 @@ namespace StayTogether.Droid.Activities
 	    {
 	        LocationSenderService.Instance.EndGroup();
             Finish();//Todo: Eventually keep running and reshow the Start Group Button and Contacts List
+        }
+
+        public void ExitApp()
+        {
+            LocationSenderService.Instance.LeaveGroup();
+            LocationSenderService.Instance.EndGroup();
+            Finish();
         }
 
 	    private void LaunchMenu()

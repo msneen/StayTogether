@@ -99,8 +99,11 @@ class MonoPackageManager_Resources {
 	public static final String[] Assemblies = new String[]{
 		/* We need to ensure that "StayTogether.Droid.dll" comes first in this list. */
 		"StayTogether.Droid.dll",
+		"Java.Interop.dll",
 		"Microsoft.AspNet.SignalR.Client.dll",
 		"Newtonsoft.Json.dll",
+		"System.Net.Http.Extensions.dll",
+		"System.Net.Http.Primitives.dll",
 		"NLog.dll",
 		"Plugin.Contacts.Abstractions.dll",
 		"Plugin.Contacts.dll",
@@ -115,8 +118,6 @@ class MonoPackageManager_Resources {
 		"Plugin.Permissions.dll",
 		"Plugin.Settings.Abstractions.dll",
 		"Plugin.Settings.dll",
-		"System.Net.Http.Extensions.dll",
-		"System.Net.Http.Primitives.dll",
 		"Xamarin.Android.Support.v4.dll",
 		"Xamarin.GooglePlayServices.Ads.dll",
 		"Xamarin.GooglePlayServices.Basement.dll",
@@ -130,6 +131,7 @@ class MonoPackageManager_Resources {
 		"System.Runtime.InteropServices.dll",
 		"System.Runtime.Extensions.dll",
 		"System.Reflection.Extensions.dll",
+		"System.ServiceModel.Internals.dll",
 		"System.Dynamic.Runtime.dll",
 		"System.ObjectModel.dll",
 		"System.Linq.Expressions.dll",
@@ -143,8 +145,8 @@ class MonoPackageManager_Resources {
 		"System.Runtime.Serialization.Primitives.dll",
 		"System.Text.Encoding.Extensions.dll",
 		"System.Diagnostics.Tools.dll",
-		"System.Resources.ResourceManager.dll",
 		"System.Net.Primitives.dll",
+		"System.Resources.ResourceManager.dll",
 	};
 	public static final String[] Dependencies = new String[]{
 	};
