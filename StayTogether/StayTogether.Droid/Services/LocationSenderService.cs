@@ -152,6 +152,10 @@ namespace StayTogether.Droid.Services
             {
                 LeftGroupNotification.DisplayLostNotification(args.PhoneNumber, args.Name);
             };
+            LocationSender.OnSomeoneAlreadyInAnotherGroup += (sender, args) =>
+            {
+                InAnotherGroupNotification.DisplayInAnotherGroupNotification(args.PhoneNumber, args.Name);
+            };
         }
 
         private void OnNotifySomeoneIsLost(GroupMemberVm groupMember)

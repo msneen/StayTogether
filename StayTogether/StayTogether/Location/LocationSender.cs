@@ -18,7 +18,8 @@ namespace StayTogether
         public event EventHandler<InvitedEventArgs> OnGroupInvitationReceived;
         public event EventHandler OnGroupJoined;
         public event EventHandler OnGroupDisbanded;
-        public event EventHandler<LeftEventArgs> OnSomeoneLeft;
+        public event EventHandler<MemberMinimalEventArgs> OnSomeoneLeft;
+        public event EventHandler<MemberMinimalEventArgs> OnSomeoneAlreadyInAnotherGroup;
 
         public bool InAGroup { get; set; }
         public bool GroupLeader { get; set; }
@@ -53,6 +54,7 @@ namespace StayTogether
             _chatHubProxy.On<string>("GroupDisbanded", GroupDisbanded);
             _chatHubProxy.On<string, string>("MemberLeft", OnMemberLeftGroup);
             _chatHubProxy.On<string, string>("GroupInvitation", OnGroupInvitation);
+            _chatHubProxy.On<string, string>("MemberAlreadyInGroup", OnMemberAlreadyInGroup);
 
             // Start the connection
             _hubConnection.Start().Wait();
@@ -60,9 +62,19 @@ namespace StayTogether
             SetUpLocationEvents();
         }
 
+	    private void OnMemberAlreadyInGroup(string memberPhoneNumber, string memberName)
+	    {
+            OnSomeoneAlreadyInAnotherGroup?.Invoke(this, new MemberMinimalEventArgs
+            {
+                Name = memberName,
+                PhoneNumber = memberPhoneNumber
+            });
+
+        }
+
 	    private void OnMemberLeftGroup(string memberPhoneNumber, string memberName)
 	    {
-            OnSomeoneLeft?.Invoke(this, new LeftEventArgs
+            OnSomeoneLeft?.Invoke(this, new MemberMinimalEventArgs
             {
                 Name = memberName,
                 PhoneNumber = memberPhoneNumber
@@ -259,11 +271,19 @@ namespace StayTogether
         public string Name { get; set; }
         public string GroupId { get; set; }
     }
-    public class LeftEventArgs : EventArgs
+    public class MemberMinimalEventArgs : EventArgs
     {
         public string Name { get; set; }
         public string PhoneNumber { get; set; }
     }
+
+    //public class LeftEventArgs : MemberMinimalEventArgs
+    //{
+    //}
+
+    //public class MemberAlreadyInGroupEventArgs : MemberMinimalEventArgs
+    //{
+    //}
 
 }
 
