@@ -74,6 +74,9 @@ F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\uploadflags.t
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Debug\com.staytogether.android.apk
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Debug\com.staytogether.android-Signed.apk
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\bin\com.staytogether.android.apk
+F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\StayTogether.Droid.csprojResolveAssemblyReference.cache
+F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\StayTogether.Droid.dll.mdb
+F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Debug\StayTogether.Droid.dll.mdb
 C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\bin\Debug\StayTogether.Droid.dll.config
 C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\bin\Debug\StayTogether.Droid.dll
 C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\bin\Debug\StayTogether.Droid.pdb
@@ -145,10 +148,6 @@ C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\obj\Debug\res\menu\
 C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\obj\Debug\res\xml\preferences.xml
 C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\obj\Debug\R.cs.flag
 C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\obj\Debug\uploadflags.txt
-F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\StayTogether.Droid.csprojResolveAssemblyReference.cache
-F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\StayTogether.Droid.dll.mdb
-F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Debug\StayTogether.Droid.dll.mdb
-C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\obj\Debug\StayTogether.Droid.csprojResolveAssemblyReference.cache
 C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\bin\Debug\StayTogether.Droid.dll.mdb
 C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\bin\Debug\Java.Interop.dll.mdb
 C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\bin\Debug\Microsoft.CSharp.dll.mdb

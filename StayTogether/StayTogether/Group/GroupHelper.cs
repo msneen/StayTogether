@@ -10,7 +10,7 @@ namespace StayTogether.Group
 {
     public class GroupHelper
     {
-        public static GroupVm CreateGroupVm(GroupMemberVm adminMember, List<GroupMemberVm> contactList)
+        public static GroupVm CreateGroupVm(GroupMemberVm adminMember, List<GroupMemberVm> contactList, int expireInHours = 5)
         {
             var groupVm = new GroupVm
             {
@@ -18,7 +18,7 @@ namespace StayTogether.Group
                 PhoneNumber = adminMember.PhoneNumber,
                 GroupMembers = contactList,
                 GroupCreatedDateTime = DateTime.Now,
-                GroupDisbandDateTime = DateTime.Now.AddHours(5)
+                GroupDisbandDateTime = DateTime.Now.AddHours(expireInHours)
             };
             return groupVm;
         }
@@ -32,14 +32,14 @@ namespace StayTogether.Group
             return adminMember;
         }
 
-        public static GroupVm InitializeGroupVm(List<GroupMemberVm> contactList, Position position, string phoneNumber)
+        public static GroupVm InitializeGroupVm(List<GroupMemberVm> contactList, Position position, string phoneNumber, int expireInHours)
         {
             var adminMember = GroupHelper.CreateAdminMember(position, phoneNumber,
                 CrossSettings.Current.GetValueOrDefault<string>("nickname"));//Todo: handle phoneNumber and nickname the same way
 
             contactList.Insert(0, adminMember);
 
-            var groupVm = GroupHelper.CreateGroupVm(adminMember, contactList);
+            var groupVm = GroupHelper.CreateGroupVm(adminMember, contactList, expireInHours);
             return groupVm;
         }
     }

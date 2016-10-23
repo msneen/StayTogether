@@ -7,18 +7,34 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
+  <TextView
+      android:id="@+id/expireTimeLabel"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Expire In:"
+      android:textColor ="#FFFFFF"
+      android:background="#F49242"
+      android:enabled="false"/>
+    <Spinner 
+      android:id ="@+id/expireTime"
+      android:entries ="@array/expire_options"
+      android:padding="5dp"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_toRightOf="@+id/expireTimeLabel"/>
   <Button
-    android:id="@+id/myButton"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="@string/hello"
-    />
+      android:id="@+id/myButton"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_toRightOf="@+id/expireTime"
+      android:text="@string/hello" />
+
   <ListView android:id="@+id/List"
-        android:layout_below="@id/myButton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:cacheColorHint="#FFDAFF7F"
-        android:layout_marginBottom="50dp"
+      android:layout_below="@id/myButton"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:cacheColorHint="#FFDAFF7F"
+      android:layout_marginBottom="50dp"
     />
   <com.google.android.gms.ads.AdView
       xmlns:googleads="http://schemas.android.com/apk/lib/com.google.ads"

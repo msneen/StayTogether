@@ -8,6 +8,9 @@
 package com.staytogether.android;
 
 public final class R {
+    public static final class array {
+        public static final int expire_options=0x7f080000;
+    }
     public static final class attr {
         /** 
     The size of the ad. It must be one of BANNER, FULL_BANNER, LEADERBOARD,
@@ -88,18 +91,20 @@ containing a value of this type.
         public static final int plugin_lc_smallicon=0x7f020001;
     }
     public static final class id {
-        public static final int List=0x7f090005;
-        public static final int adView=0x7f090006;
-        public static final int adjust_height=0x7f090000;
-        public static final int adjust_width=0x7f090001;
-        public static final int endGroup=0x7f090009;
-        public static final int exit=0x7f09000b;
-        public static final int fragment_container=0x7f090007;
-        public static final int leaveGroup=0x7f09000a;
-        public static final int mainLayout=0x7f090003;
-        public static final int myButton=0x7f090004;
-        public static final int none=0x7f090002;
-        public static final int settings=0x7f090008;
+        public static final int List=0x7f0a0007;
+        public static final int adView=0x7f0a0008;
+        public static final int adjust_height=0x7f0a0000;
+        public static final int adjust_width=0x7f0a0001;
+        public static final int endGroup=0x7f0a000b;
+        public static final int exit=0x7f0a000d;
+        public static final int expireTime=0x7f0a0005;
+        public static final int expireTimeLabel=0x7f0a0004;
+        public static final int fragment_container=0x7f0a0009;
+        public static final int leaveGroup=0x7f0a000c;
+        public static final int mainLayout=0x7f0a0003;
+        public static final int myButton=0x7f0a0006;
+        public static final int none=0x7f0a0002;
+        public static final int settings=0x7f0a000a;
     }
     public static final class integer {
         public static final int google_play_services_version=0x7f060000;
@@ -109,7 +114,7 @@ containing a value of this type.
         public static final int settings=0x7f030001;
     }
     public static final class menu {
-        public static final int settingsmenu=0x7f080000;
+        public static final int settingsmenu=0x7f090000;
     }
     public static final class string {
         public static final int Nickname_summary_preference=0x7f05000c;

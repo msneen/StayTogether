@@ -78,7 +78,9 @@ namespace StayTogether.Droid.Activities
             }
         }
 
-	    private void InitializeStartButton()
+
+
+        private void InitializeStartButton()
 	    {
 	        Button startGroupButton = FindViewById<Button>(Resource.Id.myButton);
 
@@ -86,7 +88,9 @@ namespace StayTogether.Droid.Activities
 	        {
 	            if (_selectedContactSynopses.Count > 0)
 	            {
-	                LocationSenderService.Instance.StartGroup(_selectedContactSynopses);
+                    Spinner expireSpinner = FindViewById<Spinner>(Resource.Id.expireTime);
+                    var expireInHours = Convert.ToInt32(expireSpinner.SelectedItem.ToString());
+                    LocationSenderService.Instance.StartGroup(_selectedContactSynopses, expireInHours);
 	                DisableStartGroupButton();
 	                HideContactList();
                     _leaveGroupMenuItem.SetVisible(true);

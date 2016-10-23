@@ -9,4 +9,13 @@
   <string name="description_info">Info</string>
   <string name="menu">Menu</string>
   <string name="banner_ad_unit_id">ca-app-pub-5660348862902976/6683442646</string>
+  <string-array name="expire_options">
+    <item>4</item>
+    <item>5</item>
+    <item>6</item>
+    <item>7</item>
+    <item>8</item>
+    <item>12</item>
+    <item>24</item>
+  </string-array>
 </resources>

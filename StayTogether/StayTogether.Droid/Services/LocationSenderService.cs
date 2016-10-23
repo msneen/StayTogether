@@ -79,16 +79,16 @@ namespace StayTogether.Droid.Services
             return notification;
         }
 
-        public async void StartGroup(List<GroupMemberVm> contactList)
+        public async void StartGroup(List<GroupMemberVm> contactList, int expireInHours)
         {
             var position = GpsService.GetLocation();
             if (LocationSender == null || position == null) return;
 
-            await CreateGroup(contactList, position);
+            await CreateGroup(contactList, position, expireInHours);
         }
-        private async Task CreateGroup(List<GroupMemberVm> contactList, Position position)
+        private async Task CreateGroup(List<GroupMemberVm> contactList, Position position, int expireInHours)
         {
-            var groupVm = GroupHelper.InitializeGroupVm(contactList, position, GetPhoneNumber());
+            var groupVm = GroupHelper.InitializeGroupVm(contactList, position, GetPhoneNumber(), expireInHours);
 
             await LocationSender.StartGroup(groupVm);
         }

@@ -29,6 +29,22 @@ namespace StayTogether.Droid
 			global::Plugin.LocalNotifications.Resource.Drawable.plugin_lc_smallicon = global::StayTogether.Droid.Resource.Drawable.plugin_lc_smallicon;
 		}
 		
+		public partial class Array
+		{
+			
+			// aapt resource value: 0x7f080000
+			public const int expire_options = 2131230720;
+			
+			static Array()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Array()
+			{
+			}
+		}
+		
 		public partial class Attribute
 		{
 			
@@ -82,41 +98,47 @@ namespace StayTogether.Droid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f090005
-			public const int List = 2131296261;
+			// aapt resource value: 0x7f0a0007
+			public const int List = 2131361799;
 			
-			// aapt resource value: 0x7f090006
-			public const int adView = 2131296262;
+			// aapt resource value: 0x7f0a0008
+			public const int adView = 2131361800;
 			
-			// aapt resource value: 0x7f090000
-			public const int adjust_height = 2131296256;
+			// aapt resource value: 0x7f0a0000
+			public const int adjust_height = 2131361792;
 			
-			// aapt resource value: 0x7f090001
-			public const int adjust_width = 2131296257;
+			// aapt resource value: 0x7f0a0001
+			public const int adjust_width = 2131361793;
 			
-			// aapt resource value: 0x7f090009
-			public const int endGroup = 2131296265;
+			// aapt resource value: 0x7f0a000b
+			public const int endGroup = 2131361803;
 			
-			// aapt resource value: 0x7f09000b
-			public const int exit = 2131296267;
+			// aapt resource value: 0x7f0a000d
+			public const int exit = 2131361805;
 			
-			// aapt resource value: 0x7f090007
-			public const int fragment_container = 2131296263;
+			// aapt resource value: 0x7f0a0005
+			public const int expireTime = 2131361797;
 			
-			// aapt resource value: 0x7f09000a
-			public const int leaveGroup = 2131296266;
+			// aapt resource value: 0x7f0a0004
+			public const int expireTimeLabel = 2131361796;
 			
-			// aapt resource value: 0x7f090003
-			public const int mainLayout = 2131296259;
+			// aapt resource value: 0x7f0a0009
+			public const int fragment_container = 2131361801;
 			
-			// aapt resource value: 0x7f090004
-			public const int myButton = 2131296260;
+			// aapt resource value: 0x7f0a000c
+			public const int leaveGroup = 2131361804;
 			
-			// aapt resource value: 0x7f090002
-			public const int none = 2131296258;
+			// aapt resource value: 0x7f0a0003
+			public const int mainLayout = 2131361795;
 			
-			// aapt resource value: 0x7f090008
-			public const int settings = 2131296264;
+			// aapt resource value: 0x7f0a0006
+			public const int myButton = 2131361798;
+			
+			// aapt resource value: 0x7f0a0002
+			public const int none = 2131361794;
+			
+			// aapt resource value: 0x7f0a000a
+			public const int settings = 2131361802;
 			
 			static Id()
 			{
@@ -166,8 +188,8 @@ namespace StayTogether.Droid
 		public partial class Menu
 		{
 			
-			// aapt resource value: 0x7f080000
-			public const int SettingsMenu = 2131230720;
+			// aapt resource value: 0x7f090000
+			public const int SettingsMenu = 2131296256;
 			
 			static Menu()
 			{
