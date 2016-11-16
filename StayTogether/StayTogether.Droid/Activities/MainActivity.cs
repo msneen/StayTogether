@@ -100,21 +100,43 @@ namespace StayTogether.Droid.Activities
 
 	    private void DisableStartGroupButton(string buttonText = "Restart Group")
 	    {
+            SetButtonState(buttonText, false);
+        }
+
+	    private void EnableStartGroupButton(string buttonText = "Add to Group")
+	    {
+	        var buttonEnabled = true;
+	        SetButtonState(buttonText, true);
+	    }
+
+	    private void SetButtonState(string buttonText, bool buttonEnabled)
+	    {
 	        RunOnUiThread(() =>
 	        {
 	            Button startGroupButton = FindViewById<Button>(Resource.Id.myButton);
 	            startGroupButton.Text = buttonText;
-	            startGroupButton.Enabled = false;
+	            startGroupButton.Enabled = buttonEnabled;
 	        });
 	    }
 
 	    private void HideContactList()
 	    {
-            RunOnUiThread(() => {
-	            var contactList = FindViewById<ListView>(Resource.Id.List);
-	            contactList.Visibility = ViewStates.Invisible;
-            });
+	        SetContactListVisibility(ViewStates.Invisible);
+	    }
+
+        private void ShowContactList()
+        {
+            SetContactListVisibility(ViewStates.Visible);
         }
+
+        private void SetContactListVisibility(ViewStates visibility)
+	    {
+	        RunOnUiThread(() =>
+	        {
+	            var contactList = FindViewById<ListView>(Resource.Id.List);
+	            contactList.Visibility = visibility;
+	        });
+	    }
 
 	    private async Task LoadContacts()
 	    {
@@ -257,6 +279,9 @@ namespace StayTogether.Droid.Activities
                 case Resource.Id.settings:
                     LaunchMenu();
                     break;
+                case Resource.Id.addToGroup:
+                    AddToGroup();
+                    break;
                 case Resource.Id.endGroup:
                     EndGroup();
                     break;
@@ -271,6 +296,12 @@ namespace StayTogether.Droid.Activities
             }
             return base.OnOptionsItemSelected(item);
         }
+
+	    private void AddToGroup()
+	    {
+	        EnableStartGroupButton();
+            ShowContactList();
+	    }
 
 	    private void LeaveGroup()
 	    {

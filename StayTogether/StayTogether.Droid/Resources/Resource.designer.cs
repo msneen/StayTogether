@@ -104,17 +104,20 @@ namespace StayTogether.Droid
 			// aapt resource value: 0x7f0a0008
 			public const int adView = 2131361800;
 			
+			// aapt resource value: 0x7f0a000b
+			public const int addToGroup = 2131361803;
+			
 			// aapt resource value: 0x7f0a0000
 			public const int adjust_height = 2131361792;
 			
 			// aapt resource value: 0x7f0a0001
 			public const int adjust_width = 2131361793;
 			
-			// aapt resource value: 0x7f0a000b
-			public const int endGroup = 2131361803;
+			// aapt resource value: 0x7f0a000c
+			public const int endGroup = 2131361804;
 			
-			// aapt resource value: 0x7f0a000d
-			public const int exit = 2131361805;
+			// aapt resource value: 0x7f0a000e
+			public const int exit = 2131361806;
 			
 			// aapt resource value: 0x7f0a0005
 			public const int expireTime = 2131361797;
@@ -125,8 +128,8 @@ namespace StayTogether.Droid
 			// aapt resource value: 0x7f0a0009
 			public const int fragment_container = 2131361801;
 			
-			// aapt resource value: 0x7f0a000c
-			public const int leaveGroup = 2131361804;
+			// aapt resource value: 0x7f0a000d
+			public const int leaveGroup = 2131361805;
 			
 			// aapt resource value: 0x7f0a0003
 			public const int mainLayout = 2131361795;

@@ -170,6 +170,18 @@ namespace StayTogether
             CrossLocalNotifications.Current.Show(title, message);
         }
 
+	    public async Task StartOrAddToGroup(GroupVm groupVm)
+	    {
+	        if (GroupLeader && InAGroup)
+	        {
+	            await AddToGroup(groupVm);
+	        }
+	        else if(!InAGroup)
+	        {
+	            await StartGroup(groupVm);
+	        }
+	    }
+
 	    public async Task StartGroup(GroupVm groupVm)
 	    {
             await _chatHubProxy.Invoke("CreateGroup", groupVm);
@@ -177,6 +189,11 @@ namespace StayTogether
 	        InAGroup = true;
             _groupId = _phoneNumber;
 	    }
+
+	    public async Task AddToGroup(GroupVm groupVm)
+	    {
+            await _chatHubProxy.Invoke("AddToGroup", groupVm);
+        }
 
 	    public async Task EndGroup()
 	    {

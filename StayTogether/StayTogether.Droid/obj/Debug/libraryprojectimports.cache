@@ -2,31 +2,31 @@
 <Paths>
   <Jars></Jars>
   <ResolvedResourceDirectories>
-    <ResolvedResourceDirectory>C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.Contacts\library_project_imports\res</ResolvedResourceDirectory>
-    <ResolvedResourceDirectory>C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.CurrentActivity\library_project_imports\res</ResolvedResourceDirectory>
-    <ResolvedResourceDirectory>C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.ExternalMaps\library_project_imports\res</ResolvedResourceDirectory>
-    <ResolvedResourceDirectory>C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.Geolocator\library_project_imports\res</ResolvedResourceDirectory>
-    <ResolvedResourceDirectory>C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.LocalNotifications\library_project_imports\res</ResolvedResourceDirectory>
-    <ResolvedResourceDirectory>C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.Permissions\library_project_imports\res</ResolvedResourceDirectory>
-    <ResolvedResourceDirectory>C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.Settings\library_project_imports\res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.Contacts\library_project_imports\res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.CurrentActivity\library_project_imports\res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.ExternalMaps\library_project_imports\res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.Geolocator\library_project_imports\res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.LocalNotifications\library_project_imports\res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.Permissions\library_project_imports\res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.Settings\library_project_imports\res</ResolvedResourceDirectory>
   </ResolvedResourceDirectories>
   <ResolvedAssetDirectories>
-    <ResolvedAssetDirectory>C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.Contacts\library_project_imports\assets</ResolvedAssetDirectory>
-    <ResolvedAssetDirectory>C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.CurrentActivity\library_project_imports\assets</ResolvedAssetDirectory>
-    <ResolvedAssetDirectory>C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.ExternalMaps\library_project_imports\assets</ResolvedAssetDirectory>
-    <ResolvedAssetDirectory>C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.Geolocator\library_project_imports\assets</ResolvedAssetDirectory>
-    <ResolvedAssetDirectory>C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.LocalNotifications\library_project_imports\assets</ResolvedAssetDirectory>
-    <ResolvedAssetDirectory>C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.Permissions\library_project_imports\assets</ResolvedAssetDirectory>
-    <ResolvedAssetDirectory>C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.Settings\library_project_imports\assets</ResolvedAssetDirectory>
+    <ResolvedAssetDirectory>obj\Debug\__library_projects__\Plugin.Contacts\library_project_imports\assets</ResolvedAssetDirectory>
+    <ResolvedAssetDirectory>obj\Debug\__library_projects__\Plugin.CurrentActivity\library_project_imports\assets</ResolvedAssetDirectory>
+    <ResolvedAssetDirectory>obj\Debug\__library_projects__\Plugin.ExternalMaps\library_project_imports\assets</ResolvedAssetDirectory>
+    <ResolvedAssetDirectory>obj\Debug\__library_projects__\Plugin.Geolocator\library_project_imports\assets</ResolvedAssetDirectory>
+    <ResolvedAssetDirectory>obj\Debug\__library_projects__\Plugin.LocalNotifications\library_project_imports\assets</ResolvedAssetDirectory>
+    <ResolvedAssetDirectory>obj\Debug\__library_projects__\Plugin.Permissions\library_project_imports\assets</ResolvedAssetDirectory>
+    <ResolvedAssetDirectory>obj\Debug\__library_projects__\Plugin.Settings\library_project_imports\assets</ResolvedAssetDirectory>
   </ResolvedAssetDirectories>
   <ResolvedEnvironmentFiles />
   <ResolvedResourceDirectoryStamps>
-    <ResolvedResourceDirectoryStamp>C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.Contacts.stamp</ResolvedResourceDirectoryStamp>
-    <ResolvedResourceDirectoryStamp>C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.CurrentActivity.stamp</ResolvedResourceDirectoryStamp>
-    <ResolvedResourceDirectoryStamp>C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.ExternalMaps.stamp</ResolvedResourceDirectoryStamp>
-    <ResolvedResourceDirectoryStamp>C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.Geolocator.stamp</ResolvedResourceDirectoryStamp>
-    <ResolvedResourceDirectoryStamp>C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.LocalNotifications.stamp</ResolvedResourceDirectoryStamp>
-    <ResolvedResourceDirectoryStamp>C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.Permissions.stamp</ResolvedResourceDirectoryStamp>
-    <ResolvedResourceDirectoryStamp>C:\StayTogether\staytogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.Settings.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.Contacts.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.CurrentActivity.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.ExternalMaps.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.Geolocator.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.LocalNotifications.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.Permissions.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\__library_projects__\Plugin.Settings.stamp</ResolvedResourceDirectoryStamp>
   </ResolvedResourceDirectoryStamps>
 </Paths>

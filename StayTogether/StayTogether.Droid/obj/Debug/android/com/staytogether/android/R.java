@@ -93,14 +93,15 @@ containing a value of this type.
     public static final class id {
         public static final int List=0x7f0a0007;
         public static final int adView=0x7f0a0008;
+        public static final int addToGroup=0x7f0a000b;
         public static final int adjust_height=0x7f0a0000;
         public static final int adjust_width=0x7f0a0001;
-        public static final int endGroup=0x7f0a000b;
-        public static final int exit=0x7f0a000d;
+        public static final int endGroup=0x7f0a000c;
+        public static final int exit=0x7f0a000e;
         public static final int expireTime=0x7f0a0005;
         public static final int expireTimeLabel=0x7f0a0004;
         public static final int fragment_container=0x7f0a0009;
-        public static final int leaveGroup=0x7f0a000c;
+        public static final int leaveGroup=0x7f0a000d;
         public static final int mainLayout=0x7f0a0003;
         public static final int myButton=0x7f0a0006;
         public static final int none=0x7f0a0002;
