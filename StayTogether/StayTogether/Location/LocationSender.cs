@@ -23,12 +23,14 @@ namespace StayTogether
 
         public bool InAGroup { get; set; }
         public bool GroupLeader { get; set; }
+        public bool IsInitialized { get; set; }
 
         private HubConnection _hubConnection;
 	    private IHubProxy _chatHubProxy;
 	    private IGeolocator _geoLocator;
 	    private string _phoneNumber;
         private string _groupId = ""; //Creator of group's phone number
+        
 
         public LocationSender ()
 	    {
@@ -60,6 +62,8 @@ namespace StayTogether
             _hubConnection.Start().Wait();
 
             SetUpLocationEvents();
+
+	        IsInitialized = true;
         }
 
 	    private void OnMemberAlreadyInGroup(string memberPhoneNumber, string memberName)

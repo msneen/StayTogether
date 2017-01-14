@@ -46,7 +46,7 @@ namespace StayTogether.iOS.Models
 
         public override nint RowsInSection(UITableView tableview, nint section)
         {
-            return Contacts.Count;
+            return Contacts?.Count ?? 0;
         }
 
         //////public override nint GetComponentCount(UIPickerView pickerView)

@@ -18,11 +18,44 @@ namespace StayTogether.iOS
 
         int _count = 1;
 	    private List<GroupMemberVm> _contacts;
+        private bool _eventsInitialized;
         public static LocationManager Manager;
 
         public ViewController (IntPtr handle) : base (handle)
         {
             Manager = new LocationManager();
+        }
+
+        private void InitializeEvents(LocationManager manager)
+        {
+            if (manager?.LocationSender == null || _eventsInitialized) return;
+
+            manager.LocationSender.OnSomeoneIsLost += (sender, args) =>
+            {
+
+            };
+
+            manager.LocationSender.OnGroupInvitationReceived += (sender, args) =>
+            {
+
+            };
+            manager.LocationSender.OnGroupJoined += (sender, args) =>
+            {
+
+            };
+            manager.LocationSender.OnSomeoneLeft += (sender, args) =>
+            {
+
+            };
+            manager.LocationSender.OnSomeoneAlreadyInAnotherGroup += (sender, args) =>
+            {
+
+            };
+            manager.LocationSender.OnGroupDisbanded += (sender, args) =>
+            {
+
+            };
+            _eventsInitialized = true;
         }
 
         public override async void ViewDidLoad()
@@ -42,6 +75,7 @@ namespace StayTogether.iOS
             GetUserPhoneNumber();
 
             Manager.StartLocationUpdates();
+            InitializeEvents(Manager);
 
             await LoadContacts();
         }
@@ -50,10 +84,11 @@ namespace StayTogether.iOS
         {
             var selectedContacts = _contacts.Where(x => x.Selected).ToList();
 
-            if (selectedContacts.Any() && GetUserPhoneNumber()) //Todo: and we have a phone number and nickname
+            if (selectedContacts.Any() && GetUserPhoneNumber()) //Todo: get nickname
             {
 
                 Manager.StartGroup(selectedContacts);
+                InitializeEvents(Manager);
             }
         }
 
@@ -69,13 +104,24 @@ namespace StayTogether.iOS
             else
             {
                 UIPhoneNumberTextField.SizeToFit();
+                TryGetUserPhoneNumber();
                 UIPhoneNumberTextField.EditingDidEnd += (sender, args) =>
                 {
                     TryGetUserPhoneNumber();
                 };
+                UIPhoneNumberTextField.ValueChanged += (object sender,EventArgs e) =>
+                {
+                    if (UIPhoneNumberTextField.Text.Length == 10)
+                    {
+                        TryGetUserPhoneNumber();
+                    }
+                };
+                
             }
             return false;
         }
+
+
 
         private bool TryGetUserPhoneNumber()
         {
@@ -103,17 +149,17 @@ namespace StayTogether.iOS
 
         private async Task LoadContacts()
 	    {
-	        var contactsHelper = new ContactsHelper();
-	        _contacts = await contactsHelper.GetContacts();
-	        if (_contacts == null) return;
+            var contactsHelper = new ContactsHelper();
+            _contacts = await contactsHelper.GetContacts();
+            if (_contacts == null) return;
 
-	        ContactsUITableView.Source = new UITableViewContactsViewSource(_contacts);
-	        ContactsUITableView.AllowsMultipleSelection = true;
-	        ContactsUITableView.AllowsMultipleSelectionDuringEditing = true;
-	        ContactsUITableView.SizeToFit();
-	        if (UIDevice.CurrentDevice.CheckSystemVersion(9, 0))
-	            ContactsUITableView.CellLayoutMarginsFollowReadableWidth = false;
-	    }
+            ContactsUITableView.Source = new UITableViewContactsViewSource(_contacts);
+            ContactsUITableView.AllowsMultipleSelection = true;
+            ContactsUITableView.AllowsMultipleSelectionDuringEditing = true;
+            ContactsUITableView.SizeToFit();
+            if (UIDevice.CurrentDevice.CheckSystemVersion(9, 0))
+                ContactsUITableView.CellLayoutMarginsFollowReadableWidth = false;
+        }
 
 	    public override void DidReceiveMemoryWarning ()
 		{

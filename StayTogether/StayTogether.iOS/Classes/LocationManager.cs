@@ -18,6 +18,9 @@ namespace StayTogether.iOS.Classes
         private LocationSender _locationSender;
         private SendMeter _sendMeter;
         public string UserPhoneNumber { get; set; }
+
+        public LocationSender LocationSender => _locationSender;
+
         public CLLocationManager ClLocationManager
         {
             get
@@ -67,14 +70,16 @@ namespace StayTogether.iOS.Classes
                 _clLocationManager.LocationsUpdated += (object sender, CLLocationsUpdatedEventArgs e) =>
                 {
                     // fire our custom Location Updated event
+                    if (e.Locations == null || e.Locations.Length <= -1) return;
+
                     _lastLocation = e.Locations[e.Locations.Length - 1];
                     //if more than 2 minutes or 100 feet from last location, send update to server
                     SendPositionUpdate();
                 };
 
-                _clLocationManager.StartUpdatingLocation();
+                _clLocationManager?.StartUpdatingLocation();
 
-                if (UserPhoneNumber.Length > 10)
+                if (UserPhoneNumber != null && UserPhoneNumber.Length > 10)
                 {
                     InitializeLocationSender();
                 }
@@ -88,19 +93,19 @@ namespace StayTogether.iOS.Classes
                 Latitude = _lastLocation.Coordinate.Latitude,
                 Longitude = _lastLocation.Coordinate.Longitude
             };
-            if (_sendMeter.CanSend(position))
+
+            if (UserPhoneNumber == null || !_sendMeter.CanSend(position)) return;
+
+            //Send position update
+            var groupMemberVm = new GroupMemberVm
             {
-                //Send position update
-                var groupMemberVm = new GroupMemberVm
-                {
-                    //Get Group Member Properties
-                    Name = "iPhoneTester",
-                    PhoneNumber = UserPhoneNumber,
-                    Latitude = _lastLocation.Coordinate.Latitude,
-                    Longitude = _lastLocation.Coordinate.Longitude
-                };
-                 _locationSender.SendUpdatePosition(groupMemberVm);
-            }
+                //Get Group Member Properties
+                Name = "iPhoneTester",
+                PhoneNumber = UserPhoneNumber,
+                Latitude = _lastLocation.Coordinate.Latitude,
+                Longitude = _lastLocation.Coordinate.Longitude
+            };
+            _locationSender?.SendUpdatePosition(groupMemberVm);
         }
 
         public async void StartGroup(List<GroupMemberVm> selectedContacts)
@@ -114,7 +119,9 @@ namespace StayTogether.iOS.Classes
                     Longitude = _lastLocation.Coordinate.Longitude
                 };
 
-                var groupVm = GroupHelper.InitializeGroupVm(selectedContacts, position, UserPhoneNumber);
+                var expireInHours = 6;
+
+                var groupVm = GroupHelper.InitializeGroupVm(selectedContacts, position, UserPhoneNumber, expireInHours);
 
                 if (_locationSender == null)
                 {
