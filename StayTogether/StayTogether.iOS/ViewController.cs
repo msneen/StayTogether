@@ -6,6 +6,7 @@ using Plugin.Settings;
 using StayTogether.Classes;
 using StayTogether.iOS.Classes;
 using StayTogether.iOS.Models;
+using StayTogether.iOS.NotificationCenter;
 using UIKit;
 
 namespace StayTogether.iOS
@@ -28,11 +29,15 @@ namespace StayTogether.iOS
 
         private void InitializeEvents(LocationManager manager)
         {
+#if (DEBUG)
+            //Testing only
+            LostNotification.DisplayLostNotification(new GroupMemberVm {PhoneNumber = "6199224340"});
+#endif
             if (manager?.LocationSender == null || _eventsInitialized) return;
 
             manager.LocationSender.OnSomeoneIsLost += (sender, args) =>
             {
-
+                LostNotification.DisplayLostNotification(args.GroupMember);
             };
 
             manager.LocationSender.OnGroupInvitationReceived += (sender, args) =>
