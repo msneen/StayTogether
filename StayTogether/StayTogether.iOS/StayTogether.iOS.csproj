@@ -218,6 +218,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Models\UIPickerContactsViewModel.cs" />
+    <Compile Include="NotificationCenter\GroupInvitationNotification.cs" />
     <Compile Include="NotificationCenter\LostNotification.cs" />
     <Compile Include="NotificationCenter\NotificationBase.cs" />
     <Compile Include="ViewController.cs" />

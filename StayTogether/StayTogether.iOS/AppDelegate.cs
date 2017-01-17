@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using Foundation;
+using StayTogether.iOS.NotificationCenter;
 using UIKit;
 
 namespace StayTogether.iOS
@@ -50,9 +52,25 @@ namespace StayTogether.iOS
 
         public override void ReceivedLocalNotification(UIApplication application, UILocalNotification notification)
         {
+            var notificationActions = new List<UIAlertAction>();
             // show an alert
-            UIAlertController okayAlertController = UIAlertController.Create(notification.AlertAction, notification.AlertBody, UIAlertControllerStyle.Alert);
-            okayAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+            var okayAlertController = UIAlertController.Create(notification.AlertAction, notification.AlertBody, UIAlertControllerStyle.Alert);
+            switch (notification.ApplicationIconBadgeNumber)
+            {
+                case 10101:
+                    notificationActions = LostNotification.OnNotify(notification);
+                    break;
+                case 10102:
+                    notificationActions = GroupInvitationNotification.OnNotify(notification);
+                    break;
+                default:
+                    notificationActions.Add(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+                    break;
+            }
+            foreach (var notificationAction in notificationActions)
+            {
+                okayAlertController.AddAction(notificationAction);
+            }
 
             Window.RootViewController.PresentViewController(okayAlertController, true, null);
 
@@ -60,7 +78,7 @@ namespace StayTogether.iOS
             UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
         }
 
-        public override void OnResignActivation (UIApplication application)
+	    public override void OnResignActivation (UIApplication application)
 		{
 			// Invoked when the application is about to move from active to inactive state.
 			// This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) 

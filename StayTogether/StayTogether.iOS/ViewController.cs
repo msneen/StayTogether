@@ -30,8 +30,9 @@ namespace StayTogether.iOS
         private void InitializeEvents(LocationManager manager)
         {
 #if (DEBUG)
-            //Testing only
-            LostNotification.DisplayLostNotification(new GroupMemberVm {PhoneNumber = "6199224340"});
+//            //Testing only
+//            LostNotification.DisplayLostNotification(new GroupMemberVm {PhoneNumber = "6199224340"});
+//              GroupInvitationNotification.DisplayGroupInvitationNotification("6199224340", "");
 #endif
             if (manager?.LocationSender == null || _eventsInitialized) return;
 
@@ -42,7 +43,7 @@ namespace StayTogether.iOS
 
             manager.LocationSender.OnGroupInvitationReceived += (sender, args) =>
             {
-
+                GroupInvitationNotification.DisplayGroupInvitationNotification(args.GroupId, args.Name);
             };
             manager.LocationSender.OnGroupJoined += (sender, args) =>
             {

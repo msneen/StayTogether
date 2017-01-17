@@ -5,6 +5,8 @@ F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug\Newtonsoft.Json.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug\Plugin.Contacts.Abstractions.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug\Plugin.Contacts.dll
+F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug\Plugin.ExternalMaps.Abstractions.dll
+F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug\Plugin.ExternalMaps.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug\Plugin.Geolocator.Abstractions.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug\Plugin.Geolocator.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug\Plugin.LocalNotifications.Abstractions.dll
@@ -18,6 +20,8 @@ F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug\Microsoft.AspNet.SignalR.Client.xml
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug\Plugin.Contacts.xml
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug\Plugin.Contacts.Abstractions.xml
+F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug\Plugin.ExternalMaps.xml
+F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug\Plugin.ExternalMaps.Abstractions.xml
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug\Plugin.Geolocator.xml
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug\Plugin.Geolocator.Abstractions.xml
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug\Plugin.LocalNotifications.xml
@@ -34,9 +38,5 @@ F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhoneSimulator\Debug
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhoneSimulator\Debug\StayTogetheriOS.exe
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhoneSimulator\Debug\StayTogetheriOS.pdb
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhoneSimulator\Debug\StayTogether.iOS.csprojResolveAssemblyReference.cache
-F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug\Plugin.ExternalMaps.Abstractions.dll
-F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug\Plugin.ExternalMaps.dll
-F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug\Plugin.ExternalMaps.xml
-F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug\Plugin.ExternalMaps.Abstractions.xml
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhoneSimulator\Debug\StayTogetheriOS.exe.mdb
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug\StayTogetheriOS.exe.mdb
