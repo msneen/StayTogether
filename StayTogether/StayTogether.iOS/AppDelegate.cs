@@ -63,6 +63,9 @@ namespace StayTogether.iOS
                 case 10102:
                     notificationActions = GroupInvitationNotification.OnNotify(notification);
                     break;
+                case 10103:
+                    notificationActions = LeftGroupNotification.OnNotify(notification);
+                    break;
                 default:
                     notificationActions.Add(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
                     break;

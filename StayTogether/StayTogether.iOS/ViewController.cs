@@ -32,7 +32,8 @@ namespace StayTogether.iOS
 #if (DEBUG)
 //            //Testing only
 //            LostNotification.DisplayLostNotification(new GroupMemberVm {PhoneNumber = "6199224340"});
-//              GroupInvitationNotification.DisplayGroupInvitationNotification("6199224340", "");
+//            GroupInvitationNotification.DisplayGroupInvitationNotification("6199224340", "");
+              LeftGroupNotification.DisplayGroupInvitationNotification("6199224340", "");
 #endif
             if (manager?.LocationSender == null || _eventsInitialized) return;
 
