@@ -223,6 +223,7 @@
     <Compile Include="NotificationCenter\LeftGroupNotification.cs" />
     <Compile Include="NotificationCenter\LostNotification.cs" />
     <Compile Include="NotificationCenter\NotificationBase.cs" />
+    <Compile Include="NotificationCenter\NotificationStrategyHandler.cs" />
     <Compile Include="ViewController.cs" />
     <Compile Include="ViewController.designer.cs">
       <DependentUpon>ViewController.cs</DependentUpon>

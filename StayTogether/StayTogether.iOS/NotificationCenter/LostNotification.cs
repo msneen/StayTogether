@@ -43,7 +43,7 @@ namespace StayTogether.iOS.NotificationCenter
             var longitude = Convert.ToDouble(GetValue("Longitude", ref dictionary));
 
 //#if (DEBUG)
-//            latitude= latitude < 1 ? 32.7818399 : latitude;
+//            latitude = latitude < 1 ? 32.7818399 : latitude;
 //            longitude = longitude < 1 ? -117.1112642 : longitude;
 //#endif
 
