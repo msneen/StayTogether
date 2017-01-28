@@ -1,14 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using StayTogether.Droid.Activities;
 
 namespace StayTogether.Droid.NotificationCenter
@@ -30,7 +21,7 @@ namespace StayTogether.Droid.NotificationCenter
             var notification = new Notification.Builder(Application.Context)
                 .SetSmallIcon(Resource.Drawable.Icon)
                 .SetContentTitle("Invited Person in another Group")
-                .SetContentText($"{displayNameNumber} in in another group and can't be added to your group")
+                .SetContentText($"{displayNameNumber} is in another group and can't be added to your group")
                 .SetContentIntent(PendingIntent.GetActivity(Application.Context, 0, notificationIntent, PendingIntentFlags.UpdateCurrent | PendingIntentFlags.OneShot))
                 .Build();
 
