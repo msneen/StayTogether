@@ -28,6 +28,10 @@ namespace StayTogether.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITextField UINameTextField { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITextField UIPhoneNumberTextField { get; set; }
 
         void ReleaseDesignerOutlets ()
@@ -45,6 +49,11 @@ namespace StayTogether.iOS
             if (StartGroup != null) {
                 StartGroup.Dispose ();
                 StartGroup = null;
+            }
+
+            if (UINameTextField != null) {
+                UINameTextField.Dispose ();
+                UINameTextField = null;
             }
 
             if (UIPhoneNumberTextField != null) {

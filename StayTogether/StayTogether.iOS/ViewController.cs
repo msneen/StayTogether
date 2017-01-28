@@ -53,11 +53,11 @@ namespace StayTogether.iOS
             };
             manager.LocationSender.OnSomeoneLeft += (sender, args) =>
             {
-
+                LeftGroupNotification.DisplayGroupInvitationNotification(args.PhoneNumber, args.Name);
             };
             manager.LocationSender.OnSomeoneAlreadyInAnotherGroup += (sender, args) =>
             {
-
+                InAnotherGroupNotification.DisplayInAnotherGroupNotification(args.PhoneNumber, args.Name);
             };
             manager.LocationSender.OnGroupDisbanded += (sender, args) =>
             {
@@ -81,6 +81,7 @@ namespace StayTogether.iOS
             };
 
             GetUserPhoneNumber();
+            GetUserName();
 
             Manager.StartLocationUpdates();
             InitializeEvents(Manager);
@@ -92,7 +93,8 @@ namespace StayTogether.iOS
         {
             var selectedContacts = _contacts.Where(x => x.Selected).ToList();
 
-            if (selectedContacts.Any() && GetUserPhoneNumber()) //Todo: get nickname
+
+            if (selectedContacts.Any() && GetUserPhoneNumber() && TryGetUserName()) //Todo: get nickname
             {
 
                 Manager.StartGroup(selectedContacts);
@@ -105,7 +107,9 @@ namespace StayTogether.iOS
             var userPhoneNumber = CrossSettings.Current.GetValueOrDefault<string>("phonenumber");
             if  (userPhoneNumber != null && userPhoneNumber.Length == 10)
             {
-                UIPhoneNumberTextField.Hidden = true;
+                //UIPhoneNumberTextField.Hidden = true;
+                UIPhoneNumberTextField.Text = userPhoneNumber;
+                UIPhoneNumberTextField.Enabled = false;
                 Manager.UserPhoneNumber = userPhoneNumber;
                 return true;
             }
@@ -129,8 +133,6 @@ namespace StayTogether.iOS
             return false;
         }
 
-
-
         private bool TryGetUserPhoneNumber()
         {
             var cleanPhoneNumber = ContactsHelper.CleanPhoneNumber(UIPhoneNumberTextField.Text);
@@ -151,6 +153,59 @@ namespace StayTogether.iOS
                 CrossSettings.Current.AddOrUpdateValue<string>("phonenumber", cleanPhoneNumber);
                 Manager.UserPhoneNumber = cleanPhoneNumber;
                 InvokeOnMainThread(() => { UIPhoneNumberTextField.Hidden = true; });
+            }
+            return true;
+        }
+
+        private void GetUserName()
+        {
+            var userName = CrossSettings.Current.GetValueOrDefault<string>("name");
+            if (!string.IsNullOrWhiteSpace( userName ))
+            {
+                UINameTextField.Text = userName;
+                UINameTextField.Enabled = true;
+                return;
+            }
+            else
+            {
+                UINameTextField.SizeToFit();
+                TryGetUserName();
+                UINameTextField.EditingDidEnd += (sender, args) =>
+                {
+                    TryGetUserName();
+                };
+                UINameTextField.ValueChanged += (object sender, EventArgs e) =>
+                {
+                    if (string.IsNullOrWhiteSpace( UINameTextField.Text))
+                    {
+                        TryGetUserName();
+                    }
+                };
+
+            }
+            return;
+        }
+
+        private bool TryGetUserName()
+        {
+            var userName = UINameTextField.Text;
+            if (string.IsNullOrWhiteSpace( userName))
+            {
+                InvokeOnMainThread(() =>
+                {
+                    UINameTextField.Enabled = true;
+                    UINameTextField.BackgroundColor = UIColor.Yellow;
+                    UINameTextField.Layer.BorderColor = UIColor.Red.CGColor;
+                    UINameTextField.Layer.BorderWidth = 3;
+                    UINameTextField.Layer.CornerRadius = 5;
+                });
+                return false;
+            }
+            else
+            {
+                CrossSettings.Current.AddOrUpdateValue<string>("name", userName);
+
+                InvokeOnMainThread(() => { UINameTextField.Enabled = true; });
             }
             return true;
         }

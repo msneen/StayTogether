@@ -1,3 +1,8 @@
+F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhoneSimulator\Debug\ibtool\_BundleResourceWithLogicalName.items
+F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhoneSimulator\Debug\actool\_PartialAppManifest.items
+F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhoneSimulator\Debug\actool\_BundleResourceWithLogicalName.items
+F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhoneSimulator\Debug\optimized\
+F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhoneSimulator\Debug\StayTogether.iOS.csproj.StayTogetheriOS.exe.config
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug\StayTogetheriOS.exe.config
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug\StayTogetheriOS.exe
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug\StayTogetheriOS.pdb
@@ -30,11 +35,6 @@ F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug\Plugin.Permissions.Abstractions.xml
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug\Plugin.Settings.xml
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug\Plugin.Settings.Abstractions.xml
-F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhoneSimulator\Debug\ibtool\_BundleResourceWithLogicalName.items
-F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhoneSimulator\Debug\actool\_PartialAppManifest.items
-F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhoneSimulator\Debug\actool\_BundleResourceWithLogicalName.items
-F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhoneSimulator\Debug\optimized\
-F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhoneSimulator\Debug\StayTogether.iOS.csproj.StayTogetheriOS.exe.config
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhoneSimulator\Debug\StayTogetheriOS.exe
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhoneSimulator\Debug\StayTogetheriOS.pdb
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhoneSimulator\Debug\StayTogether.iOS.csprojResolveAssemblyReference.cache
