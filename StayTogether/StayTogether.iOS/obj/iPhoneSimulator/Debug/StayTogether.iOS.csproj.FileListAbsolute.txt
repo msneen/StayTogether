@@ -38,5 +38,11 @@ F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhoneSimulator\Debug\StayTogetheriOS.exe
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhoneSimulator\Debug\StayTogetheriOS.pdb
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhoneSimulator\Debug\StayTogether.iOS.csprojResolveAssemblyReference.cache
+F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug\Microsoft.Azure.Mobile.Analytics.dll
+F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug\Microsoft.Azure.Mobile.Analytics.iOS.Bindings.dll
+F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug\Microsoft.Azure.Mobile.Crashes.dll
+F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug\Microsoft.Azure.Mobile.Crashes.iOS.Bindings.dll
+F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug\Microsoft.Azure.Mobile.dll
+F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug\Microsoft.Azure.Mobile.iOS.Bindings.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhoneSimulator\Debug\StayTogetheriOS.exe.mdb
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhoneSimulator\Debug\StayTogetheriOS.exe.mdb

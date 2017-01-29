@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using Foundation;
 using StayTogether.iOS.NotificationCenter;
 using UIKit;
+using Microsoft.Azure.Mobile;
+using Microsoft.Azure.Mobile.Analytics;
+using Microsoft.Azure.Mobile.Crashes;
 
 namespace StayTogether.iOS
 {
@@ -20,6 +23,9 @@ namespace StayTogether.iOS
 
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
+            MobileCenter.Start("8fb14343-2648-42ad-acdc-1acf2e6d8c0f",
+                    typeof(Analytics), typeof(Crashes));
+
             if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
             {
                 var notificationSettings = UIUserNotificationSettings.GetSettingsForTypes(

@@ -6,6 +6,12 @@ F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\asset
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\System.Net.Http.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\System.Xml.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Microsoft.AspNet.SignalR.Client.dll
+F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Microsoft.Azure.Mobile.Analytics.Android.Bindings.dll
+F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Microsoft.Azure.Mobile.Analytics.dll
+F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Microsoft.Azure.Mobile.Android.Bindings.dll
+F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Microsoft.Azure.Mobile.Crashes.Android.Bindings.dll
+F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Microsoft.Azure.Mobile.Crashes.dll
+F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Microsoft.Azure.Mobile.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Newtonsoft.Json.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\NLog.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\android\assets\Plugin.Contacts.Abstractions.dll

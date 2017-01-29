@@ -20,6 +20,10 @@ using StayTogether.Droid.Helpers;
 using StayTogether.Droid.NotificationCenter;
 using StayTogether.Droid.Services;
 using StayTogether.Droid.Settings;
+using Microsoft.Azure.Mobile;
+using Microsoft.Azure.Mobile.Analytics;
+using Microsoft.Azure.Mobile.Crashes;
+using LogLevel = NLog.LogLevel;
 
 namespace StayTogether.Droid.Activities
 {
@@ -58,6 +62,9 @@ namespace StayTogether.Droid.Activities
 
             try
             {
+                MobileCenter.Start("f9f28a5e-6d54-4a4a-a1b4-e51f8da8e8c7",
+                    typeof(Analytics), typeof(Crashes));
+
                 _logger = SetUpNLog();
                 // Set our view from the "main" layout resource
                 SetContentView(Resource.Layout.Main);
