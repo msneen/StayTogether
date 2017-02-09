@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.staytogether.android" android:installLocation="auto" android:versionCode="2" android:versionName="StayTogether-Alpha">
-	<uses-sdk android:minSdkVersion="15" />
-  <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+	<uses-sdk android:minSdkVersion="15" android:targetSdkVersion="15" />
+	<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
 	<application android:label="StayTogether" android:icon="@drawable/Icon">
 		<activity android:name="com.google.android.gms.ads.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
 	</application>

@@ -1,8 +1,8 @@
-package md50e69f0993860d77d033b0943bb2ba23c;
+package md50cf536f4229c60e1ef824655129802d3;
 
 
-public class SettingsActivity
-	extends android.app.Activity
+public class SettingsFragment
+	extends android.preference.PreferenceFragment
 	implements
 		mono.android.IGCUserPeer
 {
@@ -12,15 +12,15 @@ public class SettingsActivity
 		__md_methods = 
 			"n_onCreate:(Landroid/os/Bundle;)V:GetOnCreate_Landroid_os_Bundle_Handler\n" +
 			"";
-		mono.android.Runtime.register ("StayTogether.Droid.Settings.SettingsActivity, StayTogether.Droid, Version=1.0.6248.40367, Culture=neutral, PublicKeyToken=null", SettingsActivity.class, __md_methods);
+		mono.android.Runtime.register ("StayTogether.Droid.Resources.layout.SettingsFragment, StayTogether.Droid, Version=1.0.6248.41311, Culture=neutral, PublicKeyToken=null", SettingsFragment.class, __md_methods);
 	}
 
 
-	public SettingsActivity () throws java.lang.Throwable
+	public SettingsFragment () throws java.lang.Throwable
 	{
 		super ();
-		if (getClass () == SettingsActivity.class)
-			mono.android.TypeManager.Activate ("StayTogether.Droid.Settings.SettingsActivity, StayTogether.Droid, Version=1.0.6248.40367, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
+		if (getClass () == SettingsFragment.class)
+			mono.android.TypeManager.Activate ("StayTogether.Droid.Resources.layout.SettingsFragment, StayTogether.Droid, Version=1.0.6248.41311, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
 	}
 
 
