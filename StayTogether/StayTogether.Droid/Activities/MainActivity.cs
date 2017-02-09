@@ -11,8 +11,6 @@ using Android.Widget;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
-using Plugin.ExternalMaps;
-using Plugin.ExternalMaps.Abstractions;
 using StayTogether.Classes;
 using StayTogether.Droid.Admob;
 using StayTogether.Droid.Classes;
