@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.staytogether.android" android:installLocation="auto" android:versionCode="2" android:versionName="StayTogether-Alpha">
-  <uses-sdk android:minSdkVersion="15" android:targetSdkVersion="15" />
+  <uses-sdk android:minSdkVersion="19" android:targetSdkVersion="19" />
   <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
   <uses-permission android:name="android.permission.READ_CONTACTS" />
   <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -10,16 +10,16 @@
   <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
   <uses-permission android:name="android.permission.READ_SMS" />
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-  <application android:label="StayTogether" android:icon="@drawable/icon" android:name="md5269c113ab8fdfb8d9d78452376171077.MainApplication" android:allowBackup="true">
+  <application android:label="StayTogether" android:icon="@drawable/icon" android:name="md5996d4eb012c7c0228251d8468d0a6340.MainApplication" android:allowBackup="true">
     <activity android:name="com.google.android.gms.ads.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
     <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
-    <activity android:label="Settings" android:name="md57898feb565e22130db52747d5e711831.SettingsActivity" />
-    <service android:name="md57ab7126fc50fc761d3686a50c7b19311.LocationSenderService">
+    <activity android:label="Settings" android:name="md5a9a20c4556e41fd5f2264441dec55435.SettingsActivity" />
+    <service android:name="md540baf3de8b491a2c399c172695ba0d97.LocationSenderService">
       <intent-filter>
         <action android:name="com.StayTogether.Droid.LocationSenderService" />
       </intent-filter>
     </service>
-    <activity android:icon="@drawable/icon" android:label="StayTogether" android:launchMode="singleTop" android:name="md562cb73f7c9db1cd3e1e544cd9946df53.MainActivity">
+    <activity android:icon="@drawable/icon" android:label="StayTogether" android:launchMode="singleTop" android:name="md59bbfef5a9816be61658deca5d7bafe25.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />

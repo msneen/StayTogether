@@ -186,7 +186,6 @@ F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\res\menu\sett
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\res\xml\preferences.xml
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\R.cs.flag
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\uploadflags.txt
-F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\Debug\StayTogether.Droid.csprojResolveAssemblyReference.cache
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Debug\Microsoft.Azure.Mobile.Analytics.Android.Bindings.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Debug\Microsoft.Azure.Mobile.Analytics.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Debug\Microsoft.Azure.Mobile.Android.Bindings.dll

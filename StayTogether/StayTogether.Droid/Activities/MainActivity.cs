@@ -8,20 +8,22 @@ using Android.Gms.Ads;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-using NLog;
-using NLog.Config;
-using NLog.Targets;
 using StayTogether.Classes;
 using StayTogether.Droid.Admob;
 using StayTogether.Droid.Classes;
-using StayTogether.Droid.Helpers;
 using StayTogether.Droid.NotificationCenter;
 using StayTogether.Droid.Services;
 using StayTogether.Droid.Settings;
 using Microsoft.Azure.Mobile;
 using Microsoft.Azure.Mobile.Analytics;
 using Microsoft.Azure.Mobile.Crashes;
+#if(DEBUG)
+using NLog;
+using NLog.Config;
+using NLog.Targets;
 using LogLevel = NLog.LogLevel;
+using StayTogether.Droid.Helpers;
+#endif
 
 namespace StayTogether.Droid.Activities
 {
@@ -33,10 +35,12 @@ namespace StayTogether.Droid.Activities
 	    private LocationSenderServiceConnection _locationSenderServiceConnection;
 	    readonly List<GroupMemberVm> _selectedContactSynopses = new List<GroupMemberVm>();
         private ListView _listView;
-	    private Logger _logger;
 	    private IMenuItem _leaveGroupMenuItem;
 
-	    public void GroupJoined()
+#if (DEBUG)
+        private Logger _logger;
+#endif
+        public void GroupJoined()
         {
             DisableStartGroupButton("Group Joined");
             HideContactList();
@@ -63,7 +67,9 @@ namespace StayTogether.Droid.Activities
                 MobileCenter.Start("f9f28a5e-6d54-4a4a-a1b4-e51f8da8e8c7",
                     typeof(Analytics), typeof(Crashes));
 
+#if (DEBUG)
                 _logger = SetUpNLog();
+#endif
                 // Set our view from the "main" layout resource
                 SetContentView(Resource.Layout.Main);
 
@@ -80,6 +86,7 @@ namespace StayTogether.Droid.Activities
             catch (Exception ex)
             {
                 LogError(ex);
+                throw;
             }
         }
 
@@ -175,12 +182,10 @@ namespace StayTogether.Droid.Activities
                     catch (Exception ex)
                     {
                         LogError(ex);
+                        throw;
                     }
                 });
 	    }
-
-
-
 
 	    public void OnItemClick(AdapterView parent, View view, int position, long id)
         {
@@ -206,7 +211,8 @@ namespace StayTogether.Droid.Activities
 	        catch (Exception ex)
 	        {
                 LogError(ex);
-            }
+	            throw;
+	        }
         }
 
 
@@ -345,12 +351,9 @@ namespace StayTogether.Droid.Activities
 
         protected void UnbindFromService()
         {
-            if (IsBound)
-            {
-                
-                UnbindService(_locationSenderServiceConnection);
-                IsBound = false;
-            }
+            if (!IsBound) return;
+            UnbindService(_locationSenderServiceConnection);
+            IsBound = false;
         }
 
         public void ShowAd()
@@ -365,7 +368,7 @@ namespace StayTogether.Droid.Activities
             adView.AdListener = new StayTogetherAdListener();
         }
 
-
+#if (DEBUG)
         public static Logger SetUpNLog()
         {
             var config = new LoggingConfiguration();
@@ -387,12 +390,15 @@ namespace StayTogether.Droid.Activities
 
             return logger;
         }
+#endif
 
         private async void LogError(Exception ex)
         {
+#if (DEBUG)
             _logger.Log(LogLevel.Debug, ex);
 
             await LocationSenderService.Instance.SendError(ex.Message + " " + ex.StackTrace);
+#endif
         }
 
 
