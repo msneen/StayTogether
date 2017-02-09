@@ -1,4 +1,4 @@
-package md5393e3cb1ba6d067c788b07fca569b1b4;
+package md5e36d99cf97982d84245bfcd0626da71b;
 
 
 public class StayTogetherAdListener
@@ -13,7 +13,7 @@ public class StayTogetherAdListener
 			"n_onAdLoaded:()V:GetOnAdLoadedHandler\n" +
 			"n_onAdClosed:()V:GetOnAdClosedHandler\n" +
 			"";
-		mono.android.Runtime.register ("StayTogether.Droid.Admob.StayTogetherAdListener, StayTogether.Droid, Version=1.0.6249.6230, Culture=neutral, PublicKeyToken=null", StayTogetherAdListener.class, __md_methods);
+		mono.android.Runtime.register ("StayTogether.Droid.Admob.StayTogetherAdListener, StayTogether.Droid, Version=1.0.6249.6509, Culture=neutral, PublicKeyToken=null", StayTogetherAdListener.class, __md_methods);
 	}
 
 
@@ -21,7 +21,7 @@ public class StayTogetherAdListener
 	{
 		super ();
 		if (getClass () == StayTogetherAdListener.class)
-			mono.android.TypeManager.Activate ("StayTogether.Droid.Admob.StayTogetherAdListener, StayTogether.Droid, Version=1.0.6249.6230, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
+			mono.android.TypeManager.Activate ("StayTogether.Droid.Admob.StayTogetherAdListener, StayTogether.Droid, Version=1.0.6249.6509, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
 	}
 
 

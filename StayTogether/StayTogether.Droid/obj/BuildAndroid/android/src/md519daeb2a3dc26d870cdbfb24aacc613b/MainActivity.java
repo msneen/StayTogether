@@ -1,4 +1,4 @@
-package md5a28afba677eaa129424e01d879e47b8d;
+package md519daeb2a3dc26d870cdbfb24aacc613b;
 
 
 public class MainActivity
@@ -20,7 +20,7 @@ public class MainActivity
 			"n_onOptionsItemSelected:(Landroid/view/MenuItem;)Z:GetOnOptionsItemSelected_Landroid_view_MenuItem_Handler\n" +
 			"n_onItemClick:(Landroid/widget/AdapterView;Landroid/view/View;IJ)V:GetOnItemClick_Landroid_widget_AdapterView_Landroid_view_View_IJHandler:Android.Widget.AdapterView/IOnItemClickListenerInvoker, Mono.Android, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null\n" +
 			"";
-		mono.android.Runtime.register ("StayTogether.Droid.Activities.MainActivity, StayTogether.Droid, Version=1.0.6249.6230, Culture=neutral, PublicKeyToken=null", MainActivity.class, __md_methods);
+		mono.android.Runtime.register ("StayTogether.Droid.Activities.MainActivity, StayTogether.Droid, Version=1.0.6249.6509, Culture=neutral, PublicKeyToken=null", MainActivity.class, __md_methods);
 	}
 
 
@@ -28,7 +28,7 @@ public class MainActivity
 	{
 		super ();
 		if (getClass () == MainActivity.class)
-			mono.android.TypeManager.Activate ("StayTogether.Droid.Activities.MainActivity, StayTogether.Droid, Version=1.0.6249.6230, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
+			mono.android.TypeManager.Activate ("StayTogether.Droid.Activities.MainActivity, StayTogether.Droid, Version=1.0.6249.6509, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
 	}
 
 
