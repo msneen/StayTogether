@@ -80,6 +80,5 @@ F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\BuildAndroid\res\me
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\BuildAndroid\res\xml\preferences.xml
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\BuildAndroid\R.cs.flag
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\BuildAndroid\uploadflags.txt
-F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\BuildAndroid\StayTogether.Droid.csprojResolveAssemblyReference.cache
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\obj\BuildAndroid\StayTogether.Droid.dll.mdb
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\BuildAndroid\StayTogether.Droid.dll.mdb

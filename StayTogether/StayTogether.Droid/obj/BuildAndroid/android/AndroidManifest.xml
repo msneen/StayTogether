@@ -10,16 +10,16 @@
   <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
   <uses-permission android:name="android.permission.READ_SMS" />
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-  <application android:label="StayTogether" android:icon="@drawable/icon" android:name="md5d756fb8637cd3d2a561065ec47b1abf9.MainApplication" android:allowBackup="true">
+  <application android:label="StayTogether" android:icon="@drawable/icon" android:name="md5269c113ab8fdfb8d9d78452376171077.MainApplication" android:allowBackup="true">
     <activity android:name="com.google.android.gms.ads.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
     <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
-    <activity android:label="Settings" android:name="md55baae34bf2edd14d7f2ae20b8bc4d558.SettingsActivity" />
-    <service android:name="md51bd50ca6a53cce7218be7d6561d47a9f.LocationSenderService">
+    <activity android:label="Settings" android:name="md57898feb565e22130db52747d5e711831.SettingsActivity" />
+    <service android:name="md57ab7126fc50fc761d3686a50c7b19311.LocationSenderService">
       <intent-filter>
         <action android:name="com.StayTogether.Droid.LocationSenderService" />
       </intent-filter>
     </service>
-    <activity android:icon="@drawable/icon" android:label="StayTogether" android:launchMode="singleTop" android:name="md59e30f02e7dbfb8d13c7ae86a287a35c5.MainActivity">
+    <activity android:icon="@drawable/icon" android:label="StayTogether" android:launchMode="singleTop" android:name="md562cb73f7c9db1cd3e1e544cd9946df53.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
