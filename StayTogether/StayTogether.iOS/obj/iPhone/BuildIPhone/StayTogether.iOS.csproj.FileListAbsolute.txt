@@ -43,5 +43,6 @@ F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhone\BuildIPhone\op
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhone\BuildIPhone\StayTogether.iOS.csproj.StayTogetheriOS.exe.config
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhone\BuildIPhone\StayTogetheriOS.exe
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhone\BuildIPhone\StayTogetheriOS.pdb
+F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhone\BuildIPhone\StayTogether.iOS.csprojResolveAssemblyReference.cache
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\obj\iPhone\BuildIPhone\StayTogetheriOS.exe.mdb
 F:\Projects\StayTogether\StayTogether\StayTogether.iOS\bin\iPhone\BuildIPhone\StayTogetheriOS.exe.mdb
