@@ -106,7 +106,6 @@ class MonoPackageManager_Resources {
 		"Microsoft.Azure.Mobile.Crashes.Android.Bindings.dll",
 		"Microsoft.Azure.Mobile.Crashes.dll",
 		"Microsoft.Azure.Mobile.dll",
-		"Newtonsoft.Json.dll",
 		"NLog.dll",
 		"Plugin.Contacts.Abstractions.dll",
 		"Plugin.Contacts.dll",
@@ -121,8 +120,6 @@ class MonoPackageManager_Resources {
 		"Plugin.Permissions.dll",
 		"Plugin.Settings.Abstractions.dll",
 		"Plugin.Settings.dll",
-		"System.Net.Http.Extensions.dll",
-		"System.Net.Http.Primitives.dll",
 		"Xamarin.Android.Support.v4.dll",
 		"Xamarin.GooglePlayServices.Ads.dll",
 		"Xamarin.GooglePlayServices.Basement.dll",
@@ -136,6 +133,7 @@ class MonoPackageManager_Resources {
 		"System.Runtime.InteropServices.dll",
 		"System.Runtime.Extensions.dll",
 		"System.Reflection.Extensions.dll",
+		"Newtonsoft.Json.dll",
 		"System.Dynamic.Runtime.dll",
 		"System.ObjectModel.dll",
 		"System.Linq.Expressions.dll",
@@ -149,8 +147,8 @@ class MonoPackageManager_Resources {
 		"System.Runtime.Serialization.Primitives.dll",
 		"System.Text.Encoding.Extensions.dll",
 		"System.Diagnostics.Tools.dll",
+		"System.Net.Http.Extensions.dll",
 		"System.Resources.ResourceManager.dll",
-		"System.Net.Primitives.dll",
 	};
 	public static final String[] Dependencies = new String[]{
 	};

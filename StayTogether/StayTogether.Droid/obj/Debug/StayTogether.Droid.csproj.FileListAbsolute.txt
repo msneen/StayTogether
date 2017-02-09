@@ -132,7 +132,6 @@ F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Debug\Plugin.Permis
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Debug\Plugin.Settings.Abstractions.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Debug\Plugin.Settings.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Debug\System.Net.Http.Extensions.dll
-F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Debug\System.Net.Http.Primitives.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Debug\Xamarin.Android.Support.v4.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Debug\Xamarin.GooglePlayServices.Ads.dll
 F:\Projects\StayTogether\StayTogether\StayTogether.Droid\bin\Debug\Xamarin.GooglePlayServices.Basement.dll
