@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Foundation;
 using Plugin.Settings;
 using StayTogether.Classes;
 using StayTogether.iOS.Classes;
@@ -72,7 +73,7 @@ namespace StayTogether.iOS
             // Perform any additional setup after loading the view, typically from a nib.
             StartGroup.AccessibilityIdentifier = "startGroup";
             StartGroup.TouchUpInside += delegate
-            {
+            {              
                 //This is the button click event
                 var title = $"Update Group";
                 StartGroup.SetTitle(title, UIControlState.Normal);
@@ -183,6 +184,7 @@ namespace StayTogether.iOS
                 };
 
             }
+
             return;
         }
 
@@ -194,10 +196,10 @@ namespace StayTogether.iOS
                 InvokeOnMainThread(() =>
                 {
                     UINameTextField.Enabled = true;
-                    UINameTextField.BackgroundColor = UIColor.Yellow;
-                    UINameTextField.Layer.BorderColor = UIColor.Red.CGColor;
-                    UINameTextField.Layer.BorderWidth = 3;
-                    UINameTextField.Layer.CornerRadius = 5;
+                    //UINameTextField.BackgroundColor = UIColor.Yellow;
+                    //UINameTextField.Layer.BorderColor = UIColor.Red.CGColor;
+                    //UINameTextField.Layer.BorderWidth = 3;
+                    //UINameTextField.Layer.CornerRadius = 5;
                 });
                 return false;
             }

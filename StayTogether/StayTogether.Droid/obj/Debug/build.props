@@ -15,5 +15,5 @@ AndroidSequencePointsMode=None
 XamarinAndroidVersion=7.0.2-42
 AndroidManagedSymbols=False
 AndroidUseLatestPlatformSdk=False
-TargetFrameworkVersion=v4.4
+TargetFrameworkVersion=v5.0
 AndroidCreatePackagePerAbi=False
