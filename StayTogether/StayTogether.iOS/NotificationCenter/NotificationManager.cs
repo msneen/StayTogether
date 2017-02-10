@@ -27,17 +27,16 @@ namespace StayTogether.iOS.NotificationCenter
                 {
                     var localNotification =
                         launchOptions[UIApplication.LaunchOptionsLocalNotificationKey] as UILocalNotification;
-                    if (localNotification != null)
-                    {
-                        UIAlertController okayAlertController = UIAlertController.Create(localNotification.AlertAction,
-                            localNotification.AlertBody, UIAlertControllerStyle.Alert);
-                        okayAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+                    if (localNotification == null) return;
 
-                        window.RootViewController.PresentViewController(okayAlertController, true, null);
+                    var okayAlertController = UIAlertController.Create(localNotification.AlertAction,
+                        localNotification.AlertBody, UIAlertControllerStyle.Alert);
+                    okayAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
 
-                        // reset our badge
-                        UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
-                    }
+                    window.RootViewController.PresentViewController(okayAlertController, true, null);
+
+                    // reset our badge
+                    UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
                 }
             }
         }
