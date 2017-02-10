@@ -6,6 +6,7 @@ using UIKit;
 using Microsoft.Azure.Mobile;
 using Microsoft.Azure.Mobile.Analytics;
 using Microsoft.Azure.Mobile.Crashes;
+using StayTogether.iOS.Classes;
 
 namespace StayTogether.iOS
 {
@@ -23,40 +24,16 @@ namespace StayTogether.iOS
 
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
-            MobileCenter.Start("8fb14343-2648-42ad-acdc-1acf2e6d8c0f",
-                    typeof(Analytics), typeof(Crashes));
+            MobileCenterManager.RegisterMobileCenter();
 
-            if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
-            {
-                var notificationSettings = UIUserNotificationSettings.GetSettingsForTypes(
-                    UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound, null
-                );
+            NotificationManager.RegisterNotifications(application);
 
-                application.RegisterUserNotificationSettings(notificationSettings);
-            }
-            // check for a notification
-            if (launchOptions != null)
-            {
-                // check for a local notification
-                if (launchOptions.ContainsKey(UIApplication.LaunchOptionsLocalNotificationKey))
-                {
-                    var localNotification = launchOptions[UIApplication.LaunchOptionsLocalNotificationKey] as UILocalNotification;
-                    if (localNotification != null)
-                    {
-                        UIAlertController okayAlertController = UIAlertController.Create(localNotification.AlertAction, localNotification.AlertBody, UIAlertControllerStyle.Alert);
-                        okayAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
-
-                        Window.RootViewController.PresentViewController(okayAlertController, true, null);
-
-                        // reset our badge
-                        UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
-                    }
-                }
-            }
-            return true;
+            NotificationManager.InitializeNotifications(launchOptions, Window);
+		    return true;
 		}
 
-        public override void ReceivedLocalNotification(UIApplication application, UILocalNotification notification)
+
+	    public override void ReceivedLocalNotification(UIApplication application, UILocalNotification notification)
         {
             NotificationStrategyHandler.ReceiveNotification(notification, Window);
         }

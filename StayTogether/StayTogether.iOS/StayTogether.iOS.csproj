@@ -283,6 +283,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\LocationManager.cs" />
+    <Compile Include="Classes\MobileCenterManager.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
@@ -292,6 +293,7 @@
     <Compile Include="NotificationCenter\LeftGroupNotification.cs" />
     <Compile Include="NotificationCenter\LostNotification.cs" />
     <Compile Include="NotificationCenter\NotificationBase.cs" />
+    <Compile Include="NotificationCenter\NotificationManager.cs" />
     <Compile Include="NotificationCenter\NotificationStrategyHandler.cs" />
     <Compile Include="ViewController.cs" />
     <Compile Include="ViewController.designer.cs">
