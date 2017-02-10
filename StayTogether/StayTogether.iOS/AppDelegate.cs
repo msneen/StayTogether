@@ -25,10 +25,9 @@ namespace StayTogether.iOS
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
             MobileCenterManager.RegisterMobileCenter();
-
             NotificationManager.RegisterNotifications(application);
-
             NotificationManager.InitializeNotifications(launchOptions, Window);
+
 		    return true;
 		}
 
