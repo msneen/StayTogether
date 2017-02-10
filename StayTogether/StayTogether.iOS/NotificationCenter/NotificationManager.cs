@@ -10,7 +10,7 @@ namespace StayTogether.iOS.NotificationCenter
             if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
             {
                 var notificationSettings = UIUserNotificationSettings.GetSettingsForTypes(
-                    UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound, null
+                    UIUserNotificationType.Alert | UIUserNotificationType.Badge/* | UIUserNotificationType.Sound*/, null
                     );
 
                 application.RegisterUserNotificationSettings(notificationSettings);
