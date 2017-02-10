@@ -110,7 +110,7 @@ namespace StayTogether.iOS
             {
                 //UIPhoneNumberTextField.Hidden = true;
                 UIPhoneNumberTextField.Text = userPhoneNumber;
-                UIPhoneNumberTextField.Enabled = false;
+                UIPhoneNumberTextField.Enabled = true;
                 Manager.UserPhoneNumber = userPhoneNumber;
                 return true;
             }
