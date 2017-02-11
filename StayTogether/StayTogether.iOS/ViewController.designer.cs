@@ -20,7 +20,19 @@ namespace StayTogether.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIView ContactView { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UINavigationItem EndGroupUINavigationItem { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel lblPhoneNumber { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UINavigationBar MainUINavigationBar { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -41,9 +53,24 @@ namespace StayTogether.iOS
                 ContactsUITableView = null;
             }
 
+            if (ContactView != null) {
+                ContactView.Dispose ();
+                ContactView = null;
+            }
+
+            if (EndGroupUINavigationItem != null) {
+                EndGroupUINavigationItem.Dispose ();
+                EndGroupUINavigationItem = null;
+            }
+
             if (lblPhoneNumber != null) {
                 lblPhoneNumber.Dispose ();
                 lblPhoneNumber = null;
+            }
+
+            if (MainUINavigationBar != null) {
+                MainUINavigationBar.Dispose ();
+                MainUINavigationBar = null;
             }
 
             if (StartGroup != null) {

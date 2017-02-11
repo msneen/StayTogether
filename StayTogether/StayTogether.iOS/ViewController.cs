@@ -75,6 +75,14 @@ namespace StayTogether.iOS
                 StartGroup1(); //Change name of button, then change method name to "StartGroup"
             };
 
+            EndGroupUINavigationItem.SetRightBarButtonItem
+                (
+                new UIBarButtonItem(UIBarButtonSystemItem.Action, async (sender, args) =>
+                {
+                    //Click Event
+                    await Manager.LocationSender.EndGroup();
+                }), true);
+
             GetUserPhoneNumber();
             GetUserName();
 
