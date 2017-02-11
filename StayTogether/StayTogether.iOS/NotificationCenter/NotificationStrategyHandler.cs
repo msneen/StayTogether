@@ -31,7 +31,7 @@ namespace StayTogether.iOS.NotificationCenter
                     break;
             }
             foreach (var notificationAction in notificationActions)
-            {
+            {               
                 okayAlertController.AddAction(notificationAction);
             }
 

@@ -12,9 +12,13 @@ namespace StayTogether.iOS.NotificationCenter
 {
     public class LostNotification : NotificationBase
     {
+        private static Dictionary<string, UILocalNotification> _groupMemberUiLocalNotifications = new Dictionary<string, UILocalNotification>();
+
         public static void DisplayLostNotification(GroupMemberVm groupMemberVm)
         {
             if (string.IsNullOrWhiteSpace(groupMemberVm.PhoneNumber)) return;
+
+            RemovePreviousNotification(groupMemberVm);
 
             var notification = CreateNotification("Someone Is lost", "Someone Is lost", 10101);
 
@@ -27,10 +31,29 @@ namespace StayTogether.iOS.NotificationCenter
 
             notification.UserInfo = dictionary;
 
-
+            _groupMemberUiLocalNotifications.Add(groupMemberVm.PhoneNumber, notification);
             UIApplication.SharedApplication.ScheduleLocalNotification(notification);
         }
 
+        private static void RemovePreviousNotification(GroupMemberVm groupMemberVm)
+        {
+//#if (!DEBUG) //Todo:  Turn me on for release.  Supress the error in release mode
+//            try
+//            {
+//#endif
+                var oldNotification = _groupMemberUiLocalNotifications[groupMemberVm.PhoneNumber];
+                if (oldNotification == null) return;
+
+                UIApplication.SharedApplication.CancelLocalNotification(oldNotification);
+                _groupMemberUiLocalNotifications.Remove(groupMemberVm.PhoneNumber);
+//#if (!DEBUG)
+//            }
+//            catch (Exception)
+//            {
+                
+//            }
+//#endif
+        }
 
 
         public static List<UIAlertAction> OnNotify(UILocalNotification notification)

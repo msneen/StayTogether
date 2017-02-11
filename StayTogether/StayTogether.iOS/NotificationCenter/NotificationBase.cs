@@ -13,11 +13,13 @@ namespace StayTogether.iOS.NotificationCenter
                 AlertAction = "View Alert",
                 AlertBody = body,
                 AlertTitle = title,
-                ApplicationIconBadgeNumber = badgeNumber,
-                SoundName = UILocalNotification.DefaultSoundName
-            };
+                ApplicationIconBadgeNumber = badgeNumber/*,
+                SoundName = UILocalNotification.DefaultSoundName*/
+            };            
             return notification;
         }
+
+
 
         protected static NSMutableDictionary GetDictionary(UILocalNotification notification)
         {
