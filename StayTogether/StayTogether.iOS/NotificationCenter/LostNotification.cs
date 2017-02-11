@@ -12,7 +12,7 @@ namespace StayTogether.iOS.NotificationCenter
 {
     public class LostNotification : NotificationBase
     {
-        private static Dictionary<string, UILocalNotification> _groupMemberUiLocalNotifications = new Dictionary<string, UILocalNotification>();
+        //private static Dictionary<string, UILocalNotification> _groupMemberUiLocalNotifications = new Dictionary<string, UILocalNotification>();
 
         public static void DisplayLostNotification(GroupMemberVm groupMemberVm)
         {
@@ -31,7 +31,7 @@ namespace StayTogether.iOS.NotificationCenter
 
             notification.UserInfo = dictionary;
 
-            _groupMemberUiLocalNotifications.Add(groupMemberVm.PhoneNumber, notification);
+            //_groupMemberUiLocalNotifications.Add(groupMemberVm.PhoneNumber, notification);
             UIApplication.SharedApplication.ScheduleLocalNotification(notification);
         }
 
@@ -41,11 +41,23 @@ namespace StayTogether.iOS.NotificationCenter
 //            try
 //            {
 //#endif
-                var oldNotification = _groupMemberUiLocalNotifications[groupMemberVm.PhoneNumber];
-                if (oldNotification == null) return;
+                //var oldNotification = _groupMemberUiLocalNotifications[groupMemberVm.PhoneNumber];
+                //if (oldNotification == null) return;
 
-                UIApplication.SharedApplication.CancelLocalNotification(oldNotification);
-                _groupMemberUiLocalNotifications.Remove(groupMemberVm.PhoneNumber);
+            var previousNotifications = UIApplication
+                                            .SharedApplication
+                                            .ScheduledLocalNotifications
+                                            .Where(n => n.ApplicationIconBadgeNumber == 10101)
+                                            .ToList();
+
+            for (var i = 0; i < previousNotifications.Count(); i++)
+            {
+                UIApplication.SharedApplication.CancelLocalNotification(previousNotifications[i]);
+            }
+
+
+                ////UIApplication.SharedApplication.CancelLocalNotification(oldNotification);
+                ////_groupMemberUiLocalNotifications.Remove(groupMemberVm.PhoneNumber);
 //#if (!DEBUG)
 //            }
 //            catch (Exception)
