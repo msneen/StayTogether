@@ -18,9 +18,15 @@ namespace StayTogether.iOS.NotificationCenter
         {
             if (string.IsNullOrWhiteSpace(groupMemberVm.PhoneNumber)) return;
 
-            RemovePreviousNotification(groupMemberVm);
+            //RemovePreviousNotification(groupMemberVm);
 
-            var notification = CreateNotification("Someone Is lost", "Someone Is lost", 10101);
+            var previousNotifications = UIApplication
+                                .SharedApplication
+                                .ScheduledLocalNotifications
+                                .Where(n => n.ApplicationIconBadgeNumber == 10101 &&  n.UserInfo["PhoneNumber"].ToString() == groupMemberVm.PhoneNumber)
+                                .ToList();
+
+            var notification = previousNotifications.Count > 0? previousNotifications[0] : CreateNotification("Someone Is lost", "Someone Is lost", 10101);
 
             var dictionary = GetDictionary(notification);
 
@@ -32,7 +38,10 @@ namespace StayTogether.iOS.NotificationCenter
             notification.UserInfo = dictionary;
 
             //_groupMemberUiLocalNotifications.Add(groupMemberVm.PhoneNumber, notification);
-            UIApplication.SharedApplication.ScheduleLocalNotification(notification);
+            if (!previousNotifications.Any())
+            {
+                UIApplication.SharedApplication.ScheduleLocalNotification(notification);
+            }
         }
 
         private static void RemovePreviousNotification(GroupMemberVm groupMemberVm)
@@ -47,7 +56,7 @@ namespace StayTogether.iOS.NotificationCenter
             var previousNotifications = UIApplication
                                             .SharedApplication
                                             .ScheduledLocalNotifications
-                                            .Where(n => n.ApplicationIconBadgeNumber == 10101)
+                                            .Where(n => n.ApplicationIconBadgeNumber == 10101 && n.UserInfo["PhoneNumber"].ToString() == groupMemberVm.PhoneNumber)
                                             .ToList();
 
             for (var i = 0; i < previousNotifications.Count(); i++)
