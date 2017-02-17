@@ -17,13 +17,13 @@ using StayTogether.Droid.Settings;
 using Microsoft.Azure.Mobile;
 using Microsoft.Azure.Mobile.Analytics;
 using Microsoft.Azure.Mobile.Crashes;
-#if(DEBUG)
+//#if(DEBUG)
 using NLog;
 using NLog.Config;
 using NLog.Targets;
 using LogLevel = NLog.LogLevel;
 using StayTogether.Droid.Helpers;
-#endif
+//#endif
 
 namespace StayTogether.Droid.Activities
 {
@@ -37,9 +37,9 @@ namespace StayTogether.Droid.Activities
         private ListView _listView;
 	    private IMenuItem _leaveGroupMenuItem;
 
-#if (DEBUG)
+//#if (DEBUG)
         private Logger _logger;
-#endif
+//#endif
         public void GroupJoined()
         {
             DisableStartGroupButton("Group Joined");
@@ -64,12 +64,13 @@ namespace StayTogether.Droid.Activities
 
             try
             {
+                MobileCenter.LogLevel =Microsoft.Azure.Mobile.LogLevel.Verbose;
                 MobileCenter.Start("f9f28a5e-6d54-4a4a-a1b4-e51f8da8e8c7",
                     typeof(Analytics), typeof(Crashes));
 
-#if (DEBUG)
+//#if (DEBUG)
                 _logger = SetUpNLog();
-#endif
+//#endif
                 // Set our view from the "main" layout resource
                 SetContentView(Resource.Layout.Main);
 
@@ -368,7 +369,7 @@ namespace StayTogether.Droid.Activities
             adView.AdListener = new StayTogetherAdListener();
         }
 
-#if (DEBUG)
+//#if (DEBUG)
         public static Logger SetUpNLog()
         {
             var config = new LoggingConfiguration();
@@ -390,15 +391,15 @@ namespace StayTogether.Droid.Activities
 
             return logger;
         }
-#endif
+//#endif
 
         private async void LogError(Exception ex)
         {
-#if (DEBUG)
+//#if (DEBUG)
             _logger.Log(LogLevel.Debug, ex);
 
             await LocationSenderService.Instance.SendError(ex.Message + " " + ex.StackTrace);
-#endif
+//#endif
         }
 
 
