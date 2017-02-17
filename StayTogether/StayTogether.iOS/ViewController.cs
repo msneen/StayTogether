@@ -69,10 +69,11 @@ namespace StayTogether.iOS
             StartGroup.TouchUpInside += delegate
             {              
                 //This is the button click event
+
+                if (!StartGroup1()) return;
+
                 var title = $"Update Group";
                 StartGroup.SetTitle(title, UIControlState.Normal);
-
-                StartGroup1(); //Change name of button, then change method name to "StartGroup"
             };
 
             EndGroupUINavigationItem.SetRightBarButtonItem
@@ -92,17 +93,18 @@ namespace StayTogether.iOS
             await LoadContacts();
         }
 
-        private void StartGroup1()
+        private bool StartGroup1()
         {
             var selectedContacts = _contacts.Where(x => x.Selected).ToList();
-
 
             if (selectedContacts.Any() && GetUserPhoneNumber() && TryGetUserName()) //Todo: get nickname
             {
 
                 Manager.StartGroup(selectedContacts);
                 InitializeEvents(Manager);
+                return true;
             }
+            return false;
         }
 
         private bool GetUserPhoneNumber()

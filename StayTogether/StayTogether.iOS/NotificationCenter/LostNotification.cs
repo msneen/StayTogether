@@ -12,21 +12,33 @@ namespace StayTogether.iOS.NotificationCenter
 {
     public class LostNotification : NotificationBase
     {
-        //private static Dictionary<string, UILocalNotification> _groupMemberUiLocalNotifications = new Dictionary<string, UILocalNotification>();
+
+        public static Dictionary<string, GroupMemberVm> LastLocation = new Dictionary<string, GroupMemberVm>();
 
         public static void DisplayLostNotification(GroupMemberVm groupMemberVm)
         {
             if (string.IsNullOrWhiteSpace(groupMemberVm.PhoneNumber)) return;
 
-            //RemovePreviousNotification(groupMemberVm);
+            LastLocation[groupMemberVm.PhoneNumber] = groupMemberVm;                    
 
             var previousNotifications = UIApplication
                                 .SharedApplication
                                 .ScheduledLocalNotifications
-                                .Where(n => n.ApplicationIconBadgeNumber == 10101 &&  n.UserInfo["PhoneNumber"].ToString() == groupMemberVm.PhoneNumber)
+                                .Where(n => n.ApplicationIconBadgeNumber == 10101)
                                 .ToList();
 
-            var notification = previousNotifications.Count > 0? previousNotifications[0] : CreateNotification("Someone Is lost", "Someone Is lost", 10101);
+            UILocalNotification mostRecentNotification = null;
+            foreach (var previousNotification in previousNotifications)
+            {
+                var userInfo = previousNotification.UserInfo;
+                var phoneNumber = GetValue("PhoneNumber", ref userInfo);
+                if (phoneNumber == groupMemberVm.PhoneNumber)
+                {
+                    return; //There is already a notification, we don't need to make another
+                }
+            }
+
+            var notification = CreateNotification("Someone Is lost", "Someone Is lost", 10101);
 
             var dictionary = GetDictionary(notification);
 
@@ -37,43 +49,10 @@ namespace StayTogether.iOS.NotificationCenter
 
             notification.UserInfo = dictionary;
 
-            //_groupMemberUiLocalNotifications.Add(groupMemberVm.PhoneNumber, notification);
             if (!previousNotifications.Any())
             {
                 UIApplication.SharedApplication.ScheduleLocalNotification(notification);
             }
-        }
-
-        private static void RemovePreviousNotification(GroupMemberVm groupMemberVm)
-        {
-//#if (!DEBUG) //Todo:  Turn me on for release.  Supress the error in release mode
-//            try
-//            {
-//#endif
-                //var oldNotification = _groupMemberUiLocalNotifications[groupMemberVm.PhoneNumber];
-                //if (oldNotification == null) return;
-
-            var previousNotifications = UIApplication
-                                            .SharedApplication
-                                            .ScheduledLocalNotifications
-                                            .Where(n => n.ApplicationIconBadgeNumber == 10101 && n.UserInfo["PhoneNumber"].ToString() == groupMemberVm.PhoneNumber)
-                                            .ToList();
-
-            for (var i = 0; i < previousNotifications.Count(); i++)
-            {
-                UIApplication.SharedApplication.CancelLocalNotification(previousNotifications[i]);
-            }
-
-
-                ////UIApplication.SharedApplication.CancelLocalNotification(oldNotification);
-                ////_groupMemberUiLocalNotifications.Remove(groupMemberVm.PhoneNumber);
-//#if (!DEBUG)
-//            }
-//            catch (Exception)
-//            {
-                
-//            }
-//#endif
         }
 
 
@@ -83,17 +62,13 @@ namespace StayTogether.iOS.NotificationCenter
             var dictionary = notification.UserInfo;
             var name = GetValue("Name", ref dictionary);
             var phoneNumber = GetValue("PhoneNumber", ref dictionary);
-            var latitude =  Convert.ToDouble(GetValue("Latitude", ref dictionary));
-            var longitude = Convert.ToDouble(GetValue("Longitude", ref dictionary));
-
-//#if (DEBUG)
-//            latitude = latitude < 1 ? 32.7818399 : latitude;
-//            longitude = longitude < 1 ? -117.1112642 : longitude;
-//#endif
 
             var okAction =  UIAlertAction.Create("OK", UIAlertActionStyle.Default, null);
             var mapAction = UIAlertAction.Create("View On Map", UIAlertActionStyle.Default, alertAction =>
             {
+                var latitude = LastLocation[phoneNumber].Latitude;
+                var longitude = LastLocation[phoneNumber].Longitude;
+
                 var nameOrPhone = ContactsHelper.NameOrPhone(phoneNumber, name);
                 CrossExternalMaps.Current.NavigateTo(nameOrPhone, latitude, longitude, NavigationType.Default);
 
