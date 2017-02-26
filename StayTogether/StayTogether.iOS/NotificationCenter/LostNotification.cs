@@ -19,24 +19,15 @@ namespace StayTogether.iOS.NotificationCenter
         {
             if (string.IsNullOrWhiteSpace(groupMemberVm.PhoneNumber)) return;
 
-            LastLocation[groupMemberVm.PhoneNumber] = groupMemberVm;                    
+            var previousNotifications = LastLocation.Where(n => n.Value.PhoneNumber == groupMemberVm.PhoneNumber);
 
-            var previousNotifications = UIApplication
-                                .SharedApplication
-                                .ScheduledLocalNotifications
-                                .Where(n => n.ApplicationIconBadgeNumber == 10101)
-                                .ToList();
-
-            UILocalNotification mostRecentNotification = null;
-            foreach (var previousNotification in previousNotifications)
+            if (previousNotifications.Any())
             {
-                var userInfo = previousNotification.UserInfo;
-                var phoneNumber = GetValue("PhoneNumber", ref userInfo);
-                if (phoneNumber == groupMemberVm.PhoneNumber)
-                {
-                    return; //There is already a notification, we don't need to make another
-                }
+                return;
             }
+
+
+            LastLocation[groupMemberVm.PhoneNumber] = groupMemberVm;
 
             var notification = CreateNotification("Someone Is lost", "Someone Is lost", 10101);
 
@@ -49,10 +40,8 @@ namespace StayTogether.iOS.NotificationCenter
 
             notification.UserInfo = dictionary;
 
-            if (!previousNotifications.Any())
-            {
-                UIApplication.SharedApplication.ScheduleLocalNotification(notification);
-            }
+            UIApplication.SharedApplication.ScheduleLocalNotification(notification);
+         
         }
 
 
@@ -76,6 +65,8 @@ namespace StayTogether.iOS.NotificationCenter
 
             actions.Add(okAction);
             actions.Add(mapAction);
+
+            LastLocation.Remove(phoneNumber);
             return actions;
         }
     }
