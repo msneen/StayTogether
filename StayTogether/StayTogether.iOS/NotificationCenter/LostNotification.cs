@@ -52,7 +52,10 @@ namespace StayTogether.iOS.NotificationCenter
             var name = GetValue("Name", ref dictionary);
             var phoneNumber = GetValue("PhoneNumber", ref dictionary);
 
-            var okAction =  UIAlertAction.Create("OK", UIAlertActionStyle.Default, null);
+            var okAction =  UIAlertAction.Create("OK", UIAlertActionStyle.Default, alertAction =>
+            {
+                LastLocation.Remove(phoneNumber);
+            });
             var mapAction = UIAlertAction.Create("View On Map", UIAlertActionStyle.Default, alertAction =>
             {
                 var latitude = LastLocation[phoneNumber].Latitude;
@@ -60,13 +63,12 @@ namespace StayTogether.iOS.NotificationCenter
 
                 var nameOrPhone = ContactsHelper.NameOrPhone(phoneNumber, name);
                 CrossExternalMaps.Current.NavigateTo(nameOrPhone, latitude, longitude, NavigationType.Default);
-
+                LastLocation.Remove(phoneNumber);
             });
 
             actions.Add(okAction);
             actions.Add(mapAction);
-
-            LastLocation.Remove(phoneNumber);
+                        
             return actions;
         }
     }
