@@ -188,6 +188,7 @@ namespace StayTogether.Droid.Activities
                                 _listView.Adapter = listAdapter;
                                 _listView.ChoiceMode = ChoiceMode.Multiple;
                                 _listView.OnItemClickListener = this;
+                               
                             });
                         }
                         else
@@ -353,7 +354,7 @@ namespace StayTogether.Droid.Activities
         {
             var intent = new Intent();
             intent.SetClass(this, typeof(SettingsActivity));
-            StartActivityForResult(intent, 0);
+            StartActivityForResult(intent, 100);
         }
 
         protected void BindToService()

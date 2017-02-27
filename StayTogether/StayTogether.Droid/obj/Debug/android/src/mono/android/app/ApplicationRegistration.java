@@ -5,7 +5,7 @@ public class ApplicationRegistration {
 	public static void registerApplications ()
 	{
 				// Application and Instrumentation ACWs must be registered first.
-		mono.android.Runtime.register ("StayTogether.Droid.MainApplication, StayTogether.Droid, Version=1.0.6266.28776, Culture=neutral, PublicKeyToken=null", md5d77577a20973a4f2413e9acec5393c5e.MainApplication.class, md5d77577a20973a4f2413e9acec5393c5e.MainApplication.__md_methods);
+		mono.android.Runtime.register ("StayTogether.Droid.MainApplication, StayTogether.Droid, Version=1.0.6266.39575, Culture=neutral, PublicKeyToken=null", md5294eec176a6d11f575069a8e31f70385.MainApplication.class, md5294eec176a6d11f575069a8e31f70385.MainApplication.__md_methods);
 		
 	}
 }
