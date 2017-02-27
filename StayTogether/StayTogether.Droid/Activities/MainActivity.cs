@@ -23,6 +23,8 @@ using NLog.Config;
 using NLog.Targets;
 using LogLevel = NLog.LogLevel;
 using StayTogether.Droid.Helpers;
+using StayTogether.Droid.Swipe;
+
 //#endif
 
 namespace StayTogether.Droid.Activities
@@ -36,6 +38,7 @@ namespace StayTogether.Droid.Activities
 	    readonly List<GroupMemberVm> _selectedContactSynopses = new List<GroupMemberVm>();
         private ListView _listView;
 	    private IMenuItem _leaveGroupMenuItem;
+	    private SwipeHandler _swipeHandler;
 
 //#if (DEBUG)
         private Logger _logger;
@@ -71,6 +74,10 @@ namespace StayTogether.Droid.Activities
 //#if (DEBUG)
                 _logger = SetUpNLog();
 //#endif
+
+                _swipeHandler = new SwipeHandler(this);
+                _swipeHandler.OnSwipeLeft += _swipeHandler_OnSwipeLeft;
+                _swipeHandler.OnSwipeRight += _swipeHandler_OnSwipeRight;
                 // Set our view from the "main" layout resource
                 SetContentView(Resource.Layout.Main);
 
@@ -91,7 +98,15 @@ namespace StayTogether.Droid.Activities
             }
         }
 
+        private void _swipeHandler_OnSwipeRight(object sender, EventArgs e)
+        {
+            LaunchMenu();
+        }
 
+        private void _swipeHandler_OnSwipeLeft(object sender, EventArgs e)
+        {
+            LaunchMenu();
+        }
 
         private void InitializeStartButton()
 	    {
@@ -402,7 +417,12 @@ namespace StayTogether.Droid.Activities
 //#endif
         }
 
-
+        //This wires up the activity to use the IGestureDetector methods below
+	    public override bool OnTouchEvent(MotionEvent e)
+	    {
+	        _swipeHandler.OnTouch(e);
+	        return base.OnTouchEvent(e);
+	    }
 	}
 }
 

@@ -211,6 +211,7 @@
     <Compile Include="Services\LocationSenderService.cs" />
     <Compile Include="Services\LocationSenderServiceConnection.cs" />
     <Compile Include="Settings\SettingsActivity.cs" />
+    <Compile Include="Swipe\SwipeHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
