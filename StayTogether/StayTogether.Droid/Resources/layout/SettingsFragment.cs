@@ -12,10 +12,11 @@ namespace StayTogether.Droid.Resources.layout
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            
+
             AddPreferencesFromResource(Resource.Xml.Preferences);
 
             Preference preference = FindPreference("nickname");
+
             preference.PreferenceChange += (sender, e) =>
             {
                 var nickname = e.NewValue.ToString();
@@ -23,9 +24,5 @@ namespace StayTogether.Droid.Resources.layout
             };
 
         }
-
-       
-
- 
     }
 }

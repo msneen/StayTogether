@@ -30,7 +30,7 @@ using StayTogether.Droid.Swipe;
 namespace StayTogether.Droid.Activities
 {
 	[Activity (Label = "StayTogether", MainLauncher = true, LaunchMode = LaunchMode.SingleTop, Icon = "@drawable/icon")]
-	public class MainActivity : Activity, AdapterView.IOnItemClickListener, GroupJoinedCallback
+	public class MainActivity : Activity, AdapterView.IOnItemClickListener, GroupJoinedCallback, View.IOnTouchListener
 	{
 	    public LocationSenderBinder Binder;
 	    public bool IsBound;
@@ -39,6 +39,7 @@ namespace StayTogether.Droid.Activities
         private ListView _listView;
 	    private IMenuItem _leaveGroupMenuItem;
 	    private SwipeHandler _swipeHandler;
+
 
 //#if (DEBUG)
         private Logger _logger;
@@ -78,6 +79,8 @@ namespace StayTogether.Droid.Activities
                 _swipeHandler = new SwipeHandler(this);
                 _swipeHandler.OnSwipeLeft += _swipeHandler_OnSwipeLeft;
                 _swipeHandler.OnSwipeRight += _swipeHandler_OnSwipeRight;
+                _swipeHandler.OnUp += _swipeHandler_OnSwipeUp;
+
                 // Set our view from the "main" layout resource
                 SetContentView(Resource.Layout.Main);
 
@@ -98,7 +101,17 @@ namespace StayTogether.Droid.Activities
             }
         }
 
-        private void _swipeHandler_OnSwipeRight(object sender, EventArgs e)
+	    private void _swipeHandler_OnSwipeUp( OnUpEventArgs e)
+	    {
+	        var position = _listView.PointToPosition((int)e.MotionEvent.GetX(), (int)e.MotionEvent.GetY());
+	        if (position != ListView.InvalidPosition)
+	        {
+	            _listView.PerformItemClick(_listView.GetChildAt(position - _listView.FirstVisiblePosition), position,
+	                _listView.GetItemIdAtPosition(position));
+	        }
+	    }
+
+	    private void _swipeHandler_OnSwipeRight(object sender, EventArgs e)
         {
             LaunchMenu();
         }
@@ -187,7 +200,10 @@ namespace StayTogether.Droid.Activities
                                     contacts);
                                 _listView.Adapter = listAdapter;
                                 _listView.ChoiceMode = ChoiceMode.Multiple;
-                                _listView.OnItemClickListener = this;
+
+                                
+                                _listView.SetOnTouchListener(this);
+                                _listView.OnItemClickListener = this; 
                                
                             });
                         }
@@ -215,15 +231,7 @@ namespace StayTogether.Droid.Activities
 	                return;
 	            }
 
-	            var contact = _listView.GetItemAtPosition(position).Cast<GroupMemberVm>();
-	            if (checkedView.Checked)
-	            {
-	                _selectedContactSynopses.Add(contact);
-	            }
-	            else
-	            {
-	                _selectedContactSynopses.Remove(contact);
-	            }
+	            ListViewItemClicked(position, checkedView);
 	        }
 	        catch (Exception ex)
 	        {
@@ -232,8 +240,21 @@ namespace StayTogether.Droid.Activities
 	        }
         }
 
+	    private void ListViewItemClicked(int position, CheckedTextView checkedView)
+	    {
+	        var contact = _listView.GetItemAtPosition(position).Cast<GroupMemberVm>();
+	        if (checkedView.Checked)
+	        {
+	            _selectedContactSynopses.Add(contact);
+	        }
+	        else
+	        {
+	            _selectedContactSynopses.Remove(contact);
+	        }
+	    }
 
-        protected override void OnPause()
+
+	    protected override void OnPause()
         {
             base.OnPause();
             Binder?.GetLocationSenderService()?.StartForeground();
@@ -423,6 +444,12 @@ namespace StayTogether.Droid.Activities
 	    {
 	        _swipeHandler.OnTouch(e);
 	        return base.OnTouchEvent(e);
+	    }
+
+	    public bool OnTouch(View v, MotionEvent e)
+	    {
+	        _swipeHandler.OnTouch(e);
+	        return true;
 	    }
 	}
 }

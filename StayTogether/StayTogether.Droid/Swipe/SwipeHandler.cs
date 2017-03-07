@@ -4,78 +4,109 @@ using Android.Views;
 
 namespace StayTogether.Droid.Swipe
 {
-    public class SwipeHandler
+    public delegate void OnUpEventHandler(OnUpEventArgs e);
+
+    public class OnUpEventArgs : EventArgs
     {
-        private readonly GestureDetector _gestureDetector;
-        private readonly GestureListener _gestureListener;
-        private static readonly int SWIPE_THRESHOLD = 100;
-        private static readonly int SWIPE_VELOCITY_THRESHOLD = 100;
+        public MotionEvent MotionEvent;
+    }
+
+    public class SwipeHandler : Java.Lang.Object, View.IOnTouchListener, GestureDetector.IOnGestureListener
+    {
+        private GestureDetector _gestureDetector;
+        private Context _context;
 
         public event EventHandler OnSwipeDown;
         public event EventHandler OnSwipeUp;
         public event EventHandler OnSwipeLeft;
         public event EventHandler OnSwipeRight;
+        public event OnUpEventHandler OnUp;
 
-        public SwipeHandler(Context context)
+        public void SetContext(Context context)
         {
-            _gestureListener = new GestureListener();
-            _gestureListener.OnSwipeDown += (sender, args) => { OnSwipeDown?.Invoke(this, null); };
-            _gestureListener.OnSwipeUp += (sender, args) => { OnSwipeUp?.Invoke(this, null); };
-            _gestureListener.OnSwipeLeft += (sender, args) => { OnSwipeLeft?.Invoke(this, null); };
-            _gestureListener.OnSwipeRight += (sender, args) => { OnSwipeRight?.Invoke(this, null); };
-
-            _gestureDetector = new GestureDetector(context, _gestureListener);
+            _context = context;
+            Initialize();
         }
 
-        public bool OnTouch(MotionEvent e)
+        public SwipeHandler()
+        {
+                
+        }
+
+        public SwipeHandler(Context context)
+        {         
+            SetContext(context);
+        }
+
+        private void Initialize()
+        {
+            var swipeGestureListener = new SwipeGestureListener();
+            swipeGestureListener.OnSwipeDown += (sender, args) => { OnSwipeDown?.Invoke(this, null); };
+            swipeGestureListener.OnSwipeUp += (sender, args) => { OnSwipeUp?.Invoke(this, null); };
+            swipeGestureListener.OnSwipeLeft += (sender, args) => { OnSwipeLeft?.Invoke(this, null); };
+            swipeGestureListener.OnSwipeRight += (sender, args) => { OnSwipeRight?.Invoke(this, null); };
+            swipeGestureListener.OnUp += args => { OnUp?.Invoke(args); };
+
+            _gestureDetector = new GestureDetector(_context, swipeGestureListener);
+        }
+
+        public bool OnTouch(View v, MotionEvent e)
         {
             return _gestureDetector.OnTouchEvent(e);
         }
-
-        private class GestureListener : GestureDetector.SimpleOnGestureListener
+       
+        public bool OnTouch(MotionEvent e)
         {
-            public event EventHandler OnSwipeDown;
-            public event EventHandler OnSwipeUp;
-            public event EventHandler OnSwipeLeft;
-            public event EventHandler OnSwipeRight;
-
-            public override bool OnFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY)
-            {
-                var diffY = e2.GetY() - e1.GetY();
-                var diffX = e2.GetX() - e1.GetX();
-
-                if (Math.Abs(diffX) > Math.Abs(diffY))
-                {
-                    if (!(Math.Abs(diffX) > SWIPE_THRESHOLD) || !(Math.Abs(velocityX) > SWIPE_VELOCITY_THRESHOLD))
-                        return base.OnFling(e1, e2, velocityX, velocityY);
-
-                    if (diffX > 0)
-                    {
-                        OnSwipeRight?.Invoke(this, null);
-                    }
-                    else
-                    {
-                        OnSwipeLeft?.Invoke(this, null);
-                    }
-                }
-                else if (Math.Abs(diffY) > SWIPE_THRESHOLD && Math.Abs(velocityY) > SWIPE_VELOCITY_THRESHOLD)
-                {
-                    if (diffY > 0)
-                    {
-                        OnSwipeDown?.Invoke(this, null);
-                    }
-                    else
-                    {
-                        OnSwipeUp?.Invoke(this, null);
-                    }
-                }
-                return base.OnFling(e1, e2, velocityX, velocityY);
-            }
+            //if (e.Action == MotionEventActions.Up)
+            //{
+            //   var onUpEventArgs = new OnUpEventArgs
+            //   {
+            //       MotionEvent = e
+            //   };
+            //    OnUp?.Invoke(onUpEventArgs);
+            //    return true;
+            //}
+            return _gestureDetector.OnTouchEvent(e);
         }
 
         public void Dispose()
         {
             _gestureDetector.Dispose();
+            base.Dispose();
         }
+
+        public IntPtr Handle { get; }
+
+        
+        public bool OnDown(MotionEvent e)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool OnFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnLongPress(MotionEvent e)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool OnScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnShowPress(MotionEvent e)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool OnSingleTapUp(MotionEvent e)
+        {
+            throw new NotImplementedException();
+        }
+        
     }
 }
