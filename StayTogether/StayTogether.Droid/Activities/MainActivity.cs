@@ -104,7 +104,7 @@ namespace StayTogether.Droid.Activities
 	    private void _swipeHandler_OnSwipeUp( OnUpEventArgs e)
 	    {
 	        var position = _listView.PointToPosition((int)e.MotionEvent.GetX(), (int)e.MotionEvent.GetY());
-	        if (position != ListView.InvalidPosition)
+	        if (position != AdapterView.InvalidPosition)
 	        {
 	            _listView.PerformItemClick(_listView.GetChildAt(position - _listView.FirstVisiblePosition), position,
 	                _listView.GetItemIdAtPosition(position));
@@ -146,7 +146,6 @@ namespace StayTogether.Droid.Activities
 
 	    private void EnableStartGroupButton(string buttonText = "Add to Group")
 	    {
-	        var buttonEnabled = true;
 	        SetButtonState(buttonText, true);
 	    }
 
@@ -268,16 +267,13 @@ namespace StayTogether.Droid.Activities
             var inAGroup = false;
             BindToService();
             var locationSenderService = Binder?.GetLocationSenderService();
-            if (locationSenderService != null)
+            var locationSender = locationSenderService?.LocationSender;
+            if (locationSender != null)
             {
-                var locationSender = locationSenderService.LocationSender;
-                if (locationSender != null)
-                {
-                    inAGroup = locationSender.InAGroup;
-                }
+                inAGroup = locationSender.InAGroup;
             }
 
-            if (inAGroup == true)
+            if (inAGroup)
             {
                 GroupJoined();
             }
@@ -288,7 +284,7 @@ namespace StayTogether.Droid.Activities
 	        base.OnDestroy();
             Binder?.GetLocationSenderService()?.SetGroupJoinedCallback(null);
             Binder?.GetLocationSenderService()?.StopSelf();
-            Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
+            Process.KillProcess(Process.MyPid());
             System.Environment.Exit(0);
         }
 
@@ -339,8 +335,6 @@ namespace StayTogether.Droid.Activities
                     break;
                 case Resource.Id.exit:
                     ExitApp();
-                    break;
-                default:
                     break;
             }
             return base.OnOptionsItemSelected(item);
@@ -397,7 +391,7 @@ namespace StayTogether.Droid.Activities
         public void ShowAd()
         {
             MobileAds.Initialize(this);
-            var adView = (AdView)FindViewById<AdView>(Resource.Id.adView);
+            var adView = FindViewById<AdView>(Resource.Id.adView);
 
             AdRequest adRequest = new AdRequest.Builder()
                 .AddTestDevice(AdRequest.DeviceIdEmulator)

@@ -1,6 +1,7 @@
 using System.Security;
 using Android.OS;
 using Android.Preferences;
+using Android.Views;
 using Plugin.Settings;
 
 namespace StayTogether.Droid.Resources.layout
@@ -11,7 +12,7 @@ namespace StayTogether.Droid.Resources.layout
         [SecurityCritical]
         public override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);
+            base.OnCreate(savedInstanceState);                
 
             AddPreferencesFromResource(Resource.Xml.Preferences);
 
@@ -24,5 +25,6 @@ namespace StayTogether.Droid.Resources.layout
             };
 
         }
+
     }
 }
